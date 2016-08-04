@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>ログイン</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<style>
+	<!--
+		* {
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+					box-sizing: border-box;
+			outline: none;
+		}
+
+		.login-form {
+			margin: 50px auto;
+			max-width: 320px;
+		}
+	
+		.login-form > section {
+			text-align: center;
+			margin-top: 30px;
+		}
+		.login-form > section a {
+			color: #fff;
+		}
+		.login-form > section:first-child {
+			margin-bottom: 38px;
+		}
+	
+		.login-form .panel {
+			background: #fff !important;
+			border-radius: 0 !important;
+			-moz-border-radius: 0;
+			-webkit-border-radius: 0;
+			-webkit-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, 0.2) !important;
+			   -moz-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, 0.2) !important;
+					box-shadow: 0 3px 3px 0 rgba(50, 50, 50, 0.2) !important;
+		}
+		
+		.login-form .panel .panel-body {
+			padding: 25px !important;
+		}
+		.login-form .panel .panel-footer {
+			padding: 15px 25px !important;
+			border-top: none !important;
+			background: #A5C3D1 !important;
+		}
+			.login-form .panel .panel-footer a {
+				color: #BECDCE !important;
+			}
+		
+		form[role=login] {
+			font: 13px/2.2em Lato, serif;
+			color: #999;
+		}   
+		form[role=login] label {
+			font-size: 15px;
+			font-weight: normal;
+			margin: 0;
+		}
+		form[role=login] input,
+		form[role=login] button {
+			font-size: 14px;
+			margin: 0;
+		}
+		form[role=login] input[type=checkbox] {
+			display: inline-block;
+			margin-right: 5px;
+		}
+		form[role=login] input {
+			color: #777;
+			background: #fbfbfb;
+			border: 1px solid #ddd;
+			border-radius: 0;
+			-webkit-box-shadow: inset 0 2px 2px 0 rgba(150, 150, 150, .1);
+			   -moz-box-shadow: inset 0 2px 2px 0 rgba(150, 150, 150, .1);
+					box-shadow: inset 0 2px 2px 0 rgba(150, 150, 150, .1);
+		}
+		form[role=login] button {
+			padding: 5px 40px;  
+			margin-top: 25px;
+		}
+		body {background-color:#F7F5F1 !important;}
+	-->
+	</style>
+	
+
+</head>
+<body>
+
+
+
+
+<section class="container">
+		
+		<section class="login-form">
+				
+			<div class="panel-body">
+
+				<span th:unless="${param.error == null}">
+					<div th:switch="${param.error[0]}" class="alert alert-danger">
+						<p th:case="'authentication'">正しい&nbsp;ID,Password&nbsp;を入力してください。</p>
+						<p th:case="*">予期せぬエラーが発生しました、しばらく時間を置いてから再度試してみてください。</p>
+					</div>
+				 </span>
+
+				<form id="main" method="post" class="form-horizontal" th:action="@{'/login'}">
+					<div class="input-group input-sm">
+						<label class="input-group-addon" for="username">
+							<span class="glyphicon glyphicon-user icon-white" aria-hidden="true"></span>
+						</label>
+						<input type="text" class="form-control" id="username" name="username" placeholder="ログインIDを入力してください"  /> 
+					</div>
+					<div class="input-group input-sm">
+						<label class="input-group-addon" for="password">
+							<span class="glyphicon glyphicon-lock icon-white" aria-hidden="true"></span>
+						</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="パスワードを入力してください"  />
+					</div>
+					<input id="login_button" type="submit" value="ログイン" class="btn btn-block btn-primary btn-default" />
+				</form>
+			</div>
+		</section>
+	</section>
+
+<!--[if lt IE 9]><!-->
+	<script src="/static/javascript/jquery-1.9.1.min.js"></script>
+	<script th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script  th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+	<script  th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			
+			$("#login_id").focus();
+		});
+	</script>
+
+</body>
+</html>
