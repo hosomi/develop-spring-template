@@ -11,6 +11,10 @@ machine:
     - sudo service mysql stop
     - sudo service postgresql stop
 
+general:
+  artifacts:
+    - "build/libs/*.war"
+
 dependencies:  
   pre:
     - sudo apt-get install software-properties-common
