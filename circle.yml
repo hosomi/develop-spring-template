@@ -25,6 +25,7 @@ dependencies:
   override:
     - ./gradlew -v
     - ./gradlew testClasses
+    - ./gradlew build
 
 test:  
   override:
