@@ -11,18 +11,18 @@ public class LoginUser extends org.springframework.security.core.userdetails.Use
 	 */
 	private static final long serialVersionUID = 5995980685832853146L;
 	/**
-     * ƒƒOƒCƒ“ƒ†[ƒU[
+     * ãƒ­ã‚°ã‚¤ãƒ³ãƒ¦ãƒ¼ã‚¶ãƒ¼
      */
     private final User user;
 
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param user
      */
     public LoginUser(User user) {
-        // ƒX[ƒp[ƒNƒ‰ƒX‚Ìƒ†[ƒU[IDAƒpƒXƒ[ƒh‚É’l‚ðƒZƒbƒg‚·‚é
-        // ŽÀÛ‚Ì”FØ‚ÍƒX[ƒp[ƒNƒ‰ƒX‚Ìƒ†[ƒU[IDAƒpƒXƒ[ƒh‚Ås‚í‚ê‚é
+        // ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã«å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+        // å®Ÿéš›ã®èªè¨¼ã¯ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã§è¡Œã‚ã‚Œã‚‹
         super(user.getLoginUserId(), user.getPassword(),
                 AuthorityUtils.createAuthorityList("ROLE_USER"));
         this.user = user;

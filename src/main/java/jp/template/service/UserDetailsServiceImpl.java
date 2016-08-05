@@ -16,8 +16,8 @@ import jp.template.security.LoginUser;
 
 
 /**
- * UserDetailsService‚ÌÀ‘•ƒNƒ‰ƒX
- * Spring Security‚Å‚Ìƒ†[ƒU[”FØ‚Ég—p‚·‚é
+ * UserDetailsServiceã®å®Ÿè£…ã‚¯ãƒ©ã‚¹
+ * Spring Securityã§ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã«ä½¿ç”¨ã™ã‚‹
  */
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -29,19 +29,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String login_id)
             throws UsernameNotFoundException {
 
-        // ”FØ‚ğs‚¤ƒ†[ƒU[î•ñ‚ğŠi”[‚·‚é
+        // èªè¨¼ã‚’è¡Œã†ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
         User user = null;
         try {
-            // “ü—Í‚µ‚½ƒ†[ƒU[ID‚©‚ç”FØ‚ğs‚¤ƒ†[ƒU[î•ñ‚ğæ“¾‚·‚é
+            // å…¥åŠ›ã—ãŸãƒ¦ãƒ¼ã‚¶ãƒ¼IDã‹ã‚‰èªè¨¼ã‚’è¡Œã†ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã‚’å–å¾—ã™ã‚‹
         	user = userMapper.select(login_id);
 			if (Objects.isNull(user)) {
 				 throw new UsernameNotFoundException("User not found for login id: " + login_id);
 			}
 
-	        // ƒ†[ƒU[î•ñ‚ªæ“¾‚Å‚«‚½‚çSpring Security‚Å”FØ‚Å‚«‚éŒ`‚Å–ß‚·
+	        // ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ãŒå–å¾—ã§ããŸã‚‰Spring Securityã§èªè¨¼ã§ãã‚‹å½¢ã§æˆ»ã™
 	        return new LoginUser(user);
         } catch (Exception e) {
-            // æ“¾‚ÉException‚ª”­¶‚µ‚½ê‡
+            // å–å¾—æ™‚ã«ExceptionãŒç™ºç”Ÿã—ãŸå ´åˆ
             throw new UsernameNotFoundException("It can not be acquired User");
         }
 

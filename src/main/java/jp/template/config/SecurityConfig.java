@@ -11,15 +11,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import jp.template.service.UserDetailsServiceImpl;
 /**
- * Spring Securityİ’èƒNƒ‰ƒX.
+ * Spring Securityè¨­å®šã‚¯ãƒ©ã‚¹.
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        // ƒZƒLƒ…ƒŠƒeƒBİ’è‚ğ–³‹‚·‚éƒŠƒNƒGƒXƒgİ’è
-        // Ã“IƒŠƒ\[ƒX(imagesAcssAjavascript)‚É‘Î‚·‚éƒAƒNƒZƒX‚ÍƒZƒLƒ…ƒŠƒeƒBİ’è‚ğ–³‹‚·‚é
+        // ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£è¨­å®šã‚’ç„¡è¦–ã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆè¨­å®š
+        // é™çš„ãƒªã‚½ãƒ¼ã‚¹(imagesã€cssã€javascript)ã«å¯¾ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚¹ã¯ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£è¨­å®šã‚’ç„¡è¦–ã™ã‚‹
         web.ignoring().antMatchers(
         					"/static/**",
                             "/images/**",
@@ -32,60 +32,60 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 /*
-        // ”F‰Â‚Ìİ’è
+        // èªå¯ã®è¨­å®š
         http.authorizeRequests()
-            .antMatchers("/", "/login","test").permitAll() // ‘Sƒ†[ƒU[ƒAƒNƒZƒX‹–‰Â
-            .anyRequest().authenticated();  // ‚»‚êˆÈŠO‚Í‘S‚Ä”FØ–³‚µ‚Ìê‡ƒAƒNƒZƒX•s‹–‰Â
+            .antMatchers("/", "/login","test").permitAll() // å…¨ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¢ã‚¯ã‚»ã‚¹è¨±å¯
+            .anyRequest().authenticated();  // ãã‚Œä»¥å¤–ã¯å…¨ã¦èªè¨¼ç„¡ã—ã®å ´åˆã‚¢ã‚¯ã‚»ã‚¹ä¸è¨±å¯
 
-        // ƒƒOƒCƒ“İ’è
+        // ãƒ­ã‚°ã‚¤ãƒ³è¨­å®š
         http.formLogin()
-            .loginProcessingUrl("/login")   // ”FØˆ—‚ÌƒpƒX
-            .loginPage("/login")            // ƒƒOƒCƒ“ƒtƒH[ƒ€‚ÌƒpƒX
-//            .failureHandler(new SampleAuthenticationFailureHandler())       // ”FØ¸”s‚ÉŒÄ‚Î‚ê‚éƒnƒ“ƒhƒ‰ƒNƒ‰ƒX
+            .loginProcessingUrl("/login")   // èªè¨¼å‡¦ç†ã®ãƒ‘ã‚¹
+            .loginPage("/login")            // ãƒ­ã‚°ã‚¤ãƒ³ãƒ•ã‚©ãƒ¼ãƒ ã®ãƒ‘ã‚¹
+//            .failureHandler(new SampleAuthenticationFailureHandler())       // èªè¨¼å¤±æ•—æ™‚ã«å‘¼ã°ã‚Œã‚‹ãƒãƒ³ãƒ‰ãƒ©ã‚¯ãƒ©ã‚¹
             .failureUrl("/login-error")
-            .defaultSuccessUrl("/menu")     // ”FØ¬Œ÷‚Ì‘JˆÚæ
-            .usernameParameter("login_id").passwordParameter("login_password")  // ƒ†[ƒU[–¼AƒpƒXƒ[ƒh‚Ìƒpƒ‰ƒ[ƒ^–¼
+            .defaultSuccessUrl("/menu")     // èªè¨¼æˆåŠŸæ™‚ã®é·ç§»å…ˆ
+            .usernameParameter("login_id").passwordParameter("login_password")  // ãƒ¦ãƒ¼ã‚¶ãƒ¼åã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å
             .and();
 
-        // ƒƒOƒAƒEƒgİ’è
+        // ãƒ­ã‚°ã‚¢ã‚¦ãƒˆè¨­å®š
         http.logout()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))       // ƒƒOƒAƒEƒgˆ—‚ÌƒpƒX
-            .logoutSuccessUrl("/login");                                        // ƒƒOƒAƒEƒgŠ®—¹‚ÌƒpƒX
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))       // ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†ã®ãƒ‘ã‚¹
+            .logoutSuccessUrl("/login");                                        // ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†æ™‚ã®ãƒ‘ã‚¹
 */
     	
     	
     	
     	   http.authorizeRequests()
-           // ƒAƒNƒZƒXŒ ŒÀ‚Ìİ’è
-           // staticƒfƒBƒŒƒNƒgƒŠ‚É‚ ‚éA'/css/','fonts','/js/'‚Í§ŒÀ‚È‚µ
+           // ã‚¢ã‚¯ã‚»ã‚¹æ¨©é™ã®è¨­å®š
+           // staticãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã‚ã‚‹ã€'/css/','fonts','/js/'ã¯åˆ¶é™ãªã—
            .antMatchers("/css/**", "/fonts/**", "/js/**","/test").permitAll()
-           // '/admin/'‚Ån‚Ü‚éURL‚É‚ÍA'ADMIN'ƒ[ƒ‹‚Ì‚İƒAƒNƒZƒX‰Â
+           // '/admin/'ã§å§‹ã¾ã‚‹URLã«ã¯ã€'ADMIN'ãƒ­ãƒ¼ãƒ«ã®ã¿ã‚¢ã‚¯ã‚»ã‚¹å¯
            //.antMatchers("/admin/**").hasRole("ADMIN")
-           // ‘¼‚Í§ŒÀ‚È‚µ
+           // ä»–ã¯åˆ¶é™ãªã—
            .anyRequest().authenticated()
          .and()
-           // ƒƒOƒCƒ“ˆ—‚Ìİ’è
+           // ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ã®è¨­å®š
            .formLogin()
-             // ƒƒOƒCƒ“ˆ—‚ÌURL
+             // ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ã®URL
              .loginPage("/login")
              .failureUrl("/login?error=authentication")
              .defaultSuccessUrl("/menu")
-             // username‚Ìƒpƒ‰ƒƒ^–¼
+             // usernameã®ãƒ‘ãƒ©ãƒ¡ã‚¿å
              .usernameParameter("username")
-             // password‚Ìƒpƒ‰ƒƒ^–¼
+             // passwordã®ãƒ‘ãƒ©ãƒ¡ã‚¿å
              .passwordParameter("password")
              
              .permitAll()
          .and()
-           // ƒƒOƒAƒEƒgˆ—‚Ìİ’è
+           // ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†ã®è¨­å®š
            .logout()
-             // ƒƒOƒAƒEƒgˆ—‚ÌURL
+             // ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†ã®URL
              .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-             // ƒƒOƒAƒEƒg¬Œ÷‚Ì‘JˆÚæURL
+             // ãƒ­ã‚°ã‚¢ã‚¦ãƒˆæˆåŠŸæ™‚ã®é·ç§»å…ˆURL
              .logoutSuccessUrl("/login")
-             // ƒƒOƒAƒEƒg‚Éíœ‚·‚éƒNƒbƒL[–¼
+             // ãƒ­ã‚°ã‚¢ã‚¦ãƒˆæ™‚ã«å‰Šé™¤ã™ã‚‹ã‚¯ãƒƒã‚­ãƒ¼å
              .deleteCookies("JSESSIONID")
-             // ƒƒOƒAƒEƒg‚ÌƒZƒbƒVƒ‡ƒ“”jŠü‚ğ—LŒø‰»
+             // ãƒ­ã‚°ã‚¢ã‚¦ãƒˆæ™‚ã®ã‚»ãƒƒã‚·ãƒ§ãƒ³ç ´æ£„ã‚’æœ‰åŠ¹åŒ–
              .invalidateHttpSession(true)
              .permitAll()
          ;
@@ -98,9 +98,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Override
         public void init(AuthenticationManagerBuilder auth) throws Exception {
-            // ”FØ‚·‚éƒ†[ƒU[‚ğİ’è‚·‚é
+            // èªè¨¼ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚’è¨­å®šã™ã‚‹
             auth.userDetailsService(userDetailsService)
-            // “ü—Í’l‚ğbcrypt‚ÅƒnƒbƒVƒ…‰»‚µ‚½’l‚ÅƒpƒXƒ[ƒh”FØ‚ğs‚¤
+            // å…¥åŠ›å€¤ã‚’bcryptã§ãƒãƒƒã‚·ãƒ¥åŒ–ã—ãŸå€¤ã§ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰èªè¨¼ã‚’è¡Œã†
             //.passwordEncoder(new BCryptPasswordEncoder())
             ;
 

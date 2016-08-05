@@ -24,22 +24,22 @@ public class Application extends SpringBootServletInitializer implements Command
     }
 	
     @Autowired
-    TodoMapper todoMapper; // Mapper‚ğƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚·‚é
+    TodoMapper todoMapper; // Mapperã‚’ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã™ã‚‹
 
-    // Spring Boot‹N“®‚ÉCommandLineRunner#runƒƒ\ƒbƒh‚ªŒÄ‚Ño‚³‚ê‚é
+    // Spring Bootèµ·å‹•æ™‚ã«CommandLineRunner#runãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹
     @Transactional
     @Override
     public void run(String... args) throws Exception { 
     	
         Todo newTodo = new Todo();
         newTodo.setTitle("TODO1");
-        newTodo.setDetails("TODO1Ú×");
+        newTodo.setDetails("TODO1è©³ç´°");
 
-        todoMapper.insert(newTodo); // V‚µ‚¢Todo‚ğƒCƒ“ƒT[ƒg‚·‚é
+        todoMapper.insert(newTodo); // æ–°ã—ã„Todoã‚’ã‚¤ãƒ³ã‚µãƒ¼ãƒˆã™ã‚‹
 //        for (int i = 0; i < 10000; i++) {
 //        	todoMapper.insert(newTodo);
 //    }
-        Todo loadedTodo = todoMapper.select(newTodo.getId()); // ƒCƒ“ƒT[ƒg‚µ‚½Todo‚ğæ“¾‚µ‚Ä•W€o—Í‚·‚é
+        Todo loadedTodo = todoMapper.select(newTodo.getId()); // ã‚¤ãƒ³ã‚µãƒ¼ãƒˆã—ãŸTodoã‚’å–å¾—ã—ã¦æ¨™æº–å‡ºåŠ›ã™ã‚‹
         System.out.println("ID       : " + loadedTodo.getId());
         System.out.println("TITLE    : " + loadedTodo.getTitle());
         System.out.println("DETAILS  : " + loadedTodo.getDetails());

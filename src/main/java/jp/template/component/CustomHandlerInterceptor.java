@@ -1,41 +1,1 @@
-package jp.template.component;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-
-
-
-public class CustomHandlerInterceptor  implements HandlerInterceptor{
-
-	 private static final Logger logger = LoggerFactory.getLogger(CustomHandlerInterceptor.class);
-	
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // Handlerƒƒ\ƒbƒh‚ªŒÄ‚Ño‚³‚ê‚é‘O‚És‚¤ˆ—‚ğÀ‘•‚·‚é
-        // (À‘•‚ÍÈ—ª)
-    	
-    	
-    	
-        // Handlerƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·ê‡‚Ítrue‚ğ•Ô‹p‚·‚é
-        return true;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        // Handlerƒƒ\ƒbƒh‚ª³íI—¹‚µ‚½Œã‚És‚¤ˆ—‚ğÀ‘•‚·‚é(—áŠO‚ª”­¶‚µ‚½ê‡‚ÍA‚±‚Ìƒƒ\ƒbƒh‚ÍŒÄ‚Ño‚³‚ê‚È‚¢)
-        // (À‘•‚ÍÈ—ª)
-    	
-    	logger.info("postHandle");
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        // Handlerƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ‚ªŠ®—¹‚µ‚½Œã‚És‚¤ˆ—‚ğÀ‘•‚·‚é(—áŠO‚ª”­¶‚µ‚Ä‚àA‚±‚Ìƒƒ\ƒbƒh‚ÍŒÄ‚Ño‚³‚ê‚é)
-        // (À‘•‚ÍÈ—ª)
-
-    }
-}
+package jp.template.component;import javax.servlet.http.HttpServletRequest;import javax.servlet.http.HttpServletResponse;import org.slf4j.Logger;import org.slf4j.LoggerFactory;import org.springframework.web.servlet.HandlerInterceptor;import org.springframework.web.servlet.ModelAndView;public class CustomHandlerInterceptor  implements HandlerInterceptor{	 private static final Logger logger = LoggerFactory.getLogger(CustomHandlerInterceptor.class);	    @Override    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {        // Handlerãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹å‰ã«è¡Œã†å‡¦ç†ã‚’å®Ÿè£…ã™ã‚‹        // (å®Ÿè£…ã¯çœç•¥)    	    	    	        // Handlerãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™å ´åˆã¯trueã‚’è¿”å´ã™ã‚‹        return true;    }    @Override    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {        // Handlerãƒ¡ã‚½ãƒƒãƒ‰ãŒæ­£å¸¸çµ‚äº†ã—ãŸå¾Œã«è¡Œã†å‡¦ç†ã‚’å®Ÿè£…ã™ã‚‹(ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯å‘¼ã³å‡ºã•ã‚Œãªã„)        // (å®Ÿè£…ã¯çœç•¥)    	    	logger.info("postHandle");    }    @Override    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {        // Handlerãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—ãŒå®Œäº†ã—ãŸå¾Œã«è¡Œã†å‡¦ç†ã‚’å®Ÿè£…ã™ã‚‹(ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã‚‚ã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯å‘¼ã³å‡ºã•ã‚Œã‚‹)        // (å®Ÿè£…ã¯çœç•¥)    }}

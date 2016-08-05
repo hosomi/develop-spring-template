@@ -6,14 +6,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TestController {
+@RequestMapping(value = "/menu")
+public class MenuController {
 
+	
 	// 初期オープン時。
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(ModelAndView modelAndView) throws Exception {
+	@RequestMapping(method = RequestMethod.GET)
+	public String show(ModelAndView modelAndView) throws Exception {
 
 
 
-		return "test";
+		return "menu";
 	}
 }

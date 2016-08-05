@@ -20,13 +20,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	public void addInterceptors(InterceptorRegistry registry) {
 
-		registry.addInterceptor(new CustomHandlerInterceptor()).addPathPatterns("/**") // “K—p‘ÎÛ‚ÌƒpƒX(ƒpƒ^[ƒ“)‚ğw’è‚·‚é
-				.excludePathPatterns("/static/**","/webjars/**"); // œŠO‚·‚éƒpƒX(ƒpƒ^[ƒ“)‚ğw’è‚·‚é
+		registry.addInterceptor(new CustomHandlerInterceptor()).addPathPatterns("/**") // é©ç”¨å¯¾è±¡ã®ãƒ‘ã‚¹(ãƒ‘ã‚¿ãƒ¼ãƒ³)ã‚’æŒ‡å®šã™ã‚‹
+				.excludePathPatterns("/static/**","/webjars/**"); // é™¤å¤–ã™ã‚‹ãƒ‘ã‚¹(ãƒ‘ã‚¿ãƒ¼ãƒ³)ã‚’æŒ‡å®šã™ã‚‹
 	}
 
 	public void addViewControllers(ViewControllerRegistry registry) {
 
-		registry.addViewController("/").setViewName("login");
+		registry.addViewController("/").setViewName("forward:/login.html");
 		registry.addViewController("/login").setViewName("login");
 	}
 
@@ -35,7 +35,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/")
-				.resourceChain(false) // ©“®‚ÅWebJarsResourceResolver‚ª—LŒø‰»‚³‚ê‚é
+				.resourceChain(false) // è‡ªå‹•ã§WebJarsResourceResolverãŒæœ‰åŠ¹åŒ–ã•ã‚Œã‚‹
 				.addResolver(new GzipResourceResolver());
 	}
 
