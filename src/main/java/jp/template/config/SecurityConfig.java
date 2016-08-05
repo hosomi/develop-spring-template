@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -17,6 +18,7 @@ import jp.template.service.UserDetailsServiceImpl;
  * @author hosomi.
  */
 @Configuration
+@EnableWebSecurity // デフォルト でCSRF が有効。
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
@@ -25,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// セキュリティ設定を無視するリクエスト設定
 		// 静的リソース(images、css、javascript)に対するアクセスはセキュリティ設定を無視する
 		web.ignoring().antMatchers(
+				"/", // / -> /login にリダイレクトした場合の挙動がおかしい（上手く認証できない現象） / アクセスで access denied になっていた。
 				"/static/**", 
 				"/images/**", 
 				"/css/**", 
@@ -32,10 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				"/webjars/**");
 	}
 
-	@Override
+	 @Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		
 		// Spring Security の設定
 		http.authorizeRequests()
 				// アクセス権限の設定
@@ -48,7 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated().and()
 				// ログイン処理の設定
 				.formLogin()
-					.loginPage("/login")// ログイン処理の URL
+					.loginPage("/login")	// ログイン処理の URL
+					.loginProcessingUrl("/login/auth")
 					.failureUrl("/login?error=authentication") // 認証失敗時の URL
 					.defaultSuccessUrl("/menu") // 認証後の URL （リダイレクト時はリダイレクト先）
 					.usernameParameter("username") // username のパラメタ名(ユーザIDの form input name と一致させる。)
