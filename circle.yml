@@ -13,7 +13,7 @@ machine:
 
 general:
   artifacts:
-    - "build/libs/*.war"
+    - "build/libs"
 
 dependencies:  
   pre:
