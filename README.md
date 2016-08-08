@@ -23,3 +23,4 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1 | compile | ORM、MyBatis |
 
 
+
