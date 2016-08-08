@@ -48,7 +48,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 # 動作方法
 
-1. ダウンロード後、解凍し develop-spring-template-master ディレクトリ直下へコンソールで移動。
+1. [ダウンロード](https://github.com/hosomi/develop-spring-template/archive/master.zip "ダウンロード")後、解凍し develop-spring-template-master ディレクトリ直下へコンソールで移動。
 2. 「 gradlew bootRun 」 を実行。
 3. ブラウザを立ち上げて 「 http://localhost:8080/template/ 」 にアクセス。
 
@@ -59,7 +59,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | ------------- | ----- |
 | test | testpass |
 
-**ロールはありません。**
+**※ロールはありません。**
 
 
 
