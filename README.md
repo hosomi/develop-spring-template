@@ -22,3 +22,4 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.thymeleaf.extras:thymeleaf-extras-springsecurity4 | compile | Template engine Spring Security 拡張 |
 | org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1 | compile | ORM、MyBatis |
 
+
