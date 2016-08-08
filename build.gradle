@@ -45,15 +45,16 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-log4j2')
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
+	compile('org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.2.RELEASE')
 	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1')
 
 	// webjars
-    compile('org.webjars:webjars-locator:0.32')
-    compile('org.webjars:jquery:3.1.0')
-    compile('org.webjars:bootstrap:3.3.6')
-    compile('org.webjars:html5shiv:3.7.3')
-    compile('org.webjars.npm:respond.js:1.4.2')
-    compile('org.webjars:font-awesome:4.6.3')
+	compile('org.webjars:webjars-locator:0.32')
+	compile('org.webjars:jquery:3.1.0')
+	compile('org.webjars:bootstrap:3.3.7')
+	compile('org.webjars:html5shiv:3.7.3')
+	compile('org.webjars.npm:respond.js:1.4.2')
+	compile('org.webjars:font-awesome:4.6.3')
 
 	// etc..
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')

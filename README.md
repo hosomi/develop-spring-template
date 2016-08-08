@@ -16,6 +16,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.springframework.boot:spring-boot-starter-thymeleaf | Template engine |
 | org.springframework.boot:spring-boot-starter-log4j2 | log4j2 |
 | org.thymeleaf.extras:thymeleaf-extras-springsecurity4 | Template engine Spring Security 拡張 |
+| org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.2.RELEASE | Template engine IE Conditional comments 拡張 |
 | org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1 | ORM、MyBatis |
 
 ## Webjars:
@@ -24,7 +25,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | ------------- | :----- |
 | org.webjars:webjars-locator:0.32 | WebJar バージョン番号管理 |
 | org.webjars:jquery:3.1.0 | jQuery 3.1.0 |
-| org.webjars:bootstrap:3.3.6 | Bootstrap 3.3.6 |
+| org.webjars:bootstrap:3.3.7 | Bootstrap 3.3.7 (jQuery 3 support)|
 | org.webjars:html5shiv:3.7.3 |  | BootstrapのIE8 対応用(HTML5) |
 | org.webjars.npm:respond.js:1.4.2 | BootstrapのIE8 対応用(レスポンシブ) |
 | org.webjars:font-awesome:4.6.3 | Webアイコンフォン(Font Awesome) |
@@ -43,5 +44,6 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 2016.08.08 現在  
 
 * JDK 8 (8u101)
+
 
 
