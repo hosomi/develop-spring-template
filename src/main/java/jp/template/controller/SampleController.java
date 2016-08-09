@@ -19,9 +19,9 @@ public class SampleController {
 	 * 
 	 * @return ビュー名。
 	 */
-	@RequestMapping(value = "/controlles", method = RequestMethod.GET)
+	@RequestMapping(value = "/controlles/datetimepicker", method = RequestMethod.GET)
 	public String show() {
 
-		return "sample/controlles";
+		return "sample/controlles/datetimepicker";
 	}
 }

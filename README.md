@@ -26,7 +26,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.webjars:webjars-locator:0.32 | WebJar バージョン番号管理 |
 | org.webjars:jquery:2.2.4 | jQuery 2.2.4 (*1) |
 | org.webjars:bootstrap:3.3.7 | Bootstrap 3.3.7 |
-| org.webjars:html5shiv:3.7.3 |  | Bootstrap の IE8 対応用 (HTML5) |
+| org.webjars:html5shiv:3.7.3 | Bootstrap の IE8 対応用 (HTML5) |
 | org.webjars.npm:respond.js:1.4.2 | Bootstrap の IE8 対応用(レスポンシブ) |
 | org.webjars:font-awesome:4.6.3 | Web アイコンフォン(Font Awesome) |
 | org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1 | bootstrap-DateTimePicker(Bootstrap,jQuery, moment.js(*2) 必須) |
@@ -63,7 +63,14 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | ------------- | ----- |
 | test | testpass |
 
-**※ロールはありません。**
+**※SpringSecurity  のロールはありません。**
+
+
+Continuous Integration status
+-----------------------------
+
+This project is tested with [Travis CI](http://travis-ci.org)
+[![Build Status](https://travis-ci.org/hosomi/develop-spring-template.svg?branch=master)](https://travis-ci.org/hosomi/develop-spring-template)
 
 
 
