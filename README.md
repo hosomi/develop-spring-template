@@ -24,12 +24,16 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | 対象        | 内容  |
 | ------------- | :----- |
 | org.webjars:webjars-locator:0.32 | WebJar バージョン番号管理 |
-| org.webjars:jquery:3.1.0 | jQuery 3.1.0 |
-| org.webjars:bootstrap:3.3.7 | Bootstrap 3.3.7 (jQuery)|
-| org.webjars:html5shiv:3.7.3 |  | BootstrapのIE8 対応用(HTML5) |
-| org.webjars.npm:respond.js:1.4.2 | BootstrapのIE8 対応用(レスポンシブ) |
-| org.webjars:font-awesome:4.6.3 | Webアイコンフォン(Font Awesome) |
+| org.webjars:jquery:2.2.4 | jQuery 2.2.4 (*1) |
+| org.webjars:bootstrap:3.3.7 | Bootstrap 3.3.7 |
+| org.webjars:html5shiv:3.7.3 |  | Bootstrap の IE8 対応用 (HTML5) |
+| org.webjars.npm:respond.js:1.4.2 | Bootstrap の IE8 対応用(レスポンシブ) |
+| org.webjars:font-awesome:4.6.3 | Web アイコンフォン(Font Awesome) |
+| org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1 | bootstrap-DateTimePicker(Bootstrap,jQuery, moment.js(*2) 必須) |
 
+
+*1 jQuery を必要とするモジュールが 3 系 に対応していないものが多く、2 系にした。  
+*2 org.webjars:Eonasdan-bootstrap-datetimepicker の依存関係として moment.js の webjars がダウンロードされます。（バージョン指定が必要な場合は、定義が必要です。）
 
 ## etc:
 

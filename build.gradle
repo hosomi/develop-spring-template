@@ -50,11 +50,12 @@ dependencies {
 
 	// webjars
 	compile('org.webjars:webjars-locator:0.32')
-	compile('org.webjars:jquery:3.1.0')
+	compile('org.webjars:jquery:2.2.4')
 	compile('org.webjars:bootstrap:3.3.7')
 	compile('org.webjars:html5shiv:3.7.3')
 	compile('org.webjars.npm:respond.js:1.4.2')
 	compile('org.webjars:font-awesome:4.6.3')
+	compile('org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1')
 
 	// etc..
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
