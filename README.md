@@ -69,8 +69,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 Continuous Integration status
 -----------------------------
 
-This project is tested with [Travis CI](http://travis-ci.org)
-[![Build Status](https://travis-ci.org/hosomi/develop-spring-template.svg?branch=master)](https://travis-ci.org/hosomi/develop-spring-template)
+[![Build Status](https://travis-ci.org/hosomi/develop-spring-template.svg?branch=master)](https://travis-ci.org/hosomi/develop-spring-template)  
 
 
-
+https://circleci.com/gh/hosomi/develop-spring-template.svg?style=shield&circle-token=9a9efeb27aabd4d1173951957f233d05f246d6c0  
