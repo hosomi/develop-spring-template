@@ -8,14 +8,14 @@ CREATE TABLE TODO (
 
 /*User テーブル作成、認証にも利用。*/
 CREATE TABLE USER (
-   
+    id IDENTITY,
 	LOGINUSERID VARCHAR(10) NOT NULL,
     PASSWORD VARCHAR(32) NOT NULL,
-    PRIMARY KEY(LOGINUSERID)
 );
 
 
 INSERT INTO USER (LOGINUSERID,PASSWORD) VALUES ('test','testpass');
+INSERT INTO USER (LOGINUSERID,PASSWORD) VALUES ('test2','test2pass');
 
 /*
  Spring security デフォルトの認証テーブル

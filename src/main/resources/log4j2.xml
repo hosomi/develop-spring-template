@@ -23,7 +23,7 @@
 	<!-- 定義を有効にする設定 -->
 	<loggers>
 		<root level="trace">
-			<appender-ref ref="Console" level="debug" />
+			<appender-ref ref="Console" level="info" />
 			<!-- <appender-ref ref="MyFile" level="info"/> ログ出力有効にする場合、コメント解除 -->
 		</root>
 	</loggers>

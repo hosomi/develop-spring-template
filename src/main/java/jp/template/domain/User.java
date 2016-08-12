@@ -7,12 +7,30 @@ package jp.template.domain;
  */
 public class User {
 
+	/** id。*/
+	private int id;
+	
 	/** ログインユーザID*/
 	private String loginUserId;
 	
 	/** パスワード（とりあえず平文）*/
 	private String password;
 
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
 	/**
 	 * @return the loginUserId
 	 */
