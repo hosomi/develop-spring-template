@@ -8,11 +8,16 @@
 	<meta http-equiv="Content-Script-Type" content="text/javascript"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
 	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
 	<style type="text/css">
-
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
 	</style>
 </head>
 <body>
@@ -37,26 +42,26 @@
 		</div>
 	</nav>
 
+	
 	<div class="container-fluid" style="padding-top: 60px;">
 		<form role="form" action="/sample/master/user" th:action="@{/sample/master/user}" th:object="${sampleMasterUserForm}" method="post">
-		
 			<div class="form-inline row" style="padding: 0 15px;">
 				<div class="form-group">
-					<label class="control-label" for="loginUserId"><abbr title="required"></abbr> ユーザＩＤ</label>
+					<label class="control-label" for="loginUserId"><abbr title="required"></abbr>ログインＩＤ : </label>
 					<input type="text" class="form-control" id="loginUserId" name="loginUserId" th:field="*{loginUserId}" />
 					<span th:if="${#fields.hasErrors('loginUserId')}" th:errors="*{loginUserId}" class="help-block">error!</span>
 					<input type="hidden" id="loginUserIdPost" name="loginUserIdPost" th:field="*{loginUserIdPost}" />
 				</div>
 	
 				<div class="form-group pull-right">
-					<button type="submit" id="inquiryBtn" name="doInquiry" class="btn btn-primary" ><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&nbsp;照会</button>
+					<button type="button" id="inquiryBtn" class="btn btn-primary"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&nbsp;照会</button>
 				</div>
 			</div>
 			<hr/>
 			<div style="width:100%;">
 				<div class="table-responsive">
- 					<table class="table table-bordered table-condensed table-hover">
- 					<thead>
+						<table class="table table-bordered table-condensed table-hover">
+						<thead>
 						<tr class="bg-primary">
 							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1">ログインID</th>
 							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1">パスワード</th>
@@ -77,16 +82,15 @@
 					</table>
 				</div>
 			</div>
-	
-	
+		
+			<button type="submit" id='inquiryDummy' name="doInquiry" style="visibility:hidden;" ></button>
+			<button type="submit" id='saveDummy' name="doSave" style="visibility:hidden;" ></button>
 		</form>
 	</div>
 
 	<footer class="footer" style="padding-right:16px;">
-		<div class="row">
-			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
-				
-			</div>
+		<div class="container col-xs-1" style="margin:10px;">
+			<button type="button" id="saveBtn" name="doSave" class="btn btn-primary" ><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>&nbsp;保存</button>
 		</div>
 	</footer>
 
@@ -99,6 +103,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <!--<![endif]-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
 
+			// 照会ボタンのハンドリング。
+			$('#inquiryBtn').click(function(e) {
+				$('#inquiryDummy').click();
+			});
+
+			// 保存ボタンのハンドリング。
+			$('#saveBtn').click(function(e) {
+				$('#saveDummy').click();
+			});
+		});
+	</script>
 </body>
 </html>

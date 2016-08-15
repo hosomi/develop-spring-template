@@ -35,6 +35,8 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.webjars.npm:respond.js:1.4.2 | Bootstrap の IE8 対応用(レスポンシブ) |
 | org.webjars:font-awesome:4.6.3 | Web アイコンフォン(Font Awesome) |
 | org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1 | bootstrap-DateTimePicker(Bootstrap,jQuery, moment.js(*2) 必須) |
+| org.webjars.npm:bootswatch:3.3.6 | Bootstrap のテーマ拡張(Lumen を適用) org.webjars.bower:bootswatch:3.3.7 は依存性に問題が発生 |
+
 
 
 *1 jQuery を必要とするモジュールが 3 系 に対応していないものが多く、2 系にした。  
@@ -69,8 +71,3 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | test | testpass |
 
 **※SpringSecurity  のロールはありません。**
-
-
-Continuous Integration status
------------------------------
-

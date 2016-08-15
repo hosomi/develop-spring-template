@@ -58,6 +58,8 @@ dependencies {
 	compile('org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1')
 	compile('org.webjars:ace:1.2.3')
 	compile('org.webjars.bower:sticky-footer:0.1.4')
+	//compile('org.webjars.bower:bootswatch:3.3.7')
+	compile('org.webjars.npm:bootswatch:3.3.6')
 
 	// etc..
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
