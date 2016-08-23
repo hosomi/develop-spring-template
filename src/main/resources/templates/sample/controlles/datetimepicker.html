@@ -45,7 +45,7 @@
 		<div class="row">
 			<div class='col-sm-3'>
 				<div class="form-group">
-					<label>datetimepicker（日付）&nbsp;:&nbsp;</label>
+					<label>DateTimePicker（日付）&nbsp;:&nbsp;</label>
 					<div class='input-group date' id='datetimepicker1'>
 						<input type='text' class="form-control" /> 
 						<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -76,10 +76,13 @@
 				</div>
 			</div>
 		</div>
+
+		<hr/>
+
 		<div class="row">
 			<div class='col-sm-3'>
 				<div class="form-group">
-					<label>datetimepicker(時刻)&nbsp;:&nbsp;</label>
+					<label>DateTimePicker(時刻)&nbsp;:&nbsp;</label>
 					<div class='input-group date' id='datetimepicker2'>
 						<input type='text' class="form-control" />
 						<span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
@@ -106,10 +109,14 @@
 				</div>
 			</div>
 		</div>
+
+		<hr/>
+
+
 		<div class="row">
 			<div class='col-sm-3'>
 				<div class="form-group">
-					<label>datetimepicker(日付+時刻)&nbsp;:&nbsp;</label>
+					<label>DateTimePicker(日付+時刻)&nbsp;:&nbsp;</label>
 					<div class='input-group date' id='datetimepicker3'>
 						<input type='text' class="form-control" />
 						<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -191,7 +198,7 @@
 			$('#datetimepicker3').datetimepicker({
 				locale: 'ja',
 				dayViewHeaderFormat:'YYYY年 MMMM',<!--/*書式指定（カレンダー）*/-->
-				format:'YYYY/MM/DD HH:MM',<!--/*書式指定（入力）*/-->
+				format:'YYYY/MM/DD HH:mm',<!--/*書式指定（入力）*/-->
 				showTodayButton:true,
 				showClear:true,
 				showClose:true,
