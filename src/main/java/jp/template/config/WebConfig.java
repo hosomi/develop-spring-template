@@ -37,7 +37,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
 
 		registry.addInterceptor(new CustomHandlerInterceptor()).addPathPatterns("/**") // 適用対象のパス(パターン)を指定する
-				.excludePathPatterns("/static/**","/webjars/**"); // 除外するパス(パターン)を指定する
+				.excludePathPatterns("/login","/static/**","/webjars/**"); // 除外するパス(パターン)を指定する
 	}
 
 	/**
