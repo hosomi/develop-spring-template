@@ -14,6 +14,7 @@ machine:
 general:
   artifacts:
     - "build/libs"
+    - "build/docs/javadoc"
 
 dependencies:  
   pre:
@@ -26,6 +27,7 @@ dependencies:
     - ./gradlew -v
     - ./gradlew testClasses
     - ./gradlew build
+    - ./gradle javadoc
 
 test:  
   override:
