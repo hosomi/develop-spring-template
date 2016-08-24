@@ -18,11 +18,16 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.springframework.boot:spring-boot-starter-data-jpa | JPA |
 | org.springframework.boot:spring-boot-starter-security | Spring Security |
 | org.springframework.boot:spring-boot-starter-web | Spring MVC |
-| org.springframework.boot:spring-boot-starter-thymeleaf | Template engine |
+| org.springframework.boot:spring-boot-starter-thymeleaf | Template engine Thymeleaf3|
 | org.springframework.boot:spring-boot-starter-log4j2 | log4j2 |
 | org.thymeleaf.extras:thymeleaf-extras-springsecurity4 | Template engine Spring Security 拡張 |
 | org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.2.RELEASE | Template engine IE Conditional comments 拡張 |
 | org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1 | ORM、MyBatis |
+
+## ext
+
+ext['thymeleaf.version'] = '3.0.1.RELEASE'  
+ext['thymeleaf-layout-dialect.version'] = '2.0.0'  
 
 ## Webjars:
 

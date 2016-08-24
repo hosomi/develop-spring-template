@@ -37,12 +37,17 @@ configurations {
 	providedRuntime
 }
 
+ext['thymeleaf.version'] = '3.0.1.RELEASE'
+ext['thymeleaf-layout-dialect.version'] = '2.0.0'
+
 dependencies {
 	// spring-boot 関連, thymeleaf
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	//compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.1.RELEASE'
+	
 	compile('org.springframework.boot:spring-boot-starter-log4j2')
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
 	compile('org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.2.RELEASE')
