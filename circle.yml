@@ -27,7 +27,7 @@ dependencies:
     - ./gradlew -v
     - ./gradlew testClasses
     - ./gradlew build
-    - ./gradle javadoc
+    - ./gradlew javadoc
 
 test:  
   override:
