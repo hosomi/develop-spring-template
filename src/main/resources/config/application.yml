@@ -1,0 +1,66 @@
+spring:
+  resources: # 静的リソースの設定
+    chain:
+      cache: false # リソースチェーンのキャッシュ(***本番時は true にしてください***)
+      gzipped: true # Gzip化された静的リソースへのアクセス
+      strategy:
+        content: # コンテンツデータのMD5ハッシュ値によるバージョニング
+          enabled: true
+          paths: /**
+
+  #---------------------------
+  # datasource
+  #---------------------------
+  datasource: 
+#    url: jdbc:
+#    username: 
+#    password: 
+#    driverClassName:
+#    jndi-name: java:jboss/datasources/customers # JDDI を指定する場合。
+    tomcat: 
+      max-active: 100
+      max-idle: 8
+      min-idle: 8
+      initial-size: 10
+      session-timeout: 1800
+      test-on-borrow: true
+      validation-query: SELECT 1
+      remove-abandoned: true
+      remove-abandoned-timeout: 60
+
+  #---------------------------
+  # JPA
+  #---------------------------
+  jpa:
+    show-sql: true # Enable logging of SQL statements. (DEBUG level)
+
+  #---------------------------
+  # Thymeleaf 
+  #---------------------------
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML # HTML5 はThymeLeaf3 では非推奨（２はデフォルト）
+    encoding: UTF-8
+    content-type: text/html
+    cache: false # キャッシュを有効にするか。(***本番時はtrue にしてください***)
+
+
+
+  #---------------------------
+  # Server 
+  #---------------------------
+server:
+  context-path : /template # コンテキストルート
+  session-timeout: 28400 # Session timeout in seconds.
+
+error:
+  whitelabel: 
+    enabled: false # 独自のエラー画面の表示有無
+
+
+lang:
+  default:
+    lang: ja
+    locale: jp
+ 
