@@ -12,10 +12,10 @@ spring:
   # datasource
   #---------------------------
   datasource: 
-#    url: jdbc:
-#    username: 
-#    password: 
-#    driverClassName:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
 #    jndi-name: java:jboss/datasources/customers # JDDI を指定する場合。
     tomcat: 
       max-active: 100
