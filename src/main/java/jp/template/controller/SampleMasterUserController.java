@@ -2,6 +2,7 @@ package jp.template.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +54,7 @@ public class SampleMasterUserController {
 	 * @return ビュー名。
 	 */
 	@RequestMapping(method = RequestMethod.POST, params = "doInquiry")
-	public String inquiry(@AuthenticationPrincipal LoginUser loginUser, SampleMasterUserForm form, Model model) {
+	public String inquiry(@AuthenticationPrincipal LoginUser loginUser, SampleMasterUserForm form, Model model, Locale locale) {
 
 		// 自身の ID は検索時に省く。
 		List<User> list;
@@ -72,7 +73,7 @@ public class SampleMasterUserController {
 		if (list.isEmpty()) {
 			
 			// 該当なし（0 件）のメッセージ。
-			model.addAttribute("warning_message", messageSource.getMessage("jp.template.global.warning.retrieved.condition.notfound", null, null));
+			model.addAttribute("warning_message", messageSource.getMessage("jp.template.global.warning.retrieved.condition.notfound", null, locale));
 		}
 		
 		return "sample/master/user";
@@ -84,7 +85,7 @@ public class SampleMasterUserController {
 	 * @return ビュー名。
 	 */
 	@RequestMapping(method = RequestMethod.POST, params = "doSave")
-	public String save(@Validated SampleMasterUserForm form, BindingResult result, Model model) {
+	public String save(@Validated SampleMasterUserForm form, BindingResult result, Model model, Locale locale) {
 
 		logger.debug(result.hasErrors());
 		
@@ -107,7 +108,7 @@ public class SampleMasterUserController {
 
 		
 		// 保存完了メッセージ。
-		model.addAttribute("info_message", messageSource.getMessage("jp.template.global.info.save.completion.message", null, null));
+		model.addAttribute("info_message", messageSource.getMessage("jp.template.global.info.save.completion.message", null, locale));
 		
 		return "sample/master/user";
 	}
