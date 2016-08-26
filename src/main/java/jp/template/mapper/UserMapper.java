@@ -63,7 +63,7 @@ public interface UserMapper {
 	/**
 	 * 全件を取得する。
 	 * 
-	 * @return List<{@link User}>
+	 * @return ユーザを全件取得します。
 	 */
 	@Select("SELECT id, loginUserId, password  FROM USER")
 	List<User> selectAll();
@@ -72,7 +72,7 @@ public interface UserMapper {
 	 * systemLoginId を除く全件を取得する。
 	 * 
 	 * @param systemLoginId ログインユーザID（サイン済み）。
-	 * @return List<{@link User}>
+	 * @return ログインユーザを除くユーザを全件取得します。
 	 */
 	@Select("SELECT id, loginUserId, password  FROM USER WHERE NOT EXISTS (SELECT * FROM USER USER_INNER WHERE USER_INNER.loginUserId = USER.loginUserId AND loginUserId = #{systemLoginId})")
 	List<User> selectAllNotExistsSystemLoginId(@Param("systemLoginId") String systemLoginId);
