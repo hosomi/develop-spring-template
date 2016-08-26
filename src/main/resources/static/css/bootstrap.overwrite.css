@@ -1,0 +1,7 @@
+/*入力フォームの高さ調整。*/
+.form-control {
+	min-width: 100px;
+	height:26px;
+	padding: 1px 2px;
+}
+
