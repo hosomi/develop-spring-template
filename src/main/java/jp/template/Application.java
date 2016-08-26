@@ -30,19 +30,23 @@ public class Application extends SpringBootServletInitializer implements Command
 	/**
 	 * ローカル実行用。
 	 * 
-	 * @param args 
+	 * @param args コマンドライン引数。
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// デプロイ時に実行されるメイン。
+	/**
+	 *  デプロイ時に実行されるメイン。
+	 */
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Application.class);
 	}
 
-	// Spring Boot起動時にCommandLineRunner#runメソッドが呼び出される
+	/**
+	 *  Spring Boot起動時にCommandLineRunner#runメソッドが呼び出される
+	 */
 	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
@@ -57,16 +61,6 @@ public class Application extends SpringBootServletInitializer implements Command
 		logger.debug("TITLE    : " + loadedTodo.getTitle());
 		logger.debug("DETAILS  : " + loadedTodo.getDetails());
 		logger.debug("FINISHED : " + loadedTodo.isFinished());
-/*		for (int i = 0; i < 10000; i++) {
-			todoMapper.insert(newTodo);
-		}
-
-		List<Todo> list = todoMapper.selectAll();
-
-		for (Todo entity : list) {
-			System.out.println("ID       : " + entity.getId());
-		}
-*/
 	}
 
 }
