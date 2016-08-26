@@ -1,7 +1,12 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="lang=${#locale.language}"
+	th:lang="${lang}">
+
 <head>
-	<title>サンプル：マスタ:User</title>
+	<title th:text="#{master.user.title}">master.user.title</title>
 	<meta http-equiv="Pragma" content="no-cache"/>
 	<meta http-equiv="Cache-Control" content="no-cache"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,13 +16,10 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
-	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
 	<style type="text/css">
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
+
 	</style>
 </head>
 <body>
@@ -30,59 +32,79 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;サンプル：マスタ:User&nbsp;&nbsp;&nbsp;</p>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;<span th:text="#{master.user.title}">master.user.title</span>&nbsp;&nbsp;&nbsp;</p>
 			</div>
 	
 			<div id="hamburger" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&nbsp;メニュー</a></li>
-					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;ログアウト</a></li>
+					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&nbsp;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;<span th:text="#{global.logout}">logout</span></a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+
+
+
 
 	
 	<div class="container-fluid" style="padding-top: 60px;">
 		<form role="form" action="/sample/master/user" th:action="@{/sample/master/user}" th:object="${sampleMasterUserForm}" method="post">
 			<div class="form-inline row" style="padding: 0 15px;">
 				<div class="form-group">
-					<label class="control-label" for="loginUserId"><abbr title="required"></abbr>ログインＩＤ : </label>
+					<label class="control-label" for="loginUserId"><abbr title="required"></abbr><span th:text="#{master.user.loginid}">master.user.loginid</span>&nbsp;:&nbsp;</label>
 					<input type="text" class="form-control" id="loginUserId" name="loginUserId" th:field="*{loginUserId}" />
-					<span th:if="${#fields.hasErrors('loginUserId')}" th:errors="*{loginUserId}" class="help-block">error!</span>
 					<input type="hidden" id="loginUserIdPost" name="loginUserIdPost" th:field="*{loginUserIdPost}" />
 				</div>
 	
 				<div class="form-group pull-right">
-					<button type="button" id="inquiryBtn" class="btn btn-primary"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&nbsp;照会</button>
+					<button type="button" id="inquiryBtn" class="btn btn-primary"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.retrieve}">global.btn.retrieve</span></button>
 				</div>
 			</div>
-			<hr/>
+
+			<div th:unless="${info_message == null}" class="alert alert-info fade in" style="margin-bottom: 10px;">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong th:text="${info_message}">info_message</strong>
+			</div>
+
+			<div th:unless="${warning_message == null}" class="alert alert-warning fade in" style="margin-bottom: 10px;">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong th:text="${warning_message}">warning_message</strong>
+			</div>
+
+			<div th:if="${#fields.hasErrors('all')}" class="alert alert-danger">
+				<p th:text="#{jp.template.global.error.input.message}">jp.template.global.error.input.message</p>
+			</div>
+
+
 			<div style="width:100%;">
 				<div class="table-responsive">
-						<table class="table table-bordered table-condensed table-hover">
-						<thead>
+					<table class="table table-bordered table-condensed table-hover">
+					<caption><span th:text="#{master.user.list.cation}">master.user.list.cation</span>&nbsp;：&nbsp;</caption>
+					<thead>
 						<tr class="bg-primary">
-							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1">ログインID</th>
-							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1">パスワード</th>
+							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1" style="width:5%;min-width:5%">No</th>
+							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1" th:text="#{master.user.list.loginid}">master.user.list.loginid</th>
+							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1" th:text="#{master.user.list.password}">master.user.list.passward</th>
 						</tr>
 					</thead>
 					<tbody>
-						<span th:each="entity, status : ${sampleMasterUserForm.list}">
-						<tr>
+						<tr th:each="entity, status : ${sampleMasterUserForm.list}">
+							<td th:text="${status.count}" >1</td>
 							<td>
-								<input type="text" class="form-control" th:field="*{list[__${status.index}__].loginUserId}" th:value="${entity.loginUserId}" />
+								<input type="hidden" th:field="*{list[__${status.index}__].id}" th:value="${entity.id}" value="123456789"/>
+								<input type="hidden" th:field="*{list[__${status.index}__].loginUserId}" th:value="${entity.loginUserId}" value="admin"/>
+								<span th:text="${entity.loginUserId}">admin</span>
 							</td>
-							<td>
-								<input type="text" class="form-control" th:field="*{list[__${status.index}__].password}"  th:value="${entity.password}" />
+							<td th:classappend="${#fields.hasErrors('*{list[__${status.index}__].password}')}? 'has-error has-feedback'">
+								<input type="text" class="form-control" th:field="*{list[__${status.index}__].password}"  th:value="${entity.password}" value="Admin"/>
+								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].password}')}" class="text-danger" th:errors="*{list[__${status.index}__].password}">Error</span>
 							</td>
 						</tr>
-						</span>
 					</tbody>
 					</table>
 				</div>
 			</div>
-		
 			<button type="submit" id='inquiryDummy' name="doInquiry" style="visibility:hidden;" ></button>
 			<button type="submit" id='saveDummy' name="doSave" style="visibility:hidden;" ></button>
 		</form>
@@ -90,7 +112,7 @@
 
 	<footer class="footer" style="padding-right:16px;">
 		<div class="container col-xs-1" style="margin:10px;">
-			<button type="button" id="saveBtn" name="doSave" class="btn btn-primary" ><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>&nbsp;保存</button>
+			<button type="button" id="saveBtn" name="doSave" class="btn btn-primary" th:disabled="${sampleMasterUserForm.list == null or sampleMasterUserForm.list.isEmpty()}"><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.save}">global.btn.save</span></button>
 		</div>
 	</footer>
 
@@ -107,12 +129,12 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 
-			// 照会ボタンのハンドリング。
+			<!--/* 照会ボタンのハンドリング。  */-->
 			$('#inquiryBtn').click(function(e) {
 				$('#inquiryDummy').click();
 			});
 
-			// 保存ボタンのハンドリング。
+			<!--/* 保存ボタンのハンドリング。  */-->
 			$('#saveBtn').click(function(e) {
 				$('#saveDummy').click();
 			});

@@ -1,5 +1,7 @@
 package jp.template.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * User エンティティ.
  * 
@@ -11,9 +13,11 @@ public class User {
 	private int id;
 	
 	/** ログインユーザID*/
+	@NotBlank
 	private String loginUserId;
 	
 	/** パスワード（とりあえず平文）*/
+	@NotBlank
 	private String password;
 
 	/**

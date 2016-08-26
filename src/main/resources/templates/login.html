@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>ログイン</title>
+	<title th:text="#{login.title}">login</title>
 	<meta http-equiv="Pragma" content="no-cache"/>
 	<meta http-equiv="Cache-Control" content="no-cache"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -113,20 +113,20 @@
 
 				<span th:unless="${param.info == null}">
 					<div th:switch="${param.info[0]}" class="alert alert-success">
-						<p th:case="'logout'">ログアウトしました。</p>
+						<p th:case="'logout'" th:text="#{login.message.logout}">logout</p>
 					</div>
 				 </span>
 
 				<span th:unless="${param.warn == null}">
 					<div th:switch="${param.warn[0]}" class="alert alert-warning">
-						<p th:case="'timeout'">一定時間操作がありませんでしたので、安全のために接続を切りました。再度ログインしてください。</p>
+						<p th:case="'timeout'" th:text="#{login.message.timeout}">timeout</p>
 					</div>
 				 </span>
 
 				<span th:unless="${param.error == null}">
 					<div th:switch="${param.error[0]}" class="alert alert-danger">
-						<p th:case="'authentication'">正しい&nbsp;ID,Password&nbsp;を入力してください。</p>
-						<p th:case="*">予期せぬエラーが発生しました、しばらく時間を置いてから再度試してみてください。</p>
+						<p th:case="'authentication'" th:text="#{login.message.authentication}">authentication</p>
+						<p th:case="*" th:text="#{login.message.system.error}">system.error</p>
 					</div>
 				 </span>
 
@@ -135,15 +135,15 @@
 						<label class="input-group-addon" for="username">
 							<span class="glyphicon glyphicon-user icon-white" aria-hidden="true"></span>
 						</label>
-						<input type="text" class="form-control" id="username" name="username" placeholder="ログインIDを入力してください"  /> 
+						<input type="text" class="form-control" id="username" name="username" th:placeholder="#{login.input.id.placeholder}" placeholder="login.input.id.placeholder" /> 
 					</div>
 					<div class="input-group input-sm">
 						<label class="input-group-addon" for="password">
 							<span class="glyphicon glyphicon-lock icon-white" aria-hidden="true"></span>
 						</label>
-						<input type="password" class="form-control" id="password" name="password" placeholder="パスワードを入力してください"  />
+						<input type="password" class="form-control" id="password" name="password"  th:placeholder="#{login.input.password.placeholder}" placeholder="login.input.password.placeholder" />
 					</div>
-					<input id="login_button" type="submit" value="ログイン" class="btn btn-block btn-primary btn-default" />
+					<input id="login_button" type="submit" th:value="#{login.btn.login}" value="login" class="btn btn-block btn-primary btn-default" />
 				</form>
 			</div>
 		</section>

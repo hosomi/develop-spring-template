@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>メニュー</title>
+	<title th:text="#{menu.title}">menu</title>
 	<meta http-equiv="Pragma" content="no-cache"/>
 	<meta http-equiv="Cache-Control" content="no-cache"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,8 +26,6 @@
 	</style>
 </head>
 <body>
-
-
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -36,12 +34,12 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<p class="navbar-text navbar-left"><i class="fa fa-sitemap" aria-hidden="true"></i>&nbsp;メニュー&nbsp;&nbsp;&nbsp;</p>
+				<p class="navbar-text navbar-left"><i class="fa fa-sitemap" aria-hidden="true"></i>&nbsp;<span th:text="#{menu.title}">menu</span>&nbsp;&nbsp;&nbsp;</p>
 			</div>
 	
 			<div id="hamburger" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;ログアウト</a></li>
+					<li><a href="login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;<span th:text="#{global.logout}">logout</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -55,9 +53,9 @@
 			
 			<li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" style="min-height:160px;">
 				<ul style="list-style-type: none">
-					<li class="header"><strong>Samples</strong></li>
+					<li class="header"><strong th:text="#{menu.category.sample.controll}">Samples</strong></li>
 					<li class="separator"><HR style="margin-top:10px;margin-bottom:10px;"/></li>
-					<li>1. <a href="sample/controlles/datetimepicker.html" th:href="@{/sample/controlles/datetimepicker}" class="navbar-link">コントロール:DateTimePicker</a></li>
+					<li>1. <a href="sample/controlles/datetimepicker.html" th:href="@{/sample/controlles/datetimepicker}" class="navbar-link" th:text="#{controll.datetimepicker.title}">controll:DateTimePicker</a></li>
 				</ul>
 				<br/>
 			</li>
@@ -76,9 +74,9 @@
 		
 			<li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" style="min-height:160px;">
 				<ul style="list-style-type: none">
-					<li class="header"><strong>master sample</strong></li>
+					<li class="header"><strong th:text="#{menu.category.sample.master}">master sample</strong></li>
 					<li class="separator"><HR style="margin-top:10px;margin-bottom:10px;"/></li>
-					<li>1.<a href="sample/master/user.html" th:href="@{/sample/master/user}" class="navbar-link">User</a></li>
+					<li>1.<a href="sample/master/user.html" th:href="@{/sample/master/user}" class="navbar-link" th:text="#{master.user.title}">User</a></li>
 				</ul>
 				<br/>
 			</li>

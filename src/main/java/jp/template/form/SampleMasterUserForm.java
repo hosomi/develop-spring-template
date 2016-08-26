@@ -2,8 +2,15 @@ package jp.template.form;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import jp.template.domain.User;
 
+/**
+ * ユーザマスタフォーム。
+ * 
+ * @author hosomi.
+ */
 public class SampleMasterUserForm {
 
 	/** ログインユーザID（検索条件）*/
@@ -12,6 +19,10 @@ public class SampleMasterUserForm {
 	/** ログインユーザID（検索条件送信後）*/
 	private String loginUserIdPost;
 	
+	/** ユーザ一覧（検索結果）*/
+	@Valid
+	private List<User> list;
+
 	/**
 	 * @return the loginUserIdPost
 	 */
@@ -26,9 +37,6 @@ public class SampleMasterUserForm {
 		this.loginUserIdPost = loginUserIdPost;
 	}
 
-	/** ユーザ一覧（検索結果）*/
-	private List<User> list;
-	
 	/**
 	 * @return the loginUserId
 	 */

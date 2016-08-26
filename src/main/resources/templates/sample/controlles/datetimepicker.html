@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>サンプル：コントロール:DateTimePicker</title>
+	<title th:text="#{controll.datetimepicker.title}">controll.datetimepicker.title</title>
 	<meta http-equiv="Pragma" content="no-cache"/>
 	<meta http-equiv="Cache-Control" content="no-cache"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,7 +11,6 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker-standalone.css" th:href="@{/webjars/Eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}" rel="stylesheet" />
-	
 	
 	<style type="text/css">
 
@@ -28,13 +27,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;サンプル：コントロール:DateTimePicker&nbsp;&nbsp;&nbsp;</p>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;<span th:text="#{controll.datetimepicker.title}">controll.datetimepicker.title</span>&nbsp;&nbsp;&nbsp;</p>
 			</div>
 	
 			<div id="hamburger" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&nbsp;メニュー</a></li>
-					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;ログアウト</a></li>
+					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&nbsp;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;<span th:text="#{global.logout}">logout</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -45,7 +44,7 @@
 		<div class="row">
 			<div class='col-sm-3'>
 				<div class="form-group">
-					<label>DateTimePicker（日付）&nbsp;:&nbsp;</label>
+					<label th:text="#{controll.datetimepicker.pattern1}">controll.datetimepicker.pattern1&nbsp;:&nbsp;</label>
 					<div class='input-group date' id='datetimepicker1'>
 						<input type='text' class="form-control" /> 
 						<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -56,7 +55,7 @@
 				<div class="form-group">
 					<label>code(html)&nbsp;:&nbsp;</label>
 					<pre id="editor1" class="editor">&lt;div class=&quot;form-group&quot;&gt;
-	&lt;label&gt;datetimepicker（日付）&amp;nbsp;:&amp;nbsp;&lt;/label&gt;
+	&lt;label&gt;controll.datetimepicker.pattern1&amp;nbsp;:&amp;nbsp;&lt;/label&gt;
 	&lt;div class=&#039;input-group date&#039; id=&#039;datetimepicker1&#039;&gt;
 		&lt;input type=&#039;text&#039; class=&quot;form-control&quot; /&gt; 
 		&lt;span class=&quot;input-group-addon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
@@ -65,13 +64,13 @@
 					<label>code(javascript)&nbsp;:&nbsp;</label>
 					<pre id="editor2" class="editor">$(&#039;#datetimepicker1&#039;).datetimepicker({
 	locale: &#039;ja&#039;,
-	dayViewHeaderFormat:&#039;YYYY年 MMMM&#039;,// 書式指定（カレンダー）
-	format:&#039;YYYY/MM/DD&#039;,              // 書式指定（入力）
+	dayViewHeaderFormat:&#039;YYYY年 MMMM&#039;,
+	format:&#039;YYYY/MM/DD&#039;,
 	showTodayButton:true,
 	showClear:true,
 	showClose:true,
-	minDate:&#039;1900/01/01&#039;,             // 最小日付
-	maxDate:&#039;9999/12/31&#039;              // 最大日付
+	minDate:&#039;1900/01/01&#039;,
+	maxDate:&#039;9999/12/31&#039;
 });</pre>
 				</div>
 			</div>
@@ -82,7 +81,7 @@
 		<div class="row">
 			<div class='col-sm-3'>
 				<div class="form-group">
-					<label>DateTimePicker(時刻)&nbsp;:&nbsp;</label>
+					<label th:text="#{controll.datetimepicker.pattern2}">controll.datetimepicker.pattern2&nbsp;:&nbsp;</label>
 					<div class='input-group date' id='datetimepicker2'>
 						<input type='text' class="form-control" />
 						<span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
@@ -93,7 +92,7 @@
 				<div class="form-group">
 					<label>code(html)&nbsp;:&nbsp;</label>
 					<pre id="editor3" class="editor">&lt;div class=&quot;form-group&quot;&gt;
-	&lt;label&gt;datetimepicker(時刻)&amp;nbsp;:&amp;nbsp;&lt;/label&gt;
+	&lt;label&gt;controll.datetimepicker.pattern2&amp;nbsp;:&amp;nbsp;&lt;/label&gt;
 	&lt;div class=&#039;input-group date&#039; id=&#039;datetimepicker2&#039;&gt;
 		&lt;input type=&#039;text&#039; class=&quot;form-control&quot; /&gt;
 		&lt;span class=&quot;input-group-addon&quot;&gt;&lt;i class=&quot;fa fa-clock-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
@@ -116,7 +115,7 @@
 		<div class="row">
 			<div class='col-sm-3'>
 				<div class="form-group">
-					<label>DateTimePicker(日付+時刻)&nbsp;:&nbsp;</label>
+					<label th:text="#{controll.datetimepicker.pattern3}">controll.datetimepicker.pattern3&nbsp;:&nbsp;</label>
 					<div class='input-group date' id='datetimepicker3'>
 						<input type='text' class="form-control" />
 						<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -127,7 +126,7 @@
 				<div class="form-group">
 					<label>code(html)&nbsp;:&nbsp;</label>
 					<pre id="editor5" class="editor">&lt;div class=&quot;form-group&quot;&gt;
-	&lt;label&gt;datetimepicker(日付+時刻)&amp;nbsp;:&amp;nbsp;&lt;/label&gt;
+	&lt;label&gt;controll.datetimepicker.pattern3&amp;nbsp;:&amp;nbsp;&lt;/label&gt;
 	&lt;div class=&#039;input-group date&#039; id=&#039;datetimepicker3&#039;&gt;
 		&lt;input type=&#039;text&#039; class=&quot;form-control&quot; /&gt;
 		&lt;span class=&quot;input-group-addon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
