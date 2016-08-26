@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import jp.template.domain.User;
 
@@ -20,12 +22,59 @@ import jp.template.domain.User;
 @Mapper
 public interface UserMapper {
 
-	@Insert("INSERT INTO user (loginUserId, password) VALUES (#{loginUserId}, #{password})")
+	/**
+	 * User テーブルに１件挿入する。
+	 * <p>id カラムは自動採番。</p>
+	 * 
+	 * @param user {@link User}
+	 */
+	@Insert("INSERT INTO USER (loginUserId, password) VALUES (#{loginUserId}, #{password})")
 	void insert(User user);
 
-	@Select("SELECT id, loginUserId, password  FROM user WHERE loginUserId = #{loginUserId}")
-	User select(String loginUserId);
-	
-	@Select("SELECT id, loginUserId, password  FROM user")
+	/**
+	 * User テーブルに１件更新する。
+	 * <p>パスワードのみ</p>
+	 * 
+	 * @param user {@link User}
+	 */
+	@Update("UPDATE	USER SET password = #{password} WHERE id = #{id}")
+	void update(User user);
+
+	/**
+	 * loginUserId から検索する。
+	 * 
+	 * @param loginUserId ログインユーザID。
+	 * @return {@link User}
+	 */
+	@Select("SELECT id, loginUserId, password  FROM USER WHERE loginUserId = #{loginUserId}")
+	User select(@Param("loginUserId") String loginUserId);
+
+	/**
+	 * loginUserId から検索する。
+	 *  ログインユーザID（サイン済み）を除く。
+	 * 
+	 * @param loginUserId ログインユーザID。
+	 * @param systemLoginId ログインユーザID（サイン済み）。
+	 * @return {@link User}
+	 */
+	@Select("SELECT id, loginUserId, password  FROM USER WHERE loginUserId = #{loginUserId} AND NOT EXISTS (SELECT * FROM USER USER_INNER WHERE USER_INNER.loginUserId = USER.loginUserId AND loginUserId = #{systemLoginId} )")
+	User selectNotExistsSystemLoginId(@Param("loginUserId") String loginUserId, @Param("systemLoginId") String systemLoginId);
+
+	/**
+	 * 全件を取得する。
+	 * 
+	 * @return List<{@link User}>
+	 */
+	@Select("SELECT id, loginUserId, password  FROM USER")
 	List<User> selectAll();
+
+	/**
+	 * systemLoginId を除く全件を取得する。
+	 * 
+	 * @param systemLoginId ログインユーザID（サイン済み）。
+	 * @return List<{@link User}>
+	 */
+	@Select("SELECT id, loginUserId, password  FROM USER WHERE NOT EXISTS (SELECT * FROM USER USER_INNER WHERE USER_INNER.loginUserId = USER.loginUserId AND loginUserId = #{systemLoginId})")
+	List<User> selectAllNotExistsSystemLoginId(@Param("systemLoginId") String systemLoginId);
+
 }
