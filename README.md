@@ -24,10 +24,12 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.2.RELEASE | Template engine IE Conditional comments 拡張 |
 | org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1 | ORM、MyBatis |
 
-## ext
+## ext:
 
-ext['thymeleaf.version'] = '3.0.1.RELEASE'  
-ext['thymeleaf-layout-dialect.version'] = '2.0.0'  
+| 対象        | 内容  |
+| ------------- | :----- |
+| ext['thymeleaf.version'] = '3.0.1.RELEASE' | Thymeleaf version 3 を利用する設定、Spring Boot 1.4.0.RELEASE のデフォルトは version2 がデフォルト |
+| ext['thymeleaf-layout-dialect.version'] = '2.0.0' | Thymeleaf version 3 からは dialect の指定が必要。 |
 
 ## Webjars:
 
@@ -40,7 +42,7 @@ ext['thymeleaf-layout-dialect.version'] = '2.0.0'
 | org.webjars.npm:respond.js:1.4.2 | Bootstrap の IE8 対応用(レスポンシブ) |
 | org.webjars:font-awesome:4.6.3 | Web アイコンフォン(Font Awesome) |
 | org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1 | bootstrap-DateTimePicker(Bootstrap,jQuery, moment.js(*2) 必須) |
-| org.webjars.bower:sticky-footer:0.1.4 | フッター表示 | 
+| org.webjars.bower:sticky-footer:0.1.4 | フッター表示 |
 | org.webjars.npm:bootswatch:3.3.6 | Bootstrap のテーマ拡張(Lumen を適用) org.webjars.bower:bootswatch:3.3.7 は依存性に問題が発生 |
 
 
