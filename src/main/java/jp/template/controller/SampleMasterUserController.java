@@ -18,6 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.template.config.MessageResourcesConfig;
 import jp.template.domain.User;
 import jp.template.form.SampleMasterUserForm;
 import jp.template.mapper.UserMapper;
@@ -32,7 +33,6 @@ public class SampleMasterUserController {
 
 	@Autowired
 	private MessageSource messageSource;
-
 	
 	@Autowired
 	UserMapper userMapper;
@@ -40,7 +40,9 @@ public class SampleMasterUserController {
 	/**
 	 * マスタサンプル。
 	 * 
-	 * @return ビュー名。
+	 * @param form マスタサンプルフォーム {@link SampleMasterUserForm}
+	 * @param model {@link Model}
+	 * @return /resources/templates/sample/master/user.html
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String show(SampleMasterUserForm form, Model model) {
@@ -51,7 +53,10 @@ public class SampleMasterUserController {
 	/**
 	 * 照会ボタン押下。
 	 * 
-	 * @return ビュー名。
+	 * @param loginUser 認証情報
+	 * @param model {@link Model}
+	 * @param locale 現在のロケール（{@link MessageResourcesConfig}）
+	 * @return /resources/templates/sample/master/user.html
 	 */
 	@RequestMapping(method = RequestMethod.POST, params = "doInquiry")
 	public String inquiry(@AuthenticationPrincipal LoginUser loginUser, SampleMasterUserForm form, Model model, Locale locale) {
@@ -81,8 +86,13 @@ public class SampleMasterUserController {
 	
 	/**
 	 * 保存ボタン押下。
+	 * <p>画面内容を全て更新する。</p>
 	 * 
-	 * @return ビュー名。
+	 * @param form マスタサンプルフォーム {@link SampleMasterUserForm}
+	 * @param result {@link BindingResult}
+	 * @param model {@link Model}
+	 * @param locale 現在のロケール（{@link MessageResourcesConfig}）
+	 * @return /resources/templates/sample/master/user.html
 	 */
 	@RequestMapping(method = RequestMethod.POST, params = "doSave")
 	public String save(@Validated SampleMasterUserForm form, BindingResult result, Model model, Locale locale) {

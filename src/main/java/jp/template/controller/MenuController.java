@@ -25,11 +25,10 @@ public class MenuController {
 	/**
 	 * 初期オープン時のマッピング。
 	 * 
-	 * @return
-	 * @throws Exception
+	 * @return /resources/template/menu.html
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String show(@AuthenticationPrincipal LoginUser loginUser) throws Exception {
+	public String show(@AuthenticationPrincipal LoginUser loginUser) {
 
 		logger.debug(loginUser.getUsername()); // org.springframework.security.core.userdetails.User を継承したログイン ID の取得。
 		logger.debug(loginUser.getUser().getLoginUserId()); // DB（jp.template.domain.User） からのログイン ID の取得。

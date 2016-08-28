@@ -17,7 +17,7 @@ public class SampleController {
 	/**
 	 * コントロールサンプル。
 	 * 
-	 * @return ビュー名。
+	 * @return /resources/templates/sample/controlles/datetimepicker.html
 	 */
 	@RequestMapping(value = "/controlles/datetimepicker", method = RequestMethod.GET)
 	public String show() {
