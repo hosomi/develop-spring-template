@@ -40,6 +40,10 @@ configurations {
 ext['thymeleaf.version'] = '3.0.1.RELEASE'
 ext['thymeleaf-layout-dialect.version'] = '2.0.0'
 
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.0'
+}
+
 dependencies {
 	// spring-boot 関連, thymeleaf
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
