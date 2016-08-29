@@ -18,6 +18,8 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
 	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
 	<link th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+
 	<style type="text/css">
 
 	</style>
@@ -111,7 +113,7 @@
 	</div>
 
 	<footer class="footer" style="padding-right:16px;">
-		<div class="container col-xs-1" style="margin:10px;">
+		<div class="container pull-left">
 			<button type="button" id="saveBtn" name="doSave" class="btn btn-primary" th:disabled="${sampleMasterUserForm.list == null or sampleMasterUserForm.list.isEmpty()}"><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.save}">global.btn.save</span></button>
 		</div>
 	</footer>

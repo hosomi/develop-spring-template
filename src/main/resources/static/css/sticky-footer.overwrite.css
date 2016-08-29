@@ -1,0 +1,9 @@
+.footer {
+	position: fixed !important;
+	border: 1px solid #ccc;
+	z-index: 4;
+}
+
+.container {
+	padding:  13px 15px !important;
+}
