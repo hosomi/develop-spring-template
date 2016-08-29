@@ -54,6 +54,7 @@ public class SampleMasterUserController {
 	 * 照会ボタン押下。
 	 * 
 	 * @param loginUser 認証情報
+	 * @param form マスタサンプルフォーム {@link SampleMasterUserForm}
 	 * @param model {@link Model}
 	 * @param locale 現在のロケール（{@link MessageResourcesConfig}）
 	 * @return /resources/templates/sample/master/user.html

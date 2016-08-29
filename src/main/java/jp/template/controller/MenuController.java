@@ -25,6 +25,7 @@ public class MenuController {
 	/**
 	 * 初期オープン時のマッピング。
 	 * 
+	 * @param loginUser 認証情報
 	 * @return /resources/template/menu.html
 	 */
 	@RequestMapping(method = RequestMethod.GET)
