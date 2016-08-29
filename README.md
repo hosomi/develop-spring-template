@@ -6,8 +6,14 @@ Spring Boot + Gradle template
 
 
 
-Spring Boot , Gradle で開発する際のテンプレートです。
+Spring Boot , Gradle で開発する際のテンプレートです。  
 
+現在提供している機能：
+* 独自テーブルを利用したログイン処理。
+* トランザクション管理（システムエラー時ロールバック）
+* 共通のログ出力処理（操作ログ、システムエラーログ）
+* コントロールサンプル
+  * DateTimePicker
 
 # 依存関係  
 

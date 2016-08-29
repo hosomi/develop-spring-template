@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * システムエラー時の共通処理。 
+ * <pre>
+ * ・ログを出力（error レベルで出力）。
+ * ・エラー共通ページへ遷移。
+ * </pre>
+ * 
+ * @author hosomi
+ */
 @ControllerAdvice
 public class ExceptionAdvice {
 
