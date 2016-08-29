@@ -3,13 +3,10 @@ package jp.template.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
-
-import jp.template.component.CustomHandlerInterceptor;
 
 /**
  * Spring Web の設定。
@@ -29,17 +26,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		
 		// 該当リソースが見つからない場合、DispatcherServlet -> デフォルトサーブレット (HttpServletRequest)経由でアクセスを試みる設定を有効。
 		configurer.enable(); 
-	}
-	
-	/**
-	 * インターセプターの追加。
-	 * 
-	 * @param registry {@link InterceptorRegistry}
-	 */
-	public void addInterceptors(InterceptorRegistry registry) {
-
-		registry.addInterceptor(new CustomHandlerInterceptor()).addPathPatterns("/**") // 適用対象のパス(パターン)を指定する
-				.excludePathPatterns("/login","/static/**","/webjars/**"); // 除外するパス(パターン)を指定する
 	}
 
 	/**
