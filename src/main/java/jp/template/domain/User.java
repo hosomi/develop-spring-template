@@ -1,6 +1,6 @@
 package jp.template.domain;
 
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * User エンティティ.
@@ -13,11 +13,13 @@ public class User {
 	private int id;
 	
 	/** ログインユーザID*/
-	@NotBlank
+//	@NotBlank
+	@Size(min=3,max=10) // 最小サイズを指定している場合、@NotBlank は不要。
 	private String loginUserId;
 	
 	/** パスワード（とりあえず平文）*/
-	@NotBlank
+//	@NotBlank
+	@Size(min=8,max=32)
 	private String password;
 
 	/**

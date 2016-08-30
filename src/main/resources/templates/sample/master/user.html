@@ -93,13 +93,17 @@
 					<tbody>
 						<tr th:each="entity, status : ${sampleMasterUserForm.list}">
 							<td th:text="${status.count}" >1</td>
-							<td>
-								<input type="hidden" th:field="*{list[__${status.index}__].id}" th:value="${entity.id}" value="123456789"/>
-								<input type="hidden" th:field="*{list[__${status.index}__].loginUserId}" th:value="${entity.loginUserId}" value="admin"/>
-								<span th:text="${entity.loginUserId}">admin</span>
+							<td th:classappend="${#fields.hasErrors('*{list[__${status.index}__].loginUserId}')}? 'has-error has-feedback'">
+								<input type="hidden" th:field="*{list[__${status.index}__].id}" th:if="${entity.id != 0}" th:value="${entity.id}" value="123456789"/>
+								
+								
+								<input type="hidden" th:field="*{list[__${status.index}__].loginUserId}" th:if="${entity.id != 0}" th:value="${entity.loginUserId}" value="admin"/>
+								<input type="text" class="form-control" th:field="*{list[__${status.index}__].loginUserId}" th:if="${entity.id == 0}" th:value="${entity.loginUserId}" value="admin"/>
+								<span th:if="${entity.id != 0}" th:text="${entity.loginUserId}">admin</span>
+								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].loginUserId}')}" class="text-danger" th:errors="*{list[__${status.index}__].loginUserId}">Error</span>
 							</td>
 							<td th:classappend="${#fields.hasErrors('*{list[__${status.index}__].password}')}? 'has-error has-feedback'">
-								<input type="text" class="form-control" th:field="*{list[__${status.index}__].password}"  th:value="${entity.password}" value="Admin"/>
+								<input type="text" class="form-control" th:field="*{list[__${status.index}__].password}" th:value="${entity.password}" value="Admin"/>
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].password}')}" class="text-danger" th:errors="*{list[__${status.index}__].password}">Error</span>
 							</td>
 						</tr>
@@ -108,13 +112,15 @@
 				</div>
 			</div>
 			<button type="submit" id='inquiryDummy' name="doInquiry" style="visibility:hidden;" ></button>
+			<button type="submit" id='addDummy' name="doAdd" style="visibility:hidden;" ></button>
 			<button type="submit" id='saveDummy' name="doSave" style="visibility:hidden;" ></button>
 		</form>
 	</div>
 
 	<footer class="footer" style="padding-right:16px;">
 		<div class="container pull-left">
-			<button type="button" id="saveBtn" name="doSave" class="btn btn-primary" th:disabled="${sampleMasterUserForm.list == null or sampleMasterUserForm.list.isEmpty()}"><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.save}">global.btn.save</span></button>
+			<button type="button" id="addBtn" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.add}">global.btn.add</span></button>
+			<button type="button" id="saveBtn" class="btn btn-primary" th:disabled="${sampleMasterUserForm.list == null or sampleMasterUserForm.list.isEmpty()}"><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.save}">global.btn.save</span></button>
 		</div>
 	</footer>
 
@@ -134,6 +140,11 @@
 			<!--/* 照会ボタンのハンドリング。  */-->
 			$('#inquiryBtn').click(function(e) {
 				$('#inquiryDummy').click();
+			});
+
+			<!--/* 追加ボタンのハンドリング。  */-->
+			$('#addBtn').click(function(e) {
+				$('#addDummy').click();
 			});
 
 			<!--/* 保存ボタンのハンドリング。  */-->
