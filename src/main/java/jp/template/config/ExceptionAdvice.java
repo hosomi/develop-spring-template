@@ -1,7 +1,6 @@
 package jp.template.config;
 
 import java.security.Principal;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * システムエラー時の共通処理。 
@@ -26,17 +24,16 @@ public class ExceptionAdvice {
 	/** Logger. */
 	private static Logger logger = LogManager.getLogger();
 	
+	/**
+	 * システムエラー時のエラーログ生成。
+	 * <p>/resources/error.html がデフォルトです。</p>
+	 * 
+	 * @param principal 認証情報。
+	 * @param request {@link HttpServletRequest}
+	 * @param e キャッチした例外
+	 */
 	@ExceptionHandler(value = { Exception.class, RuntimeException.class })
-	public ModelAndView defaultErrorHandler(Principal principal, HttpServletRequest request, Exception e) {
-		ModelAndView mav = new ModelAndView("error");
-
+	public void defaultErrorHandler(Principal principal, HttpServletRequest request, Exception e) {
 		logger.error("error-url:{},loginid:{}", request.getRequestURL(), principal.getName(), e);
-
-		mav.addObject("datetime", new Date());
-		mav.addObject("exception", e);
-
-		mav.addObject("url", request.getRequestURL());
-		return mav;
 	}
-	
 }
