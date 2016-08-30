@@ -12,27 +12,29 @@ spring:
   # datasource
   #---------------------------
   datasource: 
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password: sa
     driverClassName: org.h2.Driver
 #    jndi-name: java:jboss/datasources/customers # JDDI を指定する場合。
     tomcat: 
       max-active: 100
-      max-idle: 8
+      max-idle: 8 
       min-idle: 8
-      initial-size: 10
+      initial-size: 10 
       session-timeout: 1800
       test-on-borrow: true
       validation-query: SELECT 1
       remove-abandoned: true
       remove-abandoned-timeout: 60
 
+
   #---------------------------
   # JPA
   #---------------------------
   jpa:
     show-sql: true # Enable logging of SQL statements. (DEBUG level)
+    database-platform: org.hibernate.dialect.H2Dialect
 
   #---------------------------
   # Thymeleaf 
@@ -45,11 +47,18 @@ spring:
     content-type: text/html
     cache: false # キャッシュを有効にするか。(***本番時はtrue にしてください***)
 
+#---------------------------
+# MyBatis 
+#---------------------------
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls : true
 
 
-  #---------------------------
-  # Server 
-  #---------------------------
+#---------------------------
+# Server 
+#---------------------------
 server:
   context-path : /template # コンテキストルート
   session-timeout: 28400 # Session timeout in seconds.

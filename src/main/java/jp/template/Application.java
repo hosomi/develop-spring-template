@@ -2,12 +2,15 @@ package jp.template;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.h2.server.web.WebServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.template.domain.Todo;
@@ -26,7 +29,7 @@ public class Application extends SpringBootServletInitializer implements Command
 
 	@Autowired
 	private TodoMapper todoMapper; // Mapper をインジェクションする
-	
+
 	/**
 	 * ローカル実行用。
 	 * 
@@ -37,7 +40,7 @@ public class Application extends SpringBootServletInitializer implements Command
 	}
 
 	/**
-	 *  デプロイ時に実行されるメイン。
+	 * デプロイ時に実行されるメイン。
 	 */
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -45,7 +48,7 @@ public class Application extends SpringBootServletInitializer implements Command
 	}
 
 	/**
-	 *  Spring Boot起動時にCommandLineRunner#runメソッドが呼び出される
+	 * Spring Boot起動時にCommandLineRunner#runメソッドが呼び出される
 	 */
 	@Transactional
 	@Override
@@ -63,4 +66,15 @@ public class Application extends SpringBootServletInitializer implements Command
 		logger.debug("FINISHED : " + loadedTodo.isFinished());
 	}
 
+	/**
+	 * H2 用のコンソールサーブレット実装。
+	 * 
+	 * @return {@link ServletRegistrationBean}
+	 */
+	@Bean
+	public ServletRegistrationBean h2servletRegistration() {
+		ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
+		registration.addUrlMappings("/console/*");
+		return registration;
+	}
 }

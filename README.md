@@ -2,6 +2,7 @@ Spring Boot + Gradle template
 =============
 
 [![Build Status](https://travis-ci.org/hosomi/develop-spring-template.svg?branch=master)](https://travis-ci.org/hosomi/develop-spring-template)
+
 [![build status](https://circleci.com/gh/hosomi/develop-spring-template.svg?style=shield&circle-token=9a9efeb27aabd4d1173951957f233d05f246d6c0)](https://circleci.com/gh/hosomi/develop-spring-template)
 
 
@@ -11,7 +12,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 現在提供している機能：
 * 独自テーブルを利用したログイン処理。
 * トランザクション管理（システムエラー時ロールバック）
-* 共通のログ出力処理（操作ログ、システムエラーログ）
+* 共通のログ出力処理（操作ログ、システムエラーログ、SQL（trace,debug））
 * コントロールサンプル
   * DateTimePicker
 
