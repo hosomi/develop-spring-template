@@ -2,6 +2,7 @@ package jp.template.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -76,5 +77,14 @@ public interface UserMapper {
 	 */
 	@Select("SELECT id, loginUserId, password  FROM USER WHERE NOT EXISTS (SELECT * FROM USER USER_INNER WHERE USER_INNER.loginUserId = USER.loginUserId AND loginUserId = #{systemLoginId})")
 	List<User> selectAllNotExistsSystemLoginId(@Param("systemLoginId") String systemLoginId);
+
+	/**
+	 * 対象ID（PKEY） を指定して削除する。
+	 * 
+	 * @param id ID（PKEY）
+	 * @return　削除件数（１件））
+	 */
+	@Delete("DELETE FROM USER WHERE ID = #{id}")
+	int delete(@Param("id") int id);
 
 }

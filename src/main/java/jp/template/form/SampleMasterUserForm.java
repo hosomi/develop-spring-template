@@ -23,6 +23,10 @@ public class SampleMasterUserForm {
 	@Valid
 	private List<User> list;
 
+	/** 選択行（削除）*/
+	private int selectRow;
+	
+
 	/**
 	 * @return the loginUserIdPost
 	 */
@@ -65,5 +69,17 @@ public class SampleMasterUserForm {
 		this.list = list;
 	}
 
+	/**
+	 * @return the selectRow
+	 */
+	public int getSelectRow() {
+		return selectRow;
+	}
 
+	/**
+	 * @param selectRow the selectRow to set
+	 */
+	public void setSelectRow(int selectRow) {
+		this.selectRow = selectRow;
+	}
 }

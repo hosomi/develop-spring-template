@@ -151,6 +151,7 @@ public class SampleMasterUserController {
 		
 		
 		// 更新処理。
+		// コミットは必要ありません。（システムエラー時はロールバックします、トランザクション管理は {#link jp.template.config.TxAdviceConfig} を参照してください。）
 		if (! form.getList().isEmpty()) {
 			
 			// 全件更新。
@@ -161,17 +162,60 @@ public class SampleMasterUserController {
 				} else {
 					userMapper.insert(entity);
 				}
-				
 			}
 		}
 
 		// 更新後の再検索処理。
 		form.setList(retrieve(form, loginUser));
 
-
 		// 保存完了メッセージ。
 		model.addAttribute("info_message", messageSource.getMessage("jp.template.global.info.save.completion.message", null, locale));
 		
+		return "sample/master/user";
+	}
+
+	/**
+	 * 削除ボタン押下。
+	 * 
+	 * @param form マスタサンプルフォーム {@link SampleMasterUserForm}
+	 * @param loginUser 認証情報
+	 * @param model {@link Model}
+	 * @param locale 現在のロケール（{@link MessageResourcesConfig}）
+	 * @return /resources/templates/sample/master/user.html
+	 */
+	@RequestMapping(method = RequestMethod.POST, params = "doDelete")
+	public String delete(@AuthenticationPrincipal LoginUser loginUser, SampleMasterUserForm form, Model model, Locale locale) {
+		
+		// 選択された行が無ければ何も行わない。
+		if (form.getSelectRow() <= 0) {
+			return "sample/master/user";
+		}
+		
+		// 一覧が無ければ何も行わない。
+		if (Objects.isNull(form.getList()) || form.getList().isEmpty()) {
+			return "sample/master/user";
+		}
+		
+		// 一覧のサイズより選択行が大きい場合何も行わない。
+		if (form.getSelectRow() > form.getList().size()) {
+			return "sample/master/user";
+		}
+		
+		User entity = form.getList().get(form.getSelectRow()-1);
+		
+		
+		if (entity.getId() > 0) {
+		
+			// delete 文発行。
+			userMapper.delete(entity.getId());
+		}
+
+		// 画面の一覧から行を削除。
+		form.getList().remove(form.getSelectRow()-1);
+
+		// 削除完了メッセージ。
+		model.addAttribute("info_message", messageSource.getMessage("jp.template.global.info.delete.choice.completion.message", null, locale));
+
 		return "sample/master/user";
 	}
 	
@@ -194,8 +238,6 @@ public class SampleMasterUserController {
 				list.add(user);
 			}
 		}
-
 		return list;
 	}
-	
 }

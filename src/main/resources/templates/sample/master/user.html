@@ -21,7 +21,13 @@
 	<link th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
 
 	<style type="text/css">
-
+		.alt-table-responsive {
+			width: 100%;
+			overflow-y: hidden;
+			overflow-x: auto;
+			-ms-overflow-style: -ms-autohiding-scrollbar;
+			-webkit-overflow-scrolling: touch;
+		}
 	</style>
 </head>
 <body>
@@ -46,10 +52,6 @@
 		</div>
 	</nav>
 
-
-
-
-	
 	<div class="container-fluid" style="padding-top: 60px;">
 		<form role="form" action="/sample/master/user" th:action="@{/sample/master/user}" th:object="${sampleMasterUserForm}" method="post">
 			<div class="form-inline row" style="padding: 0 15px;">
@@ -80,14 +82,15 @@
 
 
 			<div style="width:100%;">
-				<div class="table-responsive">
+				<div class="alt-table-responsive">
 					<table class="table table-bordered table-condensed table-hover">
-					<caption><span th:text="#{master.user.list.cation}">master.user.list.cation</span>&nbsp;：&nbsp;</caption>
+					<caption><span th:text="#{master.user.list.caption}">master.user.list.caption</span>&nbsp;：&nbsp;</caption>
 					<thead>
 						<tr class="bg-primary">
-							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1" style="width:5%;min-width:5%">No</th>
-							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1" th:text="#{master.user.list.loginid}">master.user.list.loginid</th>
-							<th class="col-xs-1 col-ms-1 col-md-1 col-lg-1" th:text="#{master.user.list.password}">master.user.list.passward</th>
+							<th style="width:50px;">No</th>
+							<th th:text="#{master.user.list.loginid}">master.user.list.loginid</th>
+							<th th:text="#{master.user.list.password}">master.user.list.passward</th>
+							<th style="width:50px;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -95,8 +98,6 @@
 							<td th:text="${status.count}" >1</td>
 							<td th:classappend="${#fields.hasErrors('*{list[__${status.index}__].loginUserId}')}? 'has-error has-feedback'">
 								<input type="hidden" th:field="*{list[__${status.index}__].id}" th:if="${entity.id != 0}" th:value="${entity.id}" value="123456789"/>
-								
-								
 								<input type="hidden" th:field="*{list[__${status.index}__].loginUserId}" th:if="${entity.id != 0}" th:value="${entity.loginUserId}" value="admin"/>
 								<input type="text" class="form-control" th:field="*{list[__${status.index}__].loginUserId}" th:if="${entity.id == 0}" th:value="${entity.loginUserId}" value="admin"/>
 								<span th:if="${entity.id != 0}" th:text="${entity.loginUserId}">admin</span>
@@ -106,6 +107,9 @@
 								<input type="text" class="form-control" th:field="*{list[__${status.index}__].password}" th:value="${entity.password}" value="Admin"/>
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].password}')}" class="text-danger" th:errors="*{list[__${status.index}__].password}">Error</span>
 							</td>
+							<td>
+								<button type="button" class="btn btn-danger btn-xs deleteBtn" th:onclick="'deleteRow(' + ${status.count} + ');'"><i class="fa fa-times" aria-hidden="true"></i></button>
+							</td>
 						</tr>
 					</tbody>
 					</table>
@@ -113,7 +117,9 @@
 			</div>
 			<button type="submit" id='inquiryDummy' name="doInquiry" style="visibility:hidden;" ></button>
 			<button type="submit" id='addDummy' name="doAdd" style="visibility:hidden;" ></button>
+			<button type="submit" id='deleteDummy' name="doDelete" style="visibility:hidden;" ></button>
 			<button type="submit" id='saveDummy' name="doSave" style="visibility:hidden;" ></button>
+			<input type="hidden" id="selectRow" name="selectRow" value="0"/>
 		</form>
 	</div>
 
@@ -151,7 +157,16 @@
 			$('#saveBtn').click(function(e) {
 				$('#saveDummy').click();
 			});
+
+
+
 		});
+		<!--/* 削除処理。  */-->
+		function deleteRow(row) {
+			<!--/*  確認メッセージが必要な場合ここで実装してください。 */-->
+			$('#selectRow').val(row);
+			$('#deleteDummy').click();
+		}
 	</script>
 </body>
 </html>

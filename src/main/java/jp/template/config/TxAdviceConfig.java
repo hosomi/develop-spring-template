@@ -51,7 +51,7 @@ public class TxAdviceConfig {
 	public Advisor txAdviceAdvisor() {
 
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression("execution(* jp.template..*.*(..))"); // トランザクション管理したい対象クラスを指定（ワイルドカード使用可能）
+		pointcut.setExpression("execution(* jp.template..*.*(..))"); // トランザクション管理したい対象クラスを指定（ワイルドカード使用可能） ※パッケージ構成を変更する場合、合わせてください。
 		return new DefaultPointcutAdvisor(pointcut, txAdvice());
 	}
 }
