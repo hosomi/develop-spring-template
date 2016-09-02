@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="#{controll.typeahead.title}">controll.typeahead.title</title>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/typeahead.css}" rel="stylesheet" />
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hamburger">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;<span th:text="#{controll.typeahead.title}">controll.typeahead.title</span>&nbsp;&nbsp;&nbsp;</p>
+			</div>
+	
+			<div id="hamburger" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&nbsp;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;<span th:text="#{global.logout}">logout</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid" style="padding-top: 60px;">
+
+		<div class="form-inline">
+			<div class="form-group">
+				<label class="control-label">Goods&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;:&nbsp;</label>
+				<div class="form-group">
+					<input class="form-control" id="goods.code" name="goods.code" maxlength="10" placeholder="enter keyword"/>
+				</div>
+				<input class="form-control" id="goods.name" name="goods.name" readonly="readonly"/>
+			</div>
+		</div>
+
+		<hr/>
+
+		<div class="row">
+			<div class='col-sm-12'>
+				<div class="form-group">
+					<label>code(html)&nbsp;:&nbsp;</label>
+					<pre id="editor1" class="editor">
+&lt;div class=&quot;form-inline&quot;&gt;
+	&lt;div class=&quot;form-group&quot;&gt;
+		&lt;label class=&quot;control-label&quot;&gt;Goods&amp;nbsp;&amp;ensp;&amp;ensp;&amp;nbsp;&amp;nbsp;&amp;nbsp;:&amp;nbsp;&lt;/label&gt;
+		&lt;div class=&quot;form-group&quot;&gt;
+			&lt;input class=&quot;form-control&quot; id=&quot;goods.code&quot; name=&quot;goods.code&quot; maxlength=&quot;10&quot;/&gt;
+		&lt;/div&gt;
+		&lt;input class=&quot;form-control&quot; id=&quot;goods.name&quot; name=&quot;goods.name&quot; readonly=&quot;readonly&quot;/&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class='col-sm-12'>
+				<div class="form-group">
+					<label>code(javascript)&nbsp;:&nbsp;</label>
+					<pre id="editor2" class="editor">
+	var template = &#039;&lt;div&gt;&lt;p&gt;{{code}}:{{name}}&lt;/p&gt;&lt;p style=&quot;color:#aaa;&quot;&gt;{{note}}&lt;/p&gt;&lt;/div&gt;&#039;;
+	var compiled_template = Hogan.compile(template);
+	var dataSource = new Bloodhound({
+		datumTokenizer: function(d) { 
+			return Bloodhound.tokenizers.whitespace(d.tokens.join(&#039; &#039;)); 
+		},
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		remote : {
+			cache : true,
+			url : &#039;[[@{/sample/controlles/typeahead/%QUERY}]]&#039;,
+			wildcard : &#039;%QUERY&#039;,
+		}
+	});
+	dataSource.initialize();
+
+	function typeAheadInitialize() {
+		$(&quot;[id=&#039;goods.code&#039;]&quot;).typeahead({}, {
+			source: dataSource.ttAdapter(),
+			name: &#039;typeahead&#039;,
+			displayKey: &#039;code&#039;,
+			hint: false,
+			highlight: false,
+			limit: 5,
+			templates: {
+				header: [&#039;Please select from the candidate .&#039;],
+				suggestion: compiled_template.render.bind(compiled_template),
+				notFound:[&#039;&lt;div class=&quot;typeahead-empty-message&quot;&gt;It does not match the conditions .&lt;/div&gt;&#039;]
+			}
+		}).on(&#039;typeahead:selected&#039;, function(event, datum) {
+			
+			return $(&quot;[id=&#039;goods.name&#039;]&quot;).val(datum.name);
+		});
+	}
+	typeAheadInitialize();
+</pre>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class='col-sm-12'>
+				<div class="form-group">
+					<label>code(java:Rest)&nbsp;:&nbsp;</label>
+					<pre id="editor3" class="editor">
+@ResponseBody
+@RequestMapping(value = &quot;/controlles/typeahead/{queryStr}&quot;, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+public List&lt;GoodsTypeAhedDto&gt; restTypeahead(@PathVariable String queryStr) {
+
+	List&lt;GoodsTypeAhedDto&gt; list = new ArrayList&lt;GoodsTypeAhedDto&gt;();
+
+	List&lt;Goods&gt; dataList;
+	if (StringUtils.isNotBlank(queryStr)) {
+		// Query Result List
+		dataList = goodsMapper.selectListTypeAhead(QueryEscapeUtils.toContainingCondition(queryStr)); 
+	} else {
+		// Empty List
+		dataList = new ArrayList&lt;Goods&gt;();
+	}
+
+	GoodsTypeAhedDto dto;
+	List&lt;String&gt; tokens;
+	for (Goods entity : dataList) {
+
+		// TypeAhead Token generate
+		tokens = new ArrayList&lt;String&gt;();
+		tokens.add(entity.getCode());
+		tokens.add(entity.getName());
+		tokens.add(entity.getKana());
+
+		// generate TypeAhead list
+		dto = new GoodsTypeAhedDto();
+		dto.setId(entity.getId());
+		dto.setCode(entity.getCode());
+		dto.setName(entity.getName());
+		dto.setKana(entity.getKana());
+		dto.setNote(entity.getNote());
+		dto.setTokens(tokens);
+
+		list.add(dto);
+	}
+	return list;
+}
+</pre>
+				</div>
+			</div>
+		</div>
+
+		<form role="form" action="/sample/controlles/typeahead" th:action="@{/sample/controlles/typeahead}" th:object="${sampleTypeAheadForm}" method="post">
+			<div style="width:100%;">
+				<div class="alt-table-responsive">
+					<table class="table table-bordered table-condensed table-hover">
+					<caption><span th:text="#{controll.typeahead.list.caption}">controll.typeahead.list.caption</span>&nbsp;：&nbsp;</caption>
+					<thead>
+						<tr class="bg-primary">
+							<th style="width:50px;">No</th>
+							<th th:text="#{controll.typeahead.list.id}">controll.typeahead.list.id</th>
+							<th th:text="#{controll.typeahead.list.code}">controll.typeahead.list.code</th>
+							<th th:text="#{controll.typeahead.list.name}">controll.typeahead.list.name</th>
+							<th th:text="#{controll.typeahead.list.kana}">controll.typeahead.list.kana</th>
+							<th th:text="#{controll.typeahead.list.note}">controll.typeahead.list.note</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="entity, status : ${sampleTypeAheadForm.list}">
+							<td th:text="${status.count}" >1</td>
+							<td th:text="${entity.id}">1234567890</td>
+							<td th:text="${entity.code}">0000000001</td>
+							<td th:text="${entity.name}">goods.name</td>
+							<td th:text="${entity.kana}">goods.kana</td>
+							<td th:text="${entity.note}">goods.note</td>
+						</tr>
+					</tbody>
+					</table>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<footer class="footer" style="padding-right:16px;">
+		<div class="container pull-left">
+			
+		</div>
+	</footer>
+
+<!--[if lt IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/typeaheadjs/typeahead.bundle.min.js}"></script>
+	<script th:src="@{/webjars/hoganjs/hogan.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.4/ace.js" th:src="@{/webjars/ace/src-noconflict/ace.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.4/theme-cobalt.js" th:src="@{/webjars/ace/src-noconflict/theme-cobalt.js}"></script>
+
+	<script type="text/javascript">
+	/*<![CDATA[*/
+		$(document).ready(function() {
+			var template = '<div><p>{{code}}:{{name}}</p><p style="color:#aaa;">{{note}}</p></div>';
+			var compiled_template = Hogan.compile(template);
+			var dataSource = new Bloodhound({
+				datumTokenizer: function(d) { 
+					return Bloodhound.tokenizers.whitespace(d.tokens.join(' ')); 
+				},
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				remote : {
+					cache : true,
+					url : '[[@{/sample/controlles/typeahead/%QUERY}]]',
+					wildcard : '%QUERY',
+				}
+			});
+			dataSource.initialize();
+
+			function typeAheadInitialize() {
+				$("[id='goods.code']").typeahead({}, {
+					source: dataSource.ttAdapter(),
+					name: 'typeahead',
+					displayKey: 'code',
+					hint: false,
+					highlight: false,
+					limit: 5,
+					templates: {
+						header: ['[[#{global.typeahead.choice.select}]]'],
+						suggestion: compiled_template.render.bind(compiled_template),
+						notFound:['<div class="typeahead-empty-message">[[#{global.typeahead.data.notfound}]]</div>']
+					}
+				}).on('typeahead:selected', function(event, datum) {
+					
+					return $("[id='goods.name']").val(datum.name);
+				});
+			}
+			typeAheadInitialize();
+		});
+	
+		var editor1 = ace.edit("editor1");
+		editor1.setOptions({
+			maxLines: Infinity
+		});
+		editor1.setReadOnly(true); 
+		editor1.setTheme("ace/theme/git");
+		editor1.getSession().setMode("ace/mode/html");
+
+		var editor2 = ace.edit("editor2");
+		editor2.setOptions({
+			maxLines: Infinity
+		});
+		editor2.setReadOnly(true); 
+		editor2.setTheme("ace/theme/git");
+		editor2.getSession().setMode("ace/mode/javascript");
+		
+		var editor3 = ace.edit("editor3");
+		editor3.setOptions({
+			maxLines: Infinity
+		});
+		editor3.setReadOnly(true); 
+		editor3.setTheme("ace/theme/git");
+		editor3.getSession().setMode("ace/mode/java");
+	
+	/*]]>*/
+	</script>
+</body>
+</html>

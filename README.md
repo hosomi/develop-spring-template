@@ -14,6 +14,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 * 共通のログ出力処理（操作ログ、システムエラーログ、SQL（trace,debug））
 * コントロールサンプル
   * DateTimePicker
+  * typeahead
 
 # 依存関係  
 
@@ -43,13 +44,15 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | ------------- | :----- |
 | org.webjars:webjars-locator:0.32 | WebJar バージョン番号管理 |
 | org.webjars:jquery:2.2.4 | jQuery 2.2.4 (*1) |
-| org.webjars:bootstrap:3.3.7 | Bootstrap 3.3.6 |
+| org.webjars:bootstrap:3.3.6 | Bootstrap 3.3.6 |
 | org.webjars:html5shiv:3.7.3 | Bootstrap の IE8 対応用 (HTML5) |
 | org.webjars.npm:respond.js:1.4.2 | Bootstrap の IE8 対応用(レスポンシブ) |
 | org.webjars:font-awesome:4.6.3 | Web アイコンフォン(Font Awesome) |
 | org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1 | bootstrap-DateTimePicker(Bootstrap,jQuery, moment.js(*2) 必須) |
 | org.webjars.bower:sticky-footer:0.1.4 | フッター表示 |
 | org.webjars.npm:bootswatch:3.3.6 | Bootstrap のテーマ拡張(Lumen を適用) org.webjars.bower:bootswatch:3.3.7 は依存性に問題が発生 |
+| org.webjars:typeaheadjs:0.11.1 | https://twitter.github.io/typeahead.js/|
+| org.webjars:hoganjs:3.0.2 | http://twitter.github.io/hogan.js/ typeahead 内部で html テンプレートエンジンとして利用。|
 
 
 
