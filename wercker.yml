@@ -1,4 +1,4 @@
-box: java
+box: openjdk:8-jdk
 
 # defining the dev pipeline
 dev:
