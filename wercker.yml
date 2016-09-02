@@ -17,3 +17,14 @@ build:
         code: |
           chmod +x gradlew
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
+ # Use the build results
+  after-steps:
+    - script:
+        name: inspect build result
+        code: |
+          pwd
+          ls -la ./build/libs/
+          cp -r ./build/libs/* ${WERCKER_REPORT_ARTIFACTS_DIR}
+          ls -la ./build/docs/javadoc/
+          cp -r ./build/docs/javadoc/* ${WERCKER_REPORT_ARTIFACTS_DIR}
+          
