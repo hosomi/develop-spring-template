@@ -17,6 +17,7 @@ build:
         code: |
           chmod +x gradlew
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
+          ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR javadoc
  # Use the build results
   after-steps:
     - script:
