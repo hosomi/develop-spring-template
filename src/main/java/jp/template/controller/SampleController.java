@@ -47,7 +47,9 @@ public class SampleController {
 	/**
 	 * コントロールサンプル（TypeAhead）。
 	 * 
-	 *  @return /resources/templates/sample/controlles/typeahead.html
+	 * @param form マスタサンプルフォーム {@link SampleTypeAheadForm}
+	 * @param model {@link Model}
+	 * @return /resources/templates/sample/controlles/typeahead.html
 	 */
 	@RequestMapping(value = "/controlles/typeahead", method = RequestMethod.GET)
 	public String typeahead(SampleTypeAheadForm form, Model model) {
