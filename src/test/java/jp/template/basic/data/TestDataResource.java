@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 
 import javax.sql.DataSource;
 
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.database.QueryDataSet;
@@ -12,6 +13,7 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.csv.CsvDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.rules.ExternalResource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +36,12 @@ public class TestDataResource extends ExternalResource {
 	protected void before() throws Throwable {
 
 		IDatabaseConnection conn = null;
+		DatabaseConfig config = null;
 		try {
 			conn = new DatabaseConnection(dataSource.getConnection());
-
+			config = conn.getConfig();
+			config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new H2DataTypeFactory());
+			
 			// バックアップを取得する(H2 のインメモリなので不要かも)
 			QueryDataSet partialDataSet = new QueryDataSet(conn);
 			partialDataSet.addTable("user");
@@ -50,6 +55,8 @@ public class TestDataResource extends ExternalResource {
 			DatabaseOperation.CLEAN_INSERT.execute(conn, dataset);
 
 		} finally {
+			config = null;
+			
 			if (conn != null) {
 				try {
 					conn.close();
@@ -65,9 +72,12 @@ public class TestDataResource extends ExternalResource {
 		
 		try {
 			IDatabaseConnection conn = null;
+			DatabaseConfig config = null;
 			try {
 				conn = new DatabaseConnection(dataSource.getConnection());
-
+				config = conn.getConfig();
+				config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new H2DataTypeFactory());
+				
 				// バックアップからリストアする
 				if (backupFile != null) {
 					IDataSet dataSet = new FlatXmlDataSetBuilder().build(backupFile);
@@ -76,6 +86,8 @@ public class TestDataResource extends ExternalResource {
 					backupFile = null;
 				}
 			} finally {
+				config = null;
+				
 				if (conn != null) {
 					try {
 						conn.close();
