@@ -1,7 +1,5 @@
 package jp.template;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.h2.server.web.WebServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,8 +11,9 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.template.domain.Todo;
-import jp.template.mapper.TodoMapper;
+import jp.template.domain.User;
+import jp.template.domain.UserBCrypt;
+import jp.template.mapper.UserMapper;
 
 /**
  * SpringBootApplication の実装。
@@ -24,12 +23,16 @@ import jp.template.mapper.TodoMapper;
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer implements CommandLineRunner {
 
-	/** Logger. */
-	private static Logger logger = LogManager.getLogger();
+//	/** Logger. */
+//	private static Logger logger = LogManager.getLogger();
+
+//	@Autowired
+//	private TodoMapper todoMapper;
 
 	@Autowired
-	private TodoMapper todoMapper; // Mapper をインジェクションする
+	private UserMapper userMapper;
 
+	
 	/**
 	 * ローカル実行用。
 	 * 
@@ -54,16 +57,36 @@ public class Application extends SpringBootServletInitializer implements Command
 	@Override
 	public void run(String... args) throws Exception {
 
-		Todo newTodo = new Todo();
-		newTodo.setTitle("TODO1");
-		newTodo.setDetails("TODO1詳細");
+//		Todo newTodo = new Todo();
+//		newTodo.setTitle("TODO1");
+//		newTodo.setDetails("TODO1詳細");
+//
+//		todoMapper.insert(newTodo); // 新しいTodoをインサートする
+//		Todo loadedTodo = todoMapper.select(newTodo.getId()); // インサートしたTodoを取得して標準出力する
+//		logger.debug("ID       : " + loadedTodo.getId());
+//		logger.debug("TITLE    : " + loadedTodo.getTitle());
+//		logger.debug("DETAILS  : " + loadedTodo.getDetails());
+//		logger.debug("FINISHED : " + loadedTodo.isFinished());
+//		
+		
+		User user = new UserBCrypt("test", "testpass");
 
-		todoMapper.insert(newTodo); // 新しいTodoをインサートする
-		Todo loadedTodo = todoMapper.select(newTodo.getId()); // インサートしたTodoを取得して標準出力する
-		logger.debug("ID       : " + loadedTodo.getId());
-		logger.debug("TITLE    : " + loadedTodo.getTitle());
-		logger.debug("DETAILS  : " + loadedTodo.getDetails());
-		logger.debug("FINISHED : " + loadedTodo.isFinished());
+		userMapper.insert(user);
+		
+		user = new UserBCrypt("test2","test2pass");
+		userMapper.insert(user);
+		
+		
+//		user = new UserBCrypt();
+//		user.setLoginUserId("testdata1");
+//		user.setPassword("testdata1pass");
+//		userMapper.insert(user);
+//		
+//		user = new UserBCrypt();
+//		user.setLoginUserId("testdata2");
+//		user.setPassword("testdata2pass");
+//		userMapper.insert(user);
+		
 	}
 
 	/**
@@ -77,4 +100,5 @@ public class Application extends SpringBootServletInitializer implements Command
 		registration.addUrlMappings("/console/*");
 		return registration;
 	}
+
 }
