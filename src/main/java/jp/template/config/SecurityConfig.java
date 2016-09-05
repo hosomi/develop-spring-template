@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
@@ -128,8 +129,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		public void init(AuthenticationManagerBuilder auth) throws Exception {
 			// 認証するユーザーを設定する
 			auth.userDetailsService(userDetailsService)
-			// 入力値をbcryptでハッシュ化した値でパスワード認証を行う（平文なのでコメント、↓ BCrypt へアクセスする場合、コメント解除）
-			// .passwordEncoder(new BCryptPasswordEncoder())
+			// 入力値をbcryptでハッシュ化した値でパスワード認証を行う（平文にする場合はコメント、↓ BCrypt へアクセスする場合、コメント解除）
+			.passwordEncoder(new BCryptPasswordEncoder())
 			;
 		}
 	}

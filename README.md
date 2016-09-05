@@ -9,9 +9,11 @@ Spring Boot + Gradle template
 Spring Boot , Gradle で開発する際のテンプレートです。  
 
 現在提供している機能：
-* 独自テーブルを利用したログイン処理。
+* 独自テーブルを利用したログイン処理(パスワードはハッシュ化)。
 * トランザクション管理（システムエラー時ロールバック）
 * 共通のログ出力処理（操作ログ、システムエラーログ、SQL（trace,debug））
+* テストコードサンプル
+  * SpringSecurity
 * コントロールサンプル
   * DateTimePicker
   * typeahead
@@ -65,7 +67,9 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | ------------- | :----- |
 | org.springframework.boot:spring-boot-starter-tomcat | Tomcat ランタイム |
 | com.h2database:h2| H2 Database ランタイム |
-
+| org.springframework.boot:spring-boot-starter-test | SpringBoot test |
+| org.springframework.security:spring-security-test | SpringBootSecurity |
+| org.dbunit:dbunit:2.5.3 | DB Test |
 
 # 動作環境
 

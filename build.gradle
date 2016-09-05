@@ -74,6 +74,8 @@ dependencies {
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	compile('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.security:spring-security-test')
+	testCompile('org.dbunit:dbunit:2.5.3')
 }
 
 javadoc {
