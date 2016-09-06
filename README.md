@@ -17,6 +17,8 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 * コントロールサンプル
   * DateTimePicker
   * typeahead
+* マスタサンプル
+  * User （バリデーション、カスタムバリデーションサンプル）
 
 # 依存関係  
 
