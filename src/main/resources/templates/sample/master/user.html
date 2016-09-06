@@ -90,6 +90,7 @@
 							<th style="width:50px;">No</th>
 							<th th:text="#{master.user.list.loginid}">master.user.list.loginid</th>
 							<th th:text="#{master.user.list.password}">master.user.list.passward</th>
+							<th th:text="#{master.user.list.repassword}">master.user.list.repassword</th>
 							<th style="width:50px;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
 						</tr>
 					</thead>
@@ -104,8 +105,15 @@
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].loginUserId}')}" class="text-danger" th:errors="*{list[__${status.index}__].loginUserId}">Error</span>
 							</td>
 							<td th:classappend="${#fields.hasErrors('*{list[__${status.index}__].password}')}? 'has-error has-feedback'">
-								<input type="text" class="form-control" th:field="*{list[__${status.index}__].password}" th:value="${entity.password}" value="Admin"/>
+								<input th:if="${entity.id == 0}" type="text" class="form-control" th:field="*{list[__${status.index}__].password}" th:value="${entity.password}" value="Admin"/>
+								<input type="hidden" th:field="*{list[__${status.index}__].password}" th:if="${entity.id != 0}" th:value="${entity.password}"/>
+								<span th:if="${entity.id != 0}" th:text="${entity.password}"></span>
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].password}')}" class="text-danger" th:errors="*{list[__${status.index}__].password}">Error</span>
+							</td>
+							<td th:classappend="${#fields.hasErrors('*{list[__${status.index}__].rePassword}')}? 'has-error has-feedback'">
+								<input th:if="${entity.id != 0}" type="text" class="form-control" th:field="*{list[__${status.index}__].rePassword}" th:value="${entity.rePassword}"/>
+								<input type="hidden" th:field="*{list[__${status.index}__].rePassword}" th:if="${entity.id == 0}"/>
+								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].rePassword}')}" class="text-danger" th:errors="*{list[__${status.index}__].rePassword}">Error</span>
 							</td>
 							<td>
 								<button type="button" class="btn btn-danger btn-xs deleteBtn" th:onclick="'deleteRow(' + ${status.count} + ');'"><i class="fa fa-times" aria-hidden="true"></i></button>

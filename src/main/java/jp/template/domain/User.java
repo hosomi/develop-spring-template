@@ -19,8 +19,11 @@ public class User {
 	
 	/** パスワード（とりあえず平文）*/
 //	@NotBlank
-	@Size(min=8,max=32)
+	@Size(min=8,max=100)
 	private String password;
+
+	/** パスワード再設定*/
+	private String rePassword;
 
 	/**
 	 * @return the id
@@ -36,7 +39,6 @@ public class User {
 		this.id = id;
 	}
 
-	
 	/**
 	 * @return the loginUserId
 	 */
@@ -63,5 +65,19 @@ public class User {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	/**
+	 * @return the rePassword
+	 */
+	public String getRePassword() {
+		return rePassword;
+	}
+
+	/**
+	 * @param rePassword the rePassword to set
+	 */
+	public void setRePassword(String rePassword) {
+		this.rePassword = rePassword;
 	}
 }

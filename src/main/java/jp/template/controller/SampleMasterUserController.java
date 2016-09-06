@@ -1,5 +1,6 @@
 package jp.template.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -18,8 +19,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.template.component.ValidateComponent;
 import jp.template.config.MessageResourcesConfig;
 import jp.template.domain.User;
+import jp.template.domain.UserBCrypt;
 import jp.template.form.SampleMasterUserForm;
 import jp.template.mapper.UserMapper;
 import jp.template.security.LoginUser;
@@ -44,11 +47,16 @@ public class SampleMasterUserController {
 	private static Logger logger = LogManager.getLogger();
 
 	@Autowired
-	private MessageSource messageSource;
+	private MessageSource message;
 	
 	@Autowired
 	UserMapper userMapper;
 
+	/** 入力検証コンポーネント*/
+	@Autowired
+	ValidateComponent validate;
+	
+	
 	/**
 	 * マスタサンプルオープン時のイベント処理。
 	 * 
@@ -59,6 +67,8 @@ public class SampleMasterUserController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String show(SampleMasterUserForm form, Model model) {
 
+		logger.info(validate);
+		
 		return "sample/master/user";
 	}
 
@@ -98,7 +108,7 @@ public class SampleMasterUserController {
 		if (list.isEmpty()) {
 
 			// 該当なし（0 件）のメッセージ。
-			model.addAttribute("warning_message", messageSource.getMessage("jp.template.global.warning.retrieved.condition.notfound", null, locale));
+			model.addAttribute("warning_message", message.getMessage("jp.template.global.warning.retrieved.condition.notfound", null, locale));
 		}
 		
 		return "sample/master/user";
@@ -138,29 +148,31 @@ public class SampleMasterUserController {
 	 * @return /resources/templates/sample/master/user.html
 	 */
 	@RequestMapping(method = RequestMethod.POST, params = "doSave")
-	public String save(@AuthenticationPrincipal LoginUser loginUser, @Validated SampleMasterUserForm form, BindingResult result, Model model, Locale locale) {
+	public String save(@AuthenticationPrincipal LoginUser loginUser, @Validated SampleMasterUserForm form, BindingResult result, Model model, Locale locale) throws IllegalAccessException, InvocationTargetException {
 
+		logger.debug(result.hasErrors());
+		
+		// 独自の業務エラーチェックの実装..
+		customValidate(form, result);
+		
 		logger.debug(result.hasErrors());
 		
 		// フィールドエラーチェック判定
 		if (result.hasErrors()) {
 			return "sample/master/user";
 		}
-		
-		// 独自の業務エラーチェックの実装..
-		
-		
+
 		// 更新処理。
 		// コミットは必要ありません。（システムエラー時はロールバックします、トランザクション管理は {#link jp.template.config.TxAdviceConfig} を参照してください。）
 		if (! form.getList().isEmpty()) {
-			
-			// 全件更新。
 			for (User entity : form.getList()) {
-				
 				if (entity.getId() != 0) {
-					userMapper.update(entity);
+					if (StringUtils.isNotBlank(entity.getRePassword())) {
+						// パスワード再設定がされている場合のみ更新。
+						userMapper.update(new UserBCrypt(entity.getId(),entity.getLoginUserId(), entity.getRePassword()));
+					}
 				} else {
-					userMapper.insert(entity);
+					userMapper.insert(new UserBCrypt(entity.getLoginUserId(), entity.getPassword()));
 				}
 			}
 		}
@@ -169,11 +181,46 @@ public class SampleMasterUserController {
 		form.setList(retrieve(form, loginUser));
 
 		// 保存完了メッセージ。
-		model.addAttribute("info_message", messageSource.getMessage("jp.template.global.info.save.completion.message", null, locale));
+		model.addAttribute("info_message", message.getMessage("jp.template.global.info.save.completion.message", null, locale));
 		
 		return "sample/master/user";
 	}
 
+	/**
+	 * 当機能固有の検証(実装サンプル)。
+	 * <p>極力、当処理は実装せずにアノテーションで検証してください。</p>
+	 * 
+	 * @param form マスタサンプルフォーム {@link SampleMasterUserForm}
+	 * @param result {@link BindingResult}
+	 */
+	private void customValidate(SampleMasterUserForm form,BindingResult result) {
+
+		validate.set(result, message);
+		int i=0;
+		for (User entity : form.getList()) {
+			if (entity.getId() != 0) {
+				if (StringUtils.isNotBlank(entity.getRePassword())) {
+					// 入力されていた場合、桁数チェック（8~32桁以内）
+					// メッセージコードは流用。
+					int lengrh = entity.getRePassword().getBytes().length;
+					if (lengrh < 8 || lengrh > 32) {
+						validate.addFieldError(
+							String.format("list[%d].rePassword", i) // エラー対象のフィールド、一覧の場合、form の一覧の項目名 + [中の要素位置] + 項目名、一覧でない場合、項目名のみになる。
+							,entity.getRePassword() // エラーフィールドの値（基本はそのまま返す）
+							,"javax.validation.constraints.Size.message" // resources/i18n/messages_[ja_jp].properties の定義済みコード
+							,new Object[]{"",32,8} // メッセージに引数がある場合指定、なければ引数から外してください。 {"使用しない",最大値桁, 最小値桁} 参考：https://jira.spring.io/browse/SPR-6730
+						);
+					}
+					
+				}
+				
+				
+			}
+			i++;
+		}
+	}
+	
+	
 	/**
 	 * 削除ボタン押下。
 	 * 
@@ -214,7 +261,7 @@ public class SampleMasterUserController {
 		form.getList().remove(form.getSelectRow()-1);
 
 		// 削除完了メッセージ。
-		model.addAttribute("info_message", messageSource.getMessage("jp.template.global.info.delete.choice.completion.message", null, locale));
+		model.addAttribute("info_message", message.getMessage("jp.template.global.info.delete.choice.completion.message", null, locale));
 
 		return "sample/master/user";
 	}
