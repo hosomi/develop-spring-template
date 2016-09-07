@@ -10,7 +10,9 @@ buildscript {
 	}
 }
 
-defaultTasks "clean", "build", "copyToLib"
+defaultTasks "clean", "build"
+
+
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -45,6 +47,16 @@ ext['thymeleaf-layout-dialect.version'] = '2.0.0'
 task wrapper(type: Wrapper) {
 	gradleVersion = '3.0'
 }
+
+task copyToLib(type: Copy) {
+  into "$buildDir/libs/"
+  from(configurations.compile) {
+    include "webapp-runner*"
+  }
+}
+
+// war タスク時に copyToLib タスクを先に起動させる。
+war.dependsOn copyToLib
 
 dependencies {
 	// spring-boot 関連, thymeleaf
@@ -90,12 +102,9 @@ dependencies {
 	
 }
 
-task copyToLib(type: Copy) {
-  into "$buildDir/libs/"
-  from(configurations.compile) {
-    include "webapp-runner*"
-  }
-}
+
+
+
 
 
 javadoc {
