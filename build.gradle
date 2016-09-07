@@ -10,14 +10,16 @@ buildscript {
 	}
 }
 
+defaultTasks "clean", "build"
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 
 war {
-    baseName = 'spring.boot'
-    version =  '0.0.1-SNAPSHOT'
+    baseName = 'template'
+    version =  ''
 }
 
 jar {
@@ -75,10 +77,12 @@ dependencies {
 
 	// etc..
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	compile("org.springframework.boot:spring-boot-starter-jetty")
 	compile('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 	testCompile('org.dbunit:dbunit:2.5.3')
+	
 }
 
 javadoc {
