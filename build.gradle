@@ -10,7 +10,7 @@ buildscript {
 	}
 }
 
-defaultTasks "clean", "build"
+defaultTasks "clean", "build", "copyToLib"
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -89,6 +89,14 @@ dependencies {
 	testCompile('org.dbunit:dbunit:2.5.3')
 	
 }
+
+task copyToLib(type: Copy) {
+  into "$buildDir/libs/"
+  from(configurations.compile) {
+    include "webapp-runner*"
+  }
+}
+
 
 javadoc {
 	options.encoding = "UTF-8"
