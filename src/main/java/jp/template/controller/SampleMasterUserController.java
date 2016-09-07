@@ -153,7 +153,7 @@ public class SampleMasterUserController {
 		logger.debug(result.hasErrors());
 		
 		// 独自の業務エラーチェックの実装..
-		customValidate(form, result);
+		customValidate(form, result, locale);
 		
 		logger.debug(result.hasErrors());
 		
@@ -192,10 +192,11 @@ public class SampleMasterUserController {
 	 * 
 	 * @param form マスタサンプルフォーム {@link SampleMasterUserForm}
 	 * @param result {@link BindingResult}
+	 * @param locale 現在のロケール（{@link MessageResourcesConfig}）
 	 */
-	private void customValidate(SampleMasterUserForm form,BindingResult result) {
+	private void customValidate(SampleMasterUserForm form,BindingResult result, Locale locale) {
 
-		validate.set(result, message);
+		validate.setDefault(result, message, locale);
 		int i=0;
 		for (User entity : form.getList()) {
 			if (entity.getId() != 0) {

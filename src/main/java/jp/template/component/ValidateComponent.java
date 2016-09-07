@@ -1,11 +1,15 @@
 package jp.template.component;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+
+import jp.template.config.MessageResourcesConfig;
 
 /**
  * 入力値検証コンポーネント
@@ -24,6 +28,9 @@ public class ValidateComponent {
 	/** objectName */
 	private String objectName;
 
+	/** ロケール*/
+	private Locale locale;
+	
 	/**
 	 * デフォルトコンストラクタ。
 	 */
@@ -36,10 +43,12 @@ public class ValidateComponent {
 	 * 
 	 * @param result {@link BindingResult}
 	 * @param messageSource  {@link MessageSource} 
+	 * @param locale {@link Locale} ロケールの設定は（{@link MessageResourcesConfig}）を参照してください。
 	 */
-	public void set(BindingResult result, MessageSource messageSource) {
+	public void setDefault(BindingResult result, MessageSource messageSource, Locale locale) {
 		this.result = result;
 		this.messageSource = messageSource;
+		this.locale = locale;
 		this.objectName = "form";
 	}
 	
@@ -108,7 +117,7 @@ public class ValidateComponent {
 	public void addFieldError(String field, String rejectedValue, String code) {
 		result.addError(
 			new FieldError(objectName, field, rejectedValue, false, null, null, 
-				messageSource.getMessage(code, null, null))
+				messageSource.getMessage(code, null, locale))
 		);
 	}
 
@@ -121,9 +130,12 @@ public class ValidateComponent {
 	 * @param args メッセージに渡す引数
 	 */
 	public void addFieldError(String field, String rejectedValue, String code, Object[] args) {
+		
+		System.out.println(locale);
+		
 		result.addError(
 			new FieldError(objectName, field, rejectedValue, false, null, null, 
-				messageSource.getMessage(code, args, null))
+				messageSource.getMessage(code, args, locale))
 		);
 	}
 
@@ -148,7 +160,7 @@ public class ValidateComponent {
 	public void addObjectError(String code) {
 		result.addError(
 			new ObjectError(objectName, 
-				messageSource.getMessage(code, null, null)
+				messageSource.getMessage(code, null, locale)
 			)
 		);
 	}
@@ -162,7 +174,7 @@ public class ValidateComponent {
 	public void addObjectError(String code, Object[] args) {
 		result.addError(
 			new ObjectError(objectName, 
-				messageSource.getMessage(code, args, null)
+				messageSource.getMessage(code, args, locale)
 			)
 		);
 	}
