@@ -17,6 +17,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 * コントロールサンプル
   * DateTimePicker
   * typeahead
+  * Modal(Bootstrap)※サブミット非対応、bootstrap-dialog アラート表示
 * マスタサンプル
   * User （バリデーション、カスタムバリデーションサンプル）
 
@@ -57,7 +58,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.webjars.npm:bootswatch:3.3.6 | Bootstrap のテーマ拡張(Lumen を適用) org.webjars.bower:bootswatch:3.3.7 は依存性に問題が発生 |
 | org.webjars:typeaheadjs:0.11.1 | https://twitter.github.io/typeahead.js/|
 | org.webjars:hoganjs:3.0.2 | http://twitter.github.io/hogan.js/ typeahead 内部で html テンプレートエンジンとして利用。|
-
+| org.webjars.npm:bootstrap-dialog:1.34.6 | http://nakupanda.github.io/bootstrap3-dialog/ JavaScript のみで生成可能なダイアログ|
 
 
 *1 jQuery を必要とするモジュールが 3 系 に対応していないものが多く、2 系にした。  

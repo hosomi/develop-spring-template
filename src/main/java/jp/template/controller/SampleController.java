@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jp.template.domain.Goods;
 import jp.template.dto.GoodsTypeAhedDto;
+import jp.template.form.SampleModalForm;
 import jp.template.form.SampleTypeAheadForm;
 import jp.template.mapper.GoodsMapper;
 import jp.template.utils.query.QueryEscapeUtils;
@@ -32,7 +33,7 @@ public class SampleController {
 	/** Goods DI*/
 	@Autowired
 	GoodsMapper goodsMapper;
-	
+
 	/**
 	 * コントロールサンプル（DateTimePicker）。
 	 * 
@@ -43,7 +44,7 @@ public class SampleController {
 
 		return "sample/controlles/datetimepicker";
 	}
-	
+
 	/**
 	 * コントロールサンプル（TypeAhead）。
 	 * 
@@ -58,8 +59,23 @@ public class SampleController {
 		
 		return "sample/controlles/typeahead";
 	}
-	
-	
+
+	/**
+	 * コントロールサンプル（Modal）。
+	 * 
+	 * @param form Modal サンプルフォーム {@link SampleModalForm}
+	 * @param model {@link Model}
+	 * @return /resources/templates/sample/controlles/modal.html
+	 */
+	@RequestMapping(value = "/controlles/modal", method = RequestMethod.GET)
+	public String modal(SampleModalForm form, Model model) {
+
+		// モーダル表示用サンプルデータ検索（初期検索）。
+		form.setList(goodsMapper.selectAll());
+
+		return "sample/controlles/modal";
+	}
+
 	/**
 	 * Goods Rest コントローラ (*Type Ahed 用を想定しています)。
 	 * <pre>
