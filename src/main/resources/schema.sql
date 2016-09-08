@@ -58,6 +58,29 @@ INSERT INTO GOODS (code,name,kana,note) VALUES ('0000000007','商品名７','シ
 INSERT INTO GOODS (code,name,kana,note) VALUES ('1000000000','新しい商品１','アタラシイショウヒンイチ', '新しい商品１の備考など');
 INSERT INTO GOODS (code,name,kana,note) VALUES ('2000000000','新しい商品２','アタラシイショウヒンニ', '新しい商品２の備考など');
 
+
+INSERT INTO TODO (title,details,finished) VALUES ('TODO1','TODO1内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO2','TODO2内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO3','TODO3内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO4','TODO4内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO5','TODO5内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO6','TODO6内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO7','TODO7内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO8','TODO8内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO9','TODO9内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO10','TODO10内容',true);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO11','TODO11内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO12','TODO12内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO13','TODO13内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO14','TODO14内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO15','TODO15内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO16','TODO16内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO17','TODO17内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO18','TODO18内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO19','TODO19内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO20','TODO20内容',true);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO21','TODO21内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO22','TODO22内容',false);
 /*
  Spring security デフォルトの認証テーブル
 
