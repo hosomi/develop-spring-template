@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar build/libs/webapp-runner-8.0.33.2.jar build/libs/template.war --server.port=$PORT
+web: java $JAVA_OPTS -jar build/libs/webapp-runner-8.0.33.2.jar --port $PORT build/libs/template.war
