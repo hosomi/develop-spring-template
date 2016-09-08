@@ -1,3 +1,14 @@
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  tasks:
+    bootRun - Spring Boot 起動
+              -> http://localhost:8080/template
+    build   - War ファイル作成
+              -> build/libs/template.war
+    引数なし   - clean -> build
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+
 buildscript {
 	ext {
 		springBootVersion = '1.4.0.RELEASE'
@@ -10,14 +21,13 @@ buildscript {
 	}
 }
 
+// 引数なしで起動した場合、 clean -> build
 defaultTasks "clean", "build"
 
-
-
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'spring-boot'
-apply plugin: 'war'
+apply plugin: 'eclipse'     // eclipse タスク追加（プロジェクト定義）。
+apply plugin: 'spring-boot' // bootRun タスク追加。
+apply plugin: 'war'         // war タスク追加。
 
 war {
     baseName = 'template'
@@ -41,6 +51,7 @@ configurations {
 	providedRuntime
 }
 
+// thymeleaf 3 以降を利用する場合の定義
 ext['thymeleaf.version'] = '3.0.1.RELEASE'
 ext['thymeleaf-layout-dialect.version'] = '2.0.0'
 
@@ -48,6 +59,11 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '3.0'
 }
 
+/**
+ * task:copyToLib
+ *
+ * webapp-runner*.jar を build/libs にコピー
+ */
 task copyToLib(type: Copy) {
   into "$buildDir/libs/"
   from(configurations.compile) {
@@ -58,19 +74,27 @@ task copyToLib(type: Copy) {
 // war タスク時に copyToLib タスクを先に起動させる。
 war.dependsOn copyToLib
 
+/* ---------------------------
+  依存関係の定義
+----------------------------*/
 dependencies {
+    // ---------------------------
 	// spring-boot 関連, thymeleaf
+	// ---------------------------
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-	
+
 	compile('org.springframework.boot:spring-boot-starter-log4j2')
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
 	compile('org.thymeleaf.extras:thymeleaf-extras-conditionalcomments')
 	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1')
 
-	// webjars
+    // ---------------------------
+	// webjars 関連
+	// http://www.webjars.org/
+	// ---------------------------
 	compile('org.webjars:webjars-locator:0.32')
 	compile('org.webjars:jquery:2.2.4')
 	compile('org.webjars:bootstrap:3.3.6')
@@ -86,29 +110,26 @@ dependencies {
 	compile('org.webjars:bootbox:4.4.0')
 	compile('org.webjars.npm:bootstrap-dialog:1.34.6')
 
-
-	// etc..
+    // ---------------------------
+	// etc.. ランタイム、テスト用など
+	// ---------------------------
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-	//compile("org.springframework.boot:spring-boot-starter-jetty")
 	// https://mvnrepository.com/artifact/com.github.jsimone/webapp-runner
 	compile group: 'com.github.jsimone', name: 'webapp-runner', version: '8.0.33.2'
-
-
-
 	compile('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 	testCompile('org.dbunit:dbunit:2.5.3')
-	
 }
 
 
-
-
-
-
 javadoc {
-	options.encoding = "UTF-8"
+	options.charSet = 'UTF-8'
+	options.encoding = 'UTF-8'
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
 }
 
 eclipse {
@@ -116,13 +137,4 @@ eclipse {
 		containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
 		containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
 	}
-}
-
-tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
-}
-
-javadoc {
-	options.charSet = 'UTF-8'
-	options.encoding = 'UTF-8'
 }

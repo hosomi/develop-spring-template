@@ -69,6 +69,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | 対象        | 内容  |
 | ------------- | :----- |
 | org.springframework.boot:spring-boot-starter-tomcat | Tomcat ランタイム |
+| webapp-runner | ランチャーアプリケーション Heroku で war を起動させるために利用 |
 | com.h2database:h2| H2 Database ランタイム |
 | org.springframework.boot:spring-boot-starter-test | SpringBoot test |
 | org.springframework.security:spring-security-test | SpringBootSecurity |
@@ -80,13 +81,11 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 * JDK 8 (8u101)
 
-
-# 動作方法
+# 動作方法(Windows)
 
 1. [ダウンロード](https://github.com/hosomi/develop-spring-template/archive/master.zip "ダウンロード")後、解凍し develop-spring-template-master ディレクトリ直下へコンソールで移動。
 2. 「 gradlew bootRun 」 を実行。
 3. ブラウザを立ち上げて 「 http://localhost:8080/template/ 」 にアクセス。
-
 
 # 認証情報
 
@@ -95,3 +94,10 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | test | testpass |
 
 **※SpringSecurity  のロールはありません。**
+
+
+# Heroku
+こちらは実験的です、予告なく停止する場合があります。  
+自動ビルドされますので、ビルド時は利用できません。
+
+https://springboottemplate.herokuapp.com/
