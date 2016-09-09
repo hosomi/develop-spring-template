@@ -54,6 +54,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Spring Security の設定
 		http.authorizeRequests()
+		
+
+		
 				// アクセス権限の設定
 				// 下記パスは制限なし。
 				.antMatchers("/css/**").permitAll()
@@ -89,7 +92,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.authenticationEntryPoint(authenticationEntryPoint())
 					// csrfはsessionがないと動かない。SessionTimeout時にPOSTすると403 Forbiddenを必ず返してしまうため、
 					// MissingCsrfTokenExceptionの時はリダイレクトを、それ以外の時は通常の扱いとする。
-					.accessDeniedHandler(accessDeniedHandler());
+					.accessDeniedHandler(accessDeniedHandler())
+				.and()
+					// iframe での表示を許可する。
+					// http://docs.spring.io/spring-security/site/docs/current/reference/html/headers.html
+					.headers().frameOptions().sameOrigin().httpStrictTransportSecurity().disable()
+			;
 	}
 
 	@Bean

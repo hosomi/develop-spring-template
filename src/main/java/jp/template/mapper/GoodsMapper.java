@@ -31,7 +31,24 @@ public interface GoodsMapper {
 	 * 
 	 * @return Goods を全件取得します。
 	 */
-	@Select("SELECT  id, code, name, kana, note  FROM goods")
+	@Select("SELECT id, code, name, kana, note  FROM goods")
 	List<Goods> selectAll();
-
+	
+	/**
+	 * 全体の件数を取得する。
+	 * 
+	 * @return 全体の件数。
+	 */
+	@Select("SELECT count(id) FROM goods")
+	int count();
+	
+	/**
+	 * ページ毎のデータを取得する。
+	 * 
+	 * @param first 開始位置
+	 * @param last 終了位置
+	 * @return ページ毎の一覧。
+	 */
+	@Select("SELECT id, code, name, kana, note FROM (SELECT ROWNUM() AS rowno, id, code, name, kana, note FROM goods) WHERE rowno BETWEEN #{first} AND #{last}")
+	List<Goods> pagingCurrent(@Param("first") long first, @Param("last") long last);
 }
