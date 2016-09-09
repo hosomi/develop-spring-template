@@ -222,23 +222,22 @@
 		<!--/* 削除処理。  */-->
 		function deleteRow(row) {
 			<!--/*  削除確認ダイアログ。 */-->
-	        BootstrapDialog.confirm({
-	            title: '削除確認',
-	            message: '選択された行を削除してもよろしいですか?',
-	            type: BootstrapDialog.TYPE_WARNING,
-	            closable: true,
-	            draggable: true, 
-	            btnCancelLabel: 'キャンセル', 
-	            btnOKLabel: '削除',
-	            btnOKClass: 'btn-warning', 
-	            callback: function(result) {
-	                
-	                if(result) {
-		    			$('#selectRow').val(row);
-		    			$('#deleteDummy').click();
-	                }
-	            }
-	        });
+			BootstrapDialog.confirm({
+				title: '[[#{global.confirm.delete.title}]]',
+				message: '[[#{global.confirm.delete.message}]]',
+				type: BootstrapDialog.TYPE_WARNING,
+				closable: true,
+				draggable: true, 
+				btnCancelLabel: '[[#{global.btn.cancel}]]', // Cancel ボタンは色変えれない。
+				btnOKLabel: '[[#{global.btn.delete}]]',
+				btnOKClass: 'btn-danger', 
+				callback: function(result) {
+					if(result) {
+						$('#selectRow').val(row);
+						$('#deleteDummy').click();
+					}
+				}
+			});
 
 		}
 	</script>
