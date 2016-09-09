@@ -11,9 +11,9 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
-	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/css/bootstrap-dialog.min.css" th:href="@{/webjars/bootstrap-dialog/dist/css/bootstrap-dialog.min.css}" rel="stylesheet" />
 	
 	<style type="text/css">
@@ -67,7 +67,7 @@
 					<h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;<span th:text="#{global.btn.goods.choice}">goods choice...</span></h4>
 				</div>
 				<div class="modal-body" style="height:300px;padding:10px;">
-					<iframe id ="goodsIframe" name ="goodsIframe" src="" th:src="@{/iframe/goods}" style="border:0px; margin:0px; width:97%; height:100%; overflow-y: hidden;" scrolling="no"></iframe>
+					<iframe id ="goodsIframe" name ="goodsIframe" src="../../iframe/goods.html" th:src="@{/iframe/goods}" style="border:0px; margin:0px; width:97%; height:100%; overflow-y: hidden;" scrolling="no"></iframe>
 				</div>
 				<div class="modal-footer ">
 					<button type="button" class="btn btn-primary pull-left" th:text="#{global.btn.choice}" id="btnChoice">choice</button> <!--/* data-dismiss="modal" を付けていません、ボタン押下後も自身でモーダル非表示処理を入れています。 */-->

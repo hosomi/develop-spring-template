@@ -11,9 +11,9 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
-	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/css/bootstrap-dialog.min.css" th:href="@{/webjars/bootstrap-dialog/dist/css/bootstrap-dialog.min.css}" rel="stylesheet" />
 	
 	<style type="text/css">
@@ -80,7 +80,7 @@
 						<thead class="cf">
 							<tr>
 								<th th:text="#{controll.modal.list.choice}">choice</th>
-								<th class="numeric">id</th>
+								<th class="numeric">ID</th>
 								<th th:text="#{controll.modal.list.code}" class="numeric">Code</th>
 								<th th:text="#{controll.modal.list.name}">name</th>
 								<th th:text="#{controll.modal.list.kana}">kana</th>
@@ -94,7 +94,7 @@
 									<input type="hidden" th:id="${'code' + status.count}" th:value="${entity.code}" value="code"/>
 									<input type="hidden" th:id="${'name' + status.count}" th:value="${entity.name}" value="name"/>
 								</td>
-								<td th:data-title="#{controll.modal.list.id}" th:text="${entity.id}" data-title="id" class="numeric">id</td>
+								<td th:data-title="#{controll.modal.list.id}" th:text="${entity.id}" data-title="ID" class="numeric">ID</td>
 								<td th:data-title="#{controll.modal.list.code}" data-title="code" th:text="${entity.code}" class="numeric">code</td>
 								<td th:data-title="#{controll.modal.list.name}" data-title="name" th:text="${entity.name}">name</td>
 								<td th:data-title="#{controll.modal.list.kana}" data-title="kana" th:text="${entity.kana}">kana</td>
