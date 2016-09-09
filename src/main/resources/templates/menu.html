@@ -12,7 +12,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
 	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link href="../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
 	
 	<style type="text/css">
 		ul > li > ul > li.header,
@@ -52,8 +52,8 @@
 	 
 		<ul class="row" style="list-style-type: none">
 			
-			<li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" style="min-height:160px;">
-				<ul style="list-style-type: none">
+			<li class="col-xs-6 col-sm-5 col-md-4 col-lg-3" style="min-height:160px;">
+				<ul class="list-group list-unstyled">
 					<li class="header"><strong th:text="#{menu.category.sample.controll}">Samples</strong></li>
 					<li class="separator"><HR style="margin-top:10px;margin-bottom:10px;"/></li>
 					<li>1. <a href="sample/controlles/datetimepicker.html" th:href="@{/sample/controlles/datetimepicker}" class="navbar-link" th:text="#{controll.datetimepicker.title}">controll:DateTimePicker.title</a></li>
@@ -62,28 +62,16 @@
 				</ul>
 				<br/>
 			</li>
-	<!--/*
-	<!-- カテゴリを増やす場合、 li タグを追加、最大４列、最小２列でブラウザのサイズ（端末）によって列数は変わります。
-	
-			<li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" style="min-height:160px;">
-				<ul style="list-style-type: none">
-					<li class="header"><strong>Samples2</strong></li>
-					<li class="separator"><HR style="margin-top:10px;margin-bottom:10px;"/></li>
-					<li><a href="sample/controlles/datetimepicker.html" th:href="@{/sample/controlles}" class="navbar-link">コントロール</a></li>
-				</ul>
-				<br/>
-			</li>
-	*/-->
 		
-			<li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" style="min-height:160px;">
-				<ul style="list-style-type: none">
+			<li class="col-xs-6 col-sm-5 col-md-4 col-lg-3" style="min-height:160px;">
+				<ul class="list-group list-unstyled">
 					<li class="header"><strong th:text="#{menu.category.sample.master}">master sample</strong></li>
 					<li class="separator"><HR style="margin-top:10px;margin-bottom:10px;"/></li>
 					<li>1.<a href="sample/master/user.html" th:href="@{/sample/master/user}" class="navbar-link" th:text="#{master.user.title}">User</a></li>
+					<li>2.<a href="sample/master/todo.html" th:href="@{/sample/master/todo}" class="navbar-link" th:text="#{master.todo.title}">ToDo</a></li>
 				</ul>
 				<br/>
 			</li>
-			
 		</ul>	
 	</div>
 

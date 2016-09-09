@@ -58,6 +58,59 @@ INSERT INTO GOODS (code,name,kana,note) VALUES ('0000000007','商品名７','シ
 INSERT INTO GOODS (code,name,kana,note) VALUES ('1000000000','新しい商品１','アタラシイショウヒンイチ', '新しい商品１の備考など');
 INSERT INTO GOODS (code,name,kana,note) VALUES ('2000000000','新しい商品２','アタラシイショウヒンニ', '新しい商品２の備考など');
 
+
+INSERT INTO TODO (title,details,finished) VALUES ('TODO1','TODO1内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO2','TODO2内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO3','TODO3内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO4','TODO4内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO5','TODO5内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO6','TODO6内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO7','TODO7内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO8','TODO8内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO9','TODO9内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO10','TODO10内容',true);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO11','TODO11内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO12','TODO12内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO13','TODO13内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO14','TODO14内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO15','TODO15内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO16','TODO16内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO17','TODO17内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO18','TODO18内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO19','TODO19内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO20','TODO20内容',true);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO21','TODO21内容',true);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO22','TODO22内容',true);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO23','TODO23内容',true);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO24','TODO24内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO25','TODO25内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO26','TODO26内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO27','TODO27内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO28','TODO28内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO29','TODO29内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO30','TODO30内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO31','TODO31内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO32','TODO32内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO33','TODO33内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO34','TODO34内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO35','TODO35内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO36','TODO36内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO37','TODO37内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO38','TODO38内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO39','TODO39内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO40','TODO40内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO41','TODO41内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO42','TODO42内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO43','TODO43内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO44','TODO44内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO45','TODO45内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO46','TODO46内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO47','TODO47内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO48','TODO48内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO49','TODO49内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO50','TODO50内容',false);
+INSERT INTO TODO (title,details,finished) VALUES ('TODO51','TODO51内容',false);
+
 /*
  Spring security デフォルトの認証テーブル
 

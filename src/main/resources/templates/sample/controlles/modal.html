@@ -11,61 +11,13 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
-	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/css/bootstrap-dialog.min.css" th:href="@{/webjars/bootstrap-dialog/dist/css/bootstrap-dialog.min.css}" rel="stylesheet" />
 	
 	<style type="text/css">
-		<!--/* table css */-->
-		@media only screen and (max-width: 800px) {
 
-			/* Force table to not be like tables anymore */
-			#no-more-tables table, 
-			#no-more-tables thead, 
-			#no-more-tables tbody, 
-			#no-more-tables th, 
-			#no-more-tables td, 
-			#no-more-tables tr { 
-				display: block; 
-			}
-		 
-			/* Hide table headers (but not display: none;, for accessibility) */
-			#no-more-tables thead tr { 
-				position: absolute;
-				top: -9999px;
-				left: -9999px;
-			}
-		 
-			#no-more-tables tr { border: 1px solid #ccc; }
-		 
-			#no-more-tables td { 
-				/* Behave  like a "row" */
-				border: none;
-				border-bottom: 1px solid #eee; 
-				position: relative;
-				padding-left: 50%; 
-				white-space: normal;
-				text-align:left;
-			}
-		 
-			#no-more-tables td:before { 
-				/* Now like a table header */
-				position: absolute;
-				/* Top/left values mimic padding */
-				top: 6px;
-				left: 6px;
-				width: 45%; 
-				padding-right: 10px; 
-				white-space: nowrap;
-				text-align:left;
-				font-weight: bold;
-			}
-			/*
-			Label the data
-			*/
-			#no-more-tables td:before { content: attr(data-title); }
-		}
 	</style>
 </head>
 <body>
@@ -106,61 +58,24 @@
 
 	<!--/* Modal 自体の内容（サブミットは出来ないタイプです。） */-->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"> <!--/* data-backdrop="static" は modal ウィンドウ以外でクリックした場合に非表示しない設定です。*/-->
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" style="width:700px;" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 					<h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;<span th:text="#{global.btn.goods.choice}">goods choice...</span></h4>
 				</div>
-				<div class="modal-body">
-					<div class="container">
-						<div class="row">
-							<div id="no-more-tables">
-								<form role="form" action="/sample/controlles/modal"
-									th:action="@{/sample/controlles/modal}"
-									th:object="${sampleModalForm}" method="post">
-									<table
-										class="col-md-12 table-bordered table-striped table-condensed cf">
-										<thead class="cf">
-											<tr>
-												<th th:text="#{controll.modal.list.choice}">choice</th>
-												<th th:text="#{controll.modal.list.code}" class="numeric">Code</th>
-												<th th:text="#{controll.modal.list.name}">name</th>
-												<th th:text="#{controll.modal.list.kana}">kana</th>
-												<th th:text="#{controll.modal.list.note}">note</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:each="entity, status : ${sampleModalForm.list}">
-												<td th:data-title="#{controll.modal.list.choice}" data-title="choice">
-													<input type="radio" name="choice" th:id="${'choice' + status.count}" th:value="${status.count}" value="1" />
-													<input type="hidden" th:id="${'code' + status.count}" th:value="${entity.code}" value="code"/>
-													<input type="hidden" th:id="${'name' + status.count}" th:value="${entity.name}" value="name"/>
-												</td>
-												<td th:data-title="#{controll.modal.list.code}" data-title="code" th:text="${entity.code}" class="numeric">code</td>
-												<td th:data-title="#{controll.modal.list.name}" data-title="name" th:text="${entity.name}">name</td>
-												<td th:data-title="#{controll.modal.list.kana}" data-title="kana" th:text="${entity.kana}">kana</td>
-												<td th:data-title="#{controll.modal.list.note}" data-title="note" th:text="${entity.note}">note</td>
-											</tr>
-										</tbody>
-									</table>
-								</form>
-							</div>
-						</div>
-					</div>
+				<div class="modal-body" style="height:300px;padding:10px;">
+					<iframe id ="goodsIframe" name ="goodsIframe" src="../../iframe/goods.html" th:src="@{/iframe/goods}" style="border:0px; margin:0px; width:97%; height:100%; overflow-y: hidden;" scrolling="no"></iframe>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-warning" data-dismiss="modal" th:text="#{global.btn.cancel}">cancel</button>
-					<button type="button" class="btn btn-primary" th:text="#{global.btn.choice}" id="btnChoice">choice</button> <!--/* data-dismiss="modal" を付けていません、ボタン押下後も自身で非表示処理を入れています。 */-->
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-primary pull-left" th:text="#{global.btn.choice}" id="btnChoice">choice</button> <!--/* data-dismiss="modal" を付けていません、ボタン押下後も自身でモーダル非表示処理を入れています。 */-->
+					<button type="button" class="btn btn-warning pull-left" data-dismiss="modal" th:text="#{global.btn.cancel}">cancel</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 	<footer class="footer" style="padding-right:16px;">
 		<div class="container pull-left">
@@ -184,21 +99,21 @@
 	
 	<script type="text/javascript">
 	/*<![CDATA[*/
-	// ダイアログの選択ボタンのイベントを実装
-	$('#btnChoice').on('click', function() {
-
-		var idx = $('input[name=choice]:checked').val();
+		// ダイアログの選択ボタンのイベントを実装
+		$('#btnChoice').on('click', function() {
+			// 子(iframe)から選択されている値を取得。
+			var idx = $('#goodsIframe').contents().find('input[name=choice]:checked').val();
 			if (idx != undefined) {
-
-				// 選択された行のコードと名称を取得。
-				var code = $('input[id="code' + idx + '"]').val();
-				var name = $('input[id="name' + idx + '"]').val();
-
-				// 呼び出し元のコントロールにそれぞれ設定。
+	
+				// 選択された行のコードと名称を取得(iframe 側)。
+				var code = $('#goodsIframe').contents().find('input[id="code' + idx + '"]').val()
+				var name = $('#goodsIframe').contents().find('input[id="name' + idx + '"]').val()
+	
+				// 呼び出し元のコントロールにそれぞれ設定(呼び出し元)。
 				$('input[id="goods.code"]').val(code);
 				$('input[id="goods.name"]').val(name);
-
-				$('#myModal').modal('hide'); // モーダルを非表示。
+	
+				$('#myModal').modal('hide'); // モーダル非表示。
 			} else {
 				// 何も選択されていない場合、選択してくださいの確認メッセージを表示する。
 				BootstrapDialog.show({

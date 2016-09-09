@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="lang=${#locale.language}"
+	th:lang="${lang}">
+
+<head>
+	<title th:text="#{master.todo.title}">master.todo.title</title>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+
+	<style type="text/css">
+		<!--/* table css */-->
+		@media only screen and (max-width: 800px) {
+
+			/* Force table to not be like tables anymore */
+			#no-more-tables table, 
+			#no-more-tables thead, 
+			#no-more-tables tbody, 
+			#no-more-tables th, 
+			#no-more-tables td, 
+			#no-more-tables tr { 
+				display: block; 
+			}
+		 
+			/* Hide table headers (but not display: none;, for accessibility) */
+			#no-more-tables thead tr { 
+				position: absolute;
+				top: -9999px;
+				left: -9999px;
+			}
+		 
+			#no-more-tables tr { border: 1px solid #ccc; }
+		 
+			#no-more-tables td { 
+				/* Behave  like a "row" */
+				border: none;
+				border-bottom: 1px solid #eee; 
+				position: relative;
+				padding-left: 50%; 
+				white-space: normal;
+				text-align:left;
+			}
+		 
+			#no-more-tables td:before { 
+				/* Now like a table header */
+				position: absolute;
+				/* Top/left values mimic padding */
+				top: 6px;
+				left: 6px;
+				width: 45%; 
+				padding-right: 10px; 
+				white-space: nowrap;
+				text-align:left;
+				font-weight: bold;
+			}
+			/*
+			Label the data
+			*/
+			#no-more-tables td:before { content: attr(data-title); }
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hamburger">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;<span th:text="#{master.todo.title}">master.todo.title</span>&nbsp;&nbsp;&nbsp;</p>
+			</div>
+	
+			<div id="hamburger" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&nbsp;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;<span th:text="#{global.logout}">logout</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid" style="padding-top: 60px;">
+		<nav class="clearfix" th:fragment="pagination">
+			<ul class="pagination">
+				<li th:class="${!pagination.hasPrev()} ? disabled">
+	 				<a href="javascript:void(0);" aria-label="Previous" th:href="${pagination.hasPrev()} ? ${pagination.getUrlForOtherPage(#httpServletRequest, pagination.getPage() - 1)} : 'javascript:void(0);'">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				<li th:each="page : ${pagination.getPages()}" th:class="${page == pagination.getPage()} ? 'active' : (${page == -1} ? 'disabled')">
+					<a href="javascript:void(0);" th:if="${page != -1}" th:text="${page}" th:href="${page != pagination.getPage()} ? ${pagination.getUrlForOtherPage(#httpServletRequest, page)} : 'javascript:void(0);'">1</a>
+					<a href="javascript:void(0);" th:unless="${page != -1}" th:text="...">...</a>
+				</li>
+				<li th:class="${!pagination.hasNext()} ? disabled">
+					<a href="javascript:void(0)" aria-label="Next" th:href="${pagination.hasNext()} ? ${pagination.getUrlForOtherPage(#httpServletRequest, pagination.getPage() + 1)} : 'javascript:void(0);'">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		
+		<div id="no-more-tables">
+			<form role="form" action="/sample/master/todo" th:action="@{/sample/master/todo}" th:object="${sampleMasterTodoForm}" method="post">
+				<table class="col-md-12 table-bordered table-striped table-condensed cf">
+					<thead class="cf">
+						<tr>
+							<th>ID</th>
+							<th th:text="#{master.todo.list.title}">title</th>
+							<th th:text="#{master.todo.list.details}">details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="entity, status : ${sampleMasterTodoForm.list}">
+							<td data-title="ID" th:text="${entity.id}">ID</td>
+							<td th:data-title="#{master.todo.list.title}" data-title="title" th:text="${entity.title}">title</td>
+							<td th:data-title="#{master.todo.list.details}" data-title="details" th:text="${entity.details}">details</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+
+	<footer class="footer" style="padding-right:16px;">
+		<div class="container pull-left">
+
+		</div>
+	</footer>
+
+<!--[if lt IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<script type="text/javascript">
+
+	</script>
+</body>
+</html>

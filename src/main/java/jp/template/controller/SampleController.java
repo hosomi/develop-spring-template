@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jp.template.domain.Goods;
@@ -18,6 +19,7 @@ import jp.template.dto.GoodsTypeAhedDto;
 import jp.template.form.SampleModalForm;
 import jp.template.form.SampleTypeAheadForm;
 import jp.template.mapper.GoodsMapper;
+import jp.template.utils.Pagination;
 import jp.template.utils.query.QueryEscapeUtils;
 
 /**
@@ -63,15 +65,17 @@ public class SampleController {
 	/**
 	 * コントロールサンプル（Modal）。
 	 * 
+	 * @param page 表示ページ（GET パラメータ）
 	 * @param form Modal サンプルフォーム {@link SampleModalForm}
 	 * @param model {@link Model}
 	 * @return /resources/templates/sample/controlles/modal.html
 	 */
 	@RequestMapping(value = "/controlles/modal", method = RequestMethod.GET)
-	public String modal(SampleModalForm form, Model model) {
+	public String modal(@RequestParam(required = false) String page,SampleModalForm form, Model model) {
 
-		// モーダル表示用サンプルデータ検索（初期検索）。
-		form.setList(goodsMapper.selectAll());
+		Pagination pagination = new Pagination(StringUtils.isBlank(page) ? 1 : new Long(page), 5, goodsMapper.count());
+		form.setList(goodsMapper.pagingCurrent(pagination.getFirstPage(), pagination.getLastPage()));
+		model.addAttribute("pagination", pagination);
 
 		return "sample/controlles/modal";
 	}

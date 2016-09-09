@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="lang=${#locale.language}"
+	th:lang="${lang}">
+
+<nav class="clearfix" th:fragment="pagination">
+	<ul class="pagination" style="margin:5px 0;">
+		<li th:class="${!pagination.hasPrev()} ? disabled">
+				<a href="javascript:void(0);" aria-label="Previous" th:href="${pagination.hasPrev()} ? ${pagination.getUrlForOtherPage(#httpServletRequest, pagination.getPage() - 1)} : 'javascript:void(0);'">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<li th:each="page : ${pagination.getPages()}" th:class="${page == pagination.getPage()} ? 'active' : (${page == -1} ? 'disabled')">
+			<a href="javascript:void(0);" th:if="${page != -1}" th:text="${page}" th:href="${page != pagination.getPage()} ? ${pagination.getUrlForOtherPage(#httpServletRequest, page)} : 'javascript:void(0);'">1</a>
+			<a href="javascript:void(0);" th:unless="${page != -1}" th:text="...">...</a>
+		</li>
+		<li th:class="${!pagination.hasNext()} ? disabled">
+			<a href="javascript:void(0)" aria-label="Next" th:href="${pagination.hasNext()} ? ${pagination.getUrlForOtherPage(#httpServletRequest, pagination.getPage() + 1)} : 'javascript:void(0);'">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>
