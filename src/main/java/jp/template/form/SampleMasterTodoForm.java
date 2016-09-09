@@ -12,7 +12,7 @@ import jp.template.domain.Todo;
 public class SampleMasterTodoForm {
 
 
-	/** ユーザ一覧（検索結果）*/
+	/** ToDo 一覧（検索結果）*/
 	private List<Todo> list;
 
 	/**
@@ -28,8 +28,4 @@ public class SampleMasterTodoForm {
 	public void setList(List<Todo> list) {
 		this.list = list;
 	}
-
-
-	
-
 }

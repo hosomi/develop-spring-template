@@ -14,6 +14,14 @@ import jp.template.form.SampleMasterTodoForm;
 import jp.template.mapper.TodoMapper;
 import jp.template.utils.Pagination;
 
+/**
+ * ToDo ページングサンプル。
+ * <UL>
+ *   <LI>ページング機能（GET専用、共通化なし）</LI>
+ * </UL>
+ * 
+ * @author hosomi.
+ */
 @Controller
 @RequestMapping(value = "/sample/master/todo")
 public class SampleMasterTodoController {
@@ -27,6 +35,7 @@ public class SampleMasterTodoController {
 	/**
 	 * マスタサンプルオープン時のイベント処理。
 	 * 
+	 * @param page 表示ページ（GET パラメータ）
 	 * @param form マスタサンプルフォーム {@link SampleMasterTodoForm}
 	 * @param model {@link Model}
 	 * @return /resources/templates/sample/master/todo.html
@@ -48,9 +57,4 @@ public class SampleMasterTodoController {
 
 		return "sample/master/todo";
 	}
-
-	
-	
-
-
 }
