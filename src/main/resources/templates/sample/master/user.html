@@ -167,13 +167,13 @@
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].rePassword}')}" class="text-danger" th:errors="*{list[__${status.index}__].rePassword}">Error</span>
 							</td>
 							<td th:data-title="#{master.user.list.operation}" data-title="operation">
-								<button type="button" class="btn btn-danger btn-xs deleteBtn" th:onclick="'deleteRow(' + ${status.count} + ');'"><i class="fa fa-times" aria-hidden="true"></i> ...</button>
+								<button th:if="${entity.id != 0}" type="button" class="btn btn-danger btn-xs deleteBtn" th:onclick="'deleteConfirmRow(' + ${status.count} + ');'"><i class="fa fa-times" aria-hidden="true"></i> ...</button>
+								<button th:if="${entity.id == 0}" type="button" class="btn btn-warning btn-xs deleteBtn" th:onclick="'deleteRow(' + ${status.count} + ');'"><i class="fa fa-times" aria-hidden="true"></i></button>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-				
 
 			<button type="submit" id='inquiryDummy' name="doInquiry" style="visibility:hidden;" ></button>
 			<button type="submit" id='addDummy' name="doAdd" style="visibility:hidden;" ></button>
@@ -220,7 +220,7 @@
 			});
 		});
 		<!--/* 削除処理。  */-->
-		function deleteRow(row) {
+		function deleteConfirmRow(row) {
 			<!--/*  削除確認ダイアログ。 */-->
 			BootstrapDialog.confirm({
 				title: '[[#{global.confirm.delete.title}]]',
@@ -238,8 +238,12 @@
 					}
 				}
 			});
-
 		}
+		function deleteRow(row) {
+			$('#selectRow').val(row);
+			$('#deleteDummy').click();
+		}
+
 	</script>
 </body>
 </html>
