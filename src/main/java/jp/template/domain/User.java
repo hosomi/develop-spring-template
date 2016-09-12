@@ -17,9 +17,9 @@ public class User {
 	@Size(min=3,max=10) // 最小サイズを指定している場合、@NotBlank は不要。
 	private String loginUserId;
 	
-	/** パスワード（とりあえず平文）*/
+	/** パスワード*/
 //	@NotBlank
-	@Size(min=8,max=100)
+	@Size(min=8,max=50)
 	private String password;
 
 	/** パスワード再設定*/
