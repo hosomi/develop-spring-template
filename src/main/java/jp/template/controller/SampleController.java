@@ -81,6 +81,17 @@ public class SampleController {
 	}
 
 	/**
+	 * コントロールサンプル（BackToTop）。
+	 * 
+	 * @return /resources/templates/sample/controlles/backtotop.html
+	 */
+	@RequestMapping(value = "/controlles/backtotop", method = RequestMethod.GET)
+	public String backtotop() {
+
+		return "sample/controlles/backtotop";
+	}
+
+	/**
 	 * Goods Rest コントローラ (*Type Ahed 用を想定しています)。
 	 * <pre>
 	 * 一件あたりの JSON 生データ内容：
