@@ -20,6 +20,7 @@
 	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
 	<link href="../../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/css/bootstrap-dialog.min.css" th:href="@{/webjars/bootstrap-dialog/dist/css/bootstrap-dialog.min.css}" rel="stylesheet" />
+
 	<style type="text/css">
 		.alt-table-responsive {
 			width: 100%;
@@ -28,8 +29,7 @@
 			-ms-overflow-style: -ms-autohiding-scrollbar;
 			-webkit-overflow-scrolling: touch;
 		}
-		
-		
+
 		<!--/* table css */-->
 		@media only screen and (max-width: 800px) {
 
@@ -105,9 +105,8 @@
 			</div>
 		</div>
 	</nav>
-
-	<div class="container-fluid" style="padding-top: 60px;">
-		<form role="form" action="/sample/master/user" th:action="@{/sample/master/user}" th:object="${sampleMasterUserForm}" method="post">
+	<form role="form" action="/sample/master/user" th:action="@{/sample/master/user}" th:object="${sampleMasterUserForm}" method="post">
+		<div class="container-fluid" style="padding-top: 60px;">
 			<div class="form-inline row" style="padding: 0 15px;">
 				<div class="form-group">
 					<label class="control-label" for="loginUserId"><abbr title="required"></abbr><span th:text="#{master.user.loginid}">master.user.loginid</span>&nbsp;:&nbsp;</label>
@@ -137,9 +136,9 @@
 			<div id="no-more-tables">
 				<table class="col-md-12 table-bordered table-striped table-condensed cf">
 					<caption th:text="#{master.user.list.caption}">master.user.list.caption</caption>
-					<thead class="cf">
+					<thead class="cf thead-inverse">
 						<tr>
-							<th style="width:50px;">No</th>
+							<th style="width:50px;">#</th>
 							<th th:text="#{master.user.list.loginid}">master.user.list.loginid</th>
 							<th th:text="#{master.user.list.password}">master.user.list.passward</th>
 							<th th:text="#{master.user.list.repassword}">master.user.list.repassword</th>
@@ -148,25 +147,26 @@
 					</thead>
 					<tbody>
 						<tr th:each="entity, status : ${sampleMasterUserForm.list}">
-							<td data-title="No" th:text="${status.count}">1</td>
+							<td data-title="#" th:text="${status.count}">1</td>
 							<td th:data-title="#{master.user.list.loginid}" data-title="loginid"
 								th:classappend="${#fields.hasErrors('*{list[__${status.index}__].loginUserId}')}? 'has-error has-feedback'">
 								<input type="hidden" th:field="*{list[__${status.index}__].id}" th:if="${entity.id != 0}" th:value="${entity.id}" value="123456789"/>
-								<input type="text" class="form-control" th:field="*{list[__${status.index}__].loginUserId}" th:value="${entity.loginUserId}" th:readonly="${entity.id != 0}" value="admin"/>
+								<input type="text" class="form-control" th:field="*{list[__${status.index}__].loginUserId}" th:value="${entity.loginUserId}" th:readonly="${entity.id != 0}" value="admin" maxlength="10"/>
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].loginUserId}')}" class="text-danger" th:errors="*{list[__${status.index}__].loginUserId}">Error</span>
 							</td>
 							<td th:data-title="#{master.user.list.password}" data-title="password"
 								th:classappend="${#fields.hasErrors('*{list[__${status.index}__].password}')}? 'has-error has-feedback'">
-								<input type="text" class="form-control" th:field="*{list[__${status.index}__].password}" th:value="${entity.password}" th:readonly="${entity.id != 0}" value="admin"/>
+								<input type="text" class="form-control" th:field="*{list[__${status.index}__].password}" th:value="${entity.password}" th:readonly="${entity.id != 0}" value="admin" maxlength="30"/>
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].password}')}" class="text-danger" th:errors="*{list[__${status.index}__].password}">Error</span>
 							</td>
 							<td th:data-title="#{master.user.list.repassword}" data-title="repassword"
 								th:classappend="${#fields.hasErrors('*{list[__${status.index}__].rePassword}')}? 'has-error has-feedback'">
-								<input th:if="${entity.id != 0}" type="text" class="form-control" th:field="*{list[__${status.index}__].rePassword}" th:value="${entity.rePassword}"/>
-								<input type="hidden" th:field="*{list[__${status.index}__].rePassword}" th:if="${entity.id == 0}"/>
+								<input th:if="${entity.id != 0}" type="text" class="form-control" th:field="*{list[__${status.index}__].rePassword}" th:value="${entity.rePassword}" maxlength="30"/>
+								<input type="hidden" th:field="*{list[__${status.index}__].rePassword}" th:if="${entity.id == 0}"/><span th:text="${entity.id == 0} ? '&#160;': null"></span>
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].rePassword}')}" class="text-danger" th:errors="*{list[__${status.index}__].rePassword}">Error</span>
 							</td>
 							<td th:data-title="#{master.user.list.operation}" data-title="operation">
+							
 								<button th:if="${entity.id != 0}" type="button" class="btn btn-danger btn-xs deleteBtn" th:onclick="'deleteConfirmRow(' + ${status.count} + ');'"><i class="fa fa-times" aria-hidden="true"></i> ...</button>
 								<button th:if="${entity.id == 0}" type="button" class="btn btn-warning btn-xs deleteBtn" th:onclick="'deleteRow(' + ${status.count} + ');'"><i class="fa fa-times" aria-hidden="true"></i></button>
 							</td>
@@ -174,22 +174,24 @@
 					</tbody>
 				</table>
 			</div>
-
 			<button type="submit" id='inquiryDummy' name="doInquiry" style="visibility:hidden;" ></button>
 			<button type="submit" id='addDummy' name="doAdd" style="visibility:hidden;" ></button>
 			<button type="submit" id='deleteDummy' name="doDelete" style="visibility:hidden;" ></button>
 			<button type="submit" id='saveDummy' name="doSave" style="visibility:hidden;" ></button>
 			<input type="hidden" id="selectRow" name="selectRow" value="0"/>
-		</form>
-	</div>
-
-	<footer class="footer" style="padding-right:16px;">
-		<div class="container pull-left">
-			<button type="button" id="addBtn" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.add}">global.btn.add</span></button>
-			<button type="button" id="saveBtn" class="btn btn-primary" th:disabled="${sampleMasterUserForm.list == null or sampleMasterUserForm.list.isEmpty()}"><i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.save}">global.btn.save</span></button>
 		</div>
-	</footer>
 
+		<footer class="footer" style="padding-right:16px;">
+			<div class="container pull-left">
+				<button type="button" id="addBtn" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;<span th:text="#{global.btn.add}">global.btn.add</span></button>
+				<button type="button" id="saveBtn" class="btn btn-primary" th:disabled="${sampleMasterUserForm.list == null or sampleMasterUserForm.list.isEmpty()}">
+					<i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>
+					<span th:text="#{global.btn.save}">global.btn.save</span>&nbsp;
+					<span class="badge badge-error" th:if="${#fields.hasErrors('all')}" th:text="${#fields.detailedErrors().size()}">0</span>
+				</button>
+			</div>
+		</footer>
+	</form>
 <!--[if lt IE 9]><!-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
@@ -200,7 +202,6 @@
 <!--<![endif]-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/js/bootstrap-dialog.min.js" th:src="@{/webjars/bootstrap-dialog/dist/js/bootstrap-dialog.min.js}"></script>
-
 	<script type="text/javascript">
 		$(document).ready(function() {
 
@@ -243,7 +244,13 @@
 			$('#selectRow').val(row);
 			$('#deleteDummy').click();
 		}
-
+		
+        $('#confirm-delete').on(function(e) {
+           // $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            alert($(e.relatedTarget).data('href'));
+           
+        });
+		
 	</script>
 </body>
 </html>
