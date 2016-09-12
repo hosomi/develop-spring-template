@@ -18,6 +18,50 @@
 	
 	<style type="text/css">
 
+		<!--/* mobile(phone, phablet) を想定（縦長）   */-->
+		@media screen and (min-width: 330px) {
+			.modal-sm {
+				width: 330px; /* New width for small modal */
+				height: 550px;
+			}
+			.modal-body-sm {
+				height: 530px;
+			}
+			.iframe-sm {
+				height: 500px;
+				overflow-y: yes;
+			}
+		}
+
+		<!--/* mobile middle class(phablet, tablet), notebook を想定 */-->
+		@media screen and (min-width: 768px) {
+			.modal-md {
+				width: 700px; /* New width for default modal */
+				height: 400px;
+			}
+			.modal-body-md {
+				height: 380px;
+			}
+			.iframe-md {
+				height: 350px;
+				overflow-y: hidden;
+			}
+		}
+		
+		<!--/* fullscreen desktop, fullscreen notebook を想定。 */-->
+		@media screen and (min-width: 992px) {
+			.modal-lg {
+				width: 750px; /* New width for large modal */
+				height: 400px;
+			}
+			.modal-body-lg {
+				height: 380px;
+			}
+			.iframe-lg {
+				height: 350px;
+				overflow-y: hidden;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -58,7 +102,7 @@
 
 	<!--/* Modal 自体の内容（サブミットは出来ないタイプです。） */-->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"> <!--/* data-backdrop="static" は modal ウィンドウ以外でクリックした場合に非表示しない設定です。*/-->
-		<div class="modal-dialog" style="width:700px;" role="document">
+		<div class="modal-dialog modal-sm modal-md modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -66,8 +110,8 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;<span th:text="#{global.btn.goods.choice}">goods choice...</span></h4>
 				</div>
-				<div class="modal-body" style="height:280px;padding:10px;">
-					<iframe id ="goodsIframe" name ="goodsIframe" src="../../iframe/goods.html" th:src="@{/iframe/goods}" style="border:0px; margin:0px; width:97%; height:100%; overflow-y: hidden;" scrolling="no"></iframe>
+				<div class="modal-body modal-body-sm modal-body-md modal-body-lg">
+					<iframe id ="goodsIframe" class="iframe-sm iframe-md iframe-lg" name ="goodsIframe" src="../../iframe/goods.html" th:src="@{/iframe/goods}" style="border:0px; margin:0px; width:97%;"></iframe>
 				</div>
 				<div class="modal-footer ">
 					<button type="button" class="btn btn-primary pull-left" th:text="#{global.btn.choice}" id="btnChoice">choice</button> <!--/* data-dismiss="modal" を付けていません、ボタン押下後も自身でモーダル非表示処理を入れています。 */-->
@@ -131,6 +175,8 @@
 				return;
 			}
 		});
+	
+
 		/*]]>*/
 	</script>
 </body>
