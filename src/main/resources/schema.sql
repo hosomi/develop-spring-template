@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS TODO;
 DROP TABLE IF EXISTS USER;
 DROP TABLE IF EXISTS GOODS;
-
+DROP TABLE IF EXISTS COMPANY;
 
 
 /*Todo テーブル作成*/
@@ -15,8 +15,8 @@ CREATE TABLE TODO (
 /*User テーブル作成、認証にも利用。*/
 CREATE TABLE USER (
     id IDENTITY,
-	LOGINUSERID VARCHAR(10) NOT NULL,
-    PASSWORD VARCHAR(60) NOT NULL,
+    loginuserid VARCHAR(10) NOT NULL,
+    password VARCHAR(60) NOT NULL,
 );
 
 /*GOODS テーブル作成。*/
@@ -27,6 +27,22 @@ CREATE TABLE GOODS (
     kana VARCHAR(100) NOT NULL,
     note VARCHAR(255) 
 );
+
+/** COMPANY テーブル作成*/
+CREATE TABLE COMPANY (
+    id IDENTITY,
+    name VARCHAR(100) NOT NULL,
+    kana VARCHAR(200),
+    postal VARCHAR(10),
+    address VARCHAR(20),
+    tel VARCHAR(20),
+    fax VARCHAR(20),
+    enable boolean
+);
+
+insert into company (name,kana,postal,address,tel,fax,enable) values ('株式会社○○キューブ','カブシキカイシャマルマルキューブ','105-0002','東京都港区愛宕◯丁目◯番◯号','03-0000-0001','03-0000-1001',true);
+insert into company (name,kana,postal,address,tel,fax,enable) values ('メディカル○○株式会社','メディカルマルマルカブシキカイシャ','105-0012','東京都港区芝大門◯丁目◯番◯号','03-0000-0002','03-0000-1002',true);
+insert into company (name,kana,postal,address,tel,fax,enable) values ('無効○○株式会社','無効マルマルカブシキカイシャ','105-0013','東京都港区芝大門◯丁目◯番◯号','03-0000-0003','03-0000-1003',false);
 
 /*
 INSERT INTO USER (LOGINUSERID,PASSWORD) VALUES ('test','testpass');

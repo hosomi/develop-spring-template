@@ -52,10 +52,11 @@ spring:
 # MyBatis 
 #---------------------------
 mybatis:
+  #mapper-locations: classpath*:/jp/template/mapper/*.xml # interface と対の場合、設定必要なし
+  type-aliases-package: jp.template.domain # parameterType,resultType属性 のFQDN 省略
   configuration:
     map-underscore-to-camel-case: true
     call-setters-on-nulls : true
-
 
 #---------------------------
 # Server 

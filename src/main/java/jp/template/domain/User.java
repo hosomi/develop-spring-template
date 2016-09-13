@@ -19,7 +19,7 @@ public class User {
 	
 	/** パスワード*/
 //	@NotBlank
-	@Size(min=8,max=50)
+	@Size(min=8,max=100)
 	private String password;
 
 	/** パスワード再設定*/

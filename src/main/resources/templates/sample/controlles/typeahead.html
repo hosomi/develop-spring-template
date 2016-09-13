@@ -58,7 +58,7 @@
 		<div class="row">
 			<div class='col-sm-12'>
 				<div class="form-group">
-					<label>code(html)&nbsp;:&nbsp;</label>
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;html&#160;:&#160;</label>
 					<pre id="editor1" class="editor">
 &lt;div class=&quot;form-inline&quot;&gt;
 	&lt;div class=&quot;form-group&quot;&gt;
@@ -76,7 +76,7 @@
 		<div class="row">
 			<div class='col-sm-12'>
 				<div class="form-group">
-					<label>code(javascript)&nbsp;:&nbsp;</label>
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;javascript&#160;:&#160;</label>
 					<pre id="editor2" class="editor">
 	var template = &#039;&lt;div&gt;&lt;p&gt;{{code}}:{{name}}&lt;/p&gt;&lt;p style=&quot;color:#aaa;&quot;&gt;{{note}}&lt;/p&gt;&lt;/div&gt;&#039;;
 	var compiled_template = Hogan.compile(template);
@@ -121,7 +121,7 @@
 		<div class="row">
 			<div class='col-sm-12'>
 				<div class="form-group">
-					<label>code(java:Rest)&nbsp;:&nbsp;</label>
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;java(rest)&#160;:&#160;</label>
 					<pre id="editor3" class="editor">
 @ResponseBody
 @RequestMapping(value = &quot;/controlles/typeahead/{queryStr}&quot;, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -261,7 +261,7 @@ public List&lt;GoodsTypeAhedDto&gt; restTypeahead(@PathVariable String queryStr)
 			maxLines: Infinity
 		});
 		editor1.setReadOnly(true); 
-		editor1.setTheme("ace/theme/git");
+		editor1.setTheme("ace/theme/monokai");
 		editor1.getSession().setMode("ace/mode/html");
 
 		var editor2 = ace.edit("editor2");
@@ -269,7 +269,7 @@ public List&lt;GoodsTypeAhedDto&gt; restTypeahead(@PathVariable String queryStr)
 			maxLines: Infinity
 		});
 		editor2.setReadOnly(true); 
-		editor2.setTheme("ace/theme/git");
+		editor2.setTheme("ace/theme/monokai");
 		editor2.getSession().setMode("ace/mode/javascript");
 		
 		var editor3 = ace.edit("editor3");
@@ -277,7 +277,7 @@ public List&lt;GoodsTypeAhedDto&gt; restTypeahead(@PathVariable String queryStr)
 			maxLines: Infinity
 		});
 		editor3.setReadOnly(true); 
-		editor3.setTheme("ace/theme/git");
+		editor3.setTheme("ace/theme/monokai");
 		editor3.getSession().setMode("ace/mode/java");
 	
 	/*]]>*/

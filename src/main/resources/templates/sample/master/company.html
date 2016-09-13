@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="lang=${#locale.language}"
+	th:lang="${lang}">
+
+<head>
+	<title th:text="#{master.company.title}">master.company.title</title>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/css/bootstrap-dialog.min.css" th:href="@{/webjars/bootstrap-dialog/dist/css/bootstrap-dialog.min.css}" rel="stylesheet" />
+
+	<style type="text/css">
+
+		<!--/* table css */-->
+		@media only screen and (max-width: 800px) {
+
+			/* Force table to not be like tables anymore */
+			#no-more-tables table, 
+			#no-more-tables thead, 
+			#no-more-tables tbody, 
+			#no-more-tables th, 
+			#no-more-tables td, 
+			#no-more-tables tr { 
+				display: block; 
+			}
+		 	#no-more-tables caption{
+		 		display: table-row;
+		 	} 
+		 
+			/* Hide table headers (but not display: none;, for accessibility) */
+			#no-more-tables thead tr { 
+				position: absolute;
+				top: -9999px;
+				left: -9999px;
+			}
+		 
+			#no-more-tables tr { border: 1px solid #ccc; }
+		 
+			#no-more-tables td { 
+				/* Behave  like a "row" */
+				border: none;
+				border-bottom: 1px solid #eee; 
+				position: relative;
+				padding-left: 50%; 
+				white-space: normal;
+				text-align:left;
+			}
+		 
+			#no-more-tables td:before { 
+				/* Now like a table header */
+				position: absolute;
+				/* Top/left values mimic padding */
+				top: 6px;
+				left: 6px;
+				width: 45%; 
+				padding-right: 10px; 
+				white-space: nowrap;
+				text-align:left;
+				font-weight: bold;
+			}
+			/*
+			Label the data
+			*/
+			#no-more-tables td:before { content: attr(data-title); }
+		}
+	</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hamburger">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;<span th:text="#{master.company.title}">master.company.title</span>&nbsp;&nbsp;&nbsp;</p>
+			</div>
+	
+			<div id="hamburger" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&nbsp;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;<span th:text="#{global.logout}">logout</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<form role="form" action="/sample/master/user" th:action="@{/sample/master/company}" th:object="${sampleMasterCompanyForm}" method="post">
+		<div class="container-fluid" style="padding-top: 60px;">
+			<div id="no-more-tables">
+				<table class="col-md-12 table-bordered table-striped table-condensed cf">
+					<caption th:text="#{global.list.caption}">global.list.caption</caption>
+					<thead class="cf thead-inverse">
+						<tr>
+							<th style="width:50px;">#</th>
+							<th>name</th>
+							<th>kana</th>
+							<th>postal</th>
+							<th>address</th>
+							<th>tel</th>
+							<th>fax</th>
+							<th>enable</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="entity, status : ${sampleMasterCompanyForm.list}">
+							<td data-title="#" th:text="${status.count}">1</td>
+							<td data-title="name" th:text="${entity.name}">name</td>
+							<td data-title="kana" th:text="${entity.kana}">kana</td>
+							<td data-title="postal" th:text="${entity.postal}">postal</td>
+							<td data-title="address" th:text="${entity.address}">address</td>
+							<td data-title="tel" th:text="${entity.tel}">tel</td>
+							<td data-title="fax" th:text="${entity.fax}">fax</td>
+							<td data-title="enable" th:text="${entity.enable}">enable</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				<div class='col-sm-12'>
+					<hr/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class='col-sm-12'>
+					<div class="form-group">
+						<label><i class="fa fa-code" aria-hidden="true"></i>&#160;java(interface)&#160;:&#160;src/main/java/jp/template/mapper/CompanyMapper.java</label>
+						<pre id="editor1" class="editor">
+package jp.template.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import jp.template.domain.Company;
+
+public interface CompanyMapper {
+
+	List&lt;Company&gt; selectAll();
+	
+	int insert(Company entity);
+}</pre>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class='col-sm-12'>
+					<div class="form-group">
+						<label><i class="fa fa-code" aria-hidden="true"></i>&#160;xml&#160;:&#160;src/main/resources/jp/template/mapper/CompanyMapper.xml</label>
+						<pre id="editor2" class="editor">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE mapper
+  PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+
+&lt;mapper namespace=&quot;jp.template.mapper.CompanyMapper&quot;&gt;
+
+	&lt;resultMap id=&quot;BaseResultMap&quot; type=&quot;jp.template.domain.Company&quot;&gt;&lt;/resultMap&gt;
+
+	&lt;select id=&quot;selectAll&quot; resultMap=&quot;BaseResultMap&quot;&gt;
+		SELECT
+		  id
+		 ,name
+		 ,kana
+		 ,postal
+		 ,address
+		 ,tel
+		 ,fax 
+		 ,enable 
+		FROM company
+	&lt;/select&gt;
+
+	&lt;insert id=&quot;insert&quot; parameterType=&quot;jp.template.domain.Company&quot;&gt;
+		INSERT INTO company (
+		  name
+		 ,kana
+		 ,postal
+		 ,address
+		 ,tel
+		 ,fax 
+		 ,enable 
+		) VALUES (
+		  #{name}
+		 ,#{kana}
+		 ,#{postal}
+		 ,#{address}
+		 ,#{tel}
+		 ,#{fax }
+		 ,#{enable}
+		)
+	&lt;/insert&gt;
+&lt;/mapper&gt;</pre>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class='col-sm-12'>
+					<div class="form-group">
+						<label><i class="fa fa-code" aria-hidden="true"></i>&#160;company table&#160;:&#160;domain(jp.template.domain.Company)</label>
+						<pre id="editor3" class="editor">
+CREATE TABLE COMPANY (
+    id IDENTITY,
+    name VARCHAR(100) NOT NULL,
+    kana VARCHAR(200),
+    postal VARCHAR(10),
+    address VARCHAR(20),
+    tel VARCHAR(20),
+    fax VARCHAR(20),
+    enable boolean
+);</pre>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<footer class="footer" style="padding-right:16px;">
+			<div class="container pull-left">
+
+			</div>
+		</footer>
+	</form>
+<!--[if lt IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/js/bootstrap-dialog.min.js" th:src="@{/webjars/bootstrap-dialog/dist/js/bootstrap-dialog.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.4/ace.js" th:src="@{/webjars/ace/src-noconflict/ace.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.4/theme-cobalt.js" th:src="@{/webjars/ace/src-noconflict/theme-cobalt.js}"></script>
+	<script type="text/javascript">
+	/*<![CDATA[*/
+		var editor1 = ace.edit("editor1");
+		editor1.setOptions({
+			maxLines: Infinity
+		});
+		editor1.setReadOnly(true); 
+		editor1.setTheme("ace/theme/monokai");
+		editor1.getSession().setMode("ace/mode/java");
+
+		var editor2 = ace.edit("editor2");
+		editor2.setOptions({
+			maxLines: Infinity
+		});
+		editor2.setReadOnly(true); 
+		editor2.setTheme("ace/theme/monokai");
+		editor2.getSession().setMode("ace/mode/xml");
+
+		var editor3 = ace.edit("editor3");
+		editor3.setOptions({
+			maxLines: Infinity
+		});
+		editor3.setReadOnly(true); 
+		editor3.setTheme("ace/theme/monokai");
+		editor3.getSession().setMode("ace/mode/sql");
+	/*]]>*/
+	</script>
+</body>
+</html>

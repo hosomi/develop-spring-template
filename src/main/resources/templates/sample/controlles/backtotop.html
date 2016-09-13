@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
 	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
 	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
@@ -52,7 +53,7 @@
 		<div class="row">
 			<div class='col-sm-12'>
 				<div class="form-group">
-					<label>code(css)&nbsp;:&nbsp;</label>
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;css&#160;:&#160;</label>
 					<pre id="editor1" class="editor">
 .back-to-top {
 	cursor: pointer;
@@ -70,7 +71,7 @@
 		<div class="row">
 			<div class='col-sm-12'>
 				<div class="form-group">
-					<label>code(html)&nbsp;:&nbsp;</label>
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;html&#160;:&#160;</label>
 					<pre id="editor2" class="editor">
 &lt;a id=&quot;back-to-top&quot; href=&quot;#&quot; class=&quot;btn btn-primary btn-lg back-to-top&quot; role=&quot;button&quot; th:title=&quot;back to top&quot; title=&quot;Back to Top&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot;&gt;
 	&lt;i class=&quot;fa fa-chevron-up&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
@@ -82,7 +83,7 @@
 		<div class="row">
 			<div class='col-sm-12'>
 				<div class="form-group">
-					<label>code(javascript)&nbsp;:&nbsp;</label>
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;javascript&#160;:&#160;</label>
 					<pre id="editor3" class="editor">
 $(window).scroll(function () {
 	if ($(this).scrollTop() &gt; 50) {
@@ -157,7 +158,7 @@ $(&#039;#back-to-top&#039;).tooltip(&#039;show&#039;);</pre>
 			maxLines: Infinity
 		});
 		editor1.setReadOnly(true); 
-		editor1.setTheme("ace/theme/git");
+		editor1.setTheme("ace/theme/monokai");
 		editor1.getSession().setMode("ace/mode/css");
 
 		var editor2 = ace.edit("editor2");
@@ -165,7 +166,7 @@ $(&#039;#back-to-top&#039;).tooltip(&#039;show&#039;);</pre>
 			maxLines: Infinity
 		});
 		editor2.setReadOnly(true); 
-		editor2.setTheme("ace/theme/git");
+		editor2.setTheme("ace/theme/monokai");
 		editor2.getSession().setMode("ace/mode/html");
 
 		var editor3 = ace.edit("editor3");
@@ -173,7 +174,7 @@ $(&#039;#back-to-top&#039;).tooltip(&#039;show&#039;);</pre>
 			maxLines: Infinity
 		});
 		editor3.setReadOnly(true); 
-		editor3.setTheme("ace/theme/git");
+		editor3.setTheme("ace/theme/monokai");
 		editor3.getSession().setMode("ace/mode/javascript");
 	/*]]>*/
 	</script>

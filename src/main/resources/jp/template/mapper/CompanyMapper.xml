@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.template.mapper.CompanyMapper">
+
+	<resultMap id="BaseResultMap" type="jp.template.domain.Company"></resultMap>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT
+		  id
+		 ,name
+		 ,kana
+		 ,postal
+		 ,address
+		 ,tel
+		 ,fax 
+		 ,enable 
+		FROM company
+	</select>
+
+	<insert id="insert" parameterType="jp.template.domain.Company">
+		INSERT INTO company (
+		  name
+		 ,kana
+		 ,postal
+		 ,address
+		 ,tel
+		 ,fax 
+		 ,enable 
+		) VALUES (
+		  #{name}
+		 ,#{kana}
+		 ,#{postal}
+		 ,#{address}
+		 ,#{tel}
+		 ,#{fax }
+		 ,#{enable}
+		)
+	</insert>
+</mapper>
