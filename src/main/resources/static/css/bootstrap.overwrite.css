@@ -6,6 +6,7 @@
 }
 
 .thead-inverse th{color:#fff;background-color:#373a3c}
+.thead-default th{color:#55595c;background-color:#eceeef}
 
 /*バッジの色調整（<button タグ配下のバッジの場合、ボタンのスタイルが優先されるため、!important を指定）*/
 .badge {

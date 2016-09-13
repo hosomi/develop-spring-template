@@ -75,9 +75,8 @@
 			<div id="no-more-tables">
 				<form role="form" th:action="@{/iframe/goods}"
 					th:object="${sampleIframeGoodsForm}" method="post">
-					<table
-						class="col-md-12 table-bordered table-striped table-condensed cf">
-						<thead class="cf">
+					<table class="col-md-12 table-bordered table-striped table-condensed cf">
+						<thead class="cf thead-default">
 							<tr>
 								<th th:text="#{controll.modal.list.choice}">choice</th>
 								<th class="numeric">ID</th>
