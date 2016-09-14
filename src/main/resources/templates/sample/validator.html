@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="lang=${#locale.language}"
+	th:lang="${lang}">
+
+<head>
+	<title th:text="#{sample.validate.title}">sample.validate.title</title>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+
+	<style type="text/css">
+
+
+		<!--/* table css */-->
+
+		}
+	</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hamburger">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&#160;<span th:text="#{sample.validate.title}">sample.validate.title</span>&#160;&#160;&#160;</p>
+			</div>
+	
+			<div id="hamburger" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&#160;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&#160;<span th:text="#{global.logout}">logout</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<form role="form" action="/sample/validator" th:action="@{/sample/validator}" th:object="${sampleValidatorForm}" method="post">
+		<div class="container-fluid" style="padding-top: 60px;">
+
+			<div th:unless="${info_message == null}" class="alert alert-info fade in" style="margin-bottom: 10px;">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong th:text="${info_message}">info_message</strong>
+			</div>
+
+			<div th:unless="${warning_message == null}" class="alert alert-warning fade in" style="margin-bottom: 10px;">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong th:text="${warning_message}">warning_message</strong>
+			</div>
+
+			<div th:if="${#fields.hasErrors('all')}" class="alert alert-danger">
+				<p th:text="#{jp.template.global.error.input.message}">jp.template.global.error.input.message</p>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="notblank" th:text="#{sample.validate.notblank}">sample.validate.notblank&#160;:&#160;</label>
+				<div class="col-sm-5"
+					th:classappend="${#fields.hasErrors('*{notblank}')} ? 'has-error has-feedback'">
+					<input type="text" class="form-control" id="notblank" name="notblank" th:field="*{notblank}" />
+					<span th:if="${#fields.hasErrors('*{notblank}')}" class="text-danger" th:errors="*{notblank}">Error</span>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;@NotBlank<br/><span th:text="#{sample.validate.notblank.remarks}">sample.validate.notblank.remarks</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="maxlength" th:text="#{sample.validate.maxlength}">sample.validate.maxlength&#160;:&#160;</label>
+				<div class="col-sm-5"
+					th:classappend="${#fields.hasErrors('*{maxlength}')} ? 'has-error has-feedback'">
+					<input type="text" class="form-control" id="maxlength" name="maxlength" th:field="*{maxlength}" />
+					<span th:if="${#fields.hasErrors('*{maxlength}')}" class="text-danger" th:errors="*{maxlength}">Error</span>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;@Size(max=10)<br/><span th:text="#{sample.validate.maxlength.remarks}">sample.validate.maxlength.remarks</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="minlength" th:text="#{sample.validate.minlength}">sample.validate.minlength&#160;:&#160;</label>
+				<div class="col-sm-5"
+					th:classappend="${#fields.hasErrors('*{minlength}')} ? 'has-error has-feedback'">
+					<input type="text" class="form-control" id="minlength" name="minlength" th:field="*{minlength}" />
+					<span th:if="${#fields.hasErrors('*{minlength}')}" class="text-danger" th:errors="*{minlength}">Error</span>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;@Size(min=3)<br/><span th:text="#{sample.validate.minlength.remarks}">sample.validate.minlength.remarks</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="mixlength" th:text="#{sample.validate.mixlength}">sample.validate.mixlength&#160;:&#160;</label>
+				<div class="col-sm-5"
+					th:classappend="${#fields.hasErrors('*{mixlength}')} ? 'has-error has-feedback'">
+					<input type="text" class="form-control" id="mixlength" name="mixlength" th:field="*{mixlength}" />
+					<span th:if="${#fields.hasErrors('*{mixlength}')}" class="text-danger" th:errors="*{mixlength}">Error</span>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;@Size(min=3, max=10)<br/><span th:text="#{sample.validate.mixlength.remarks}">sample.validate.mixlength.remarks</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="digits" th:text="#{sample.validate.digits}">sample.validate.digits&#160;:&#160;</label>
+				<div class="col-sm-5"
+					th:classappend="${#fields.hasErrors('*{digits}')} ? 'has-error has-feedback'">
+					<input type="text" class="form-control" id="digits" name="digits" th:field="*{digits}" />
+					<span th:if="${#fields.hasErrors('*{digits}')}" class="text-danger" th:errors="*{digits}">Error</span>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;@Digits(integer = 8, fraction = 2)<br/><span th:text="#{sample.validate.digits.remarks}">sample.validate.digits.remarks</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="dateformat" th:text="#{sample.validate.dateformat}">sample.validate.dateformat&#160;:&#160;</label>
+				<div class="col-sm-5"
+					th:classappend="${#fields.hasErrors('*{dateformat}')} ? 'has-error has-feedback'">
+					<input type="text" class="form-control" id="dateformat" name="dateformat" th:field="*{dateformat}" />
+					<span th:if="${#fields.hasErrors('*{dateformat}')}" class="text-danger" th:errors="*{dateformat}">Error</span>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;@DateFormat<br/><span th:text="#{sample.validate.dateformat.remarks}">sample.validate.dateformat.remarks</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="dateformat" th:text="#{sample.validate.dateformat2}">sample.validate.dateformat&#160;:&#160;</label>
+				<div class="col-sm-5"
+					th:classappend="${#fields.hasErrors('*{dateformat2}')} ? 'has-error has-feedback'">
+					<input type="text" class="form-control" id="dateformat2" name="dateformat2" th:field="*{dateformat2}" />
+					<span th:if="${#fields.hasErrors('*{dateformat2}')}" class="text-danger" th:errors="*{dateformat2}">Error</span>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;@NotBlank + @DateFormat(format="yyyyMMdd")<br/><span th:text="#{sample.validate.dateformat2.remarks}">sample.validate.dateformat2.remarks</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="datePeriod" th:text="#{sample.validate.datePeriod}">sample.validate.datePeriod&#160;:&#160;</label>
+				<div class="col-sm-5"
+					th:classappend="${#fields.hasErrors('*{from}')} ? 'has-error has-feedback'">
+					<input type="text" th:field="*{from}" class="form-control" th:errorclass="fieldError" />
+					<span th:if="${#fields.hasErrors('*{from}')}" class="text-danger" th:errors="*{from}">Error</span>
+					<input type="text" th:field="*{to}" class="form-control" th:errorclass="fieldError" />
+					<span th:if="${#fields.hasErrors('*{to}')}" class="text-danger" th:errors="*{to}">Error</span>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;@DateSimplePeriod(fieldNameFrom="from", fieldNameTo="to") <br/><span th:text="#{sample.validate.datePeriod.remarks}">sample.validate.datePeriod.remarks</span>
+					</div>
+				</div>
+			</div>
+
+
+			<button type="submit" id='validateDummy' style="visibility:hidden;" ></button>
+		</div>
+
+		<footer class="footer" style="padding-right:16px;">
+			<div class="container pull-left">
+				<button type="button" id="validateBtn" class="btn btn-primary">
+					<i class="fa fa-check" aria-hidden="true"></i>
+					<span th:text="#{global.btn.validate}">global.btn.validate</span>&#160;
+					<span class="badge badge-error" th:if="${#fields.hasErrors('all')}" th:text="${#fields.detailedErrors().size()}">0</span>
+				</button>
+			</div>
+		</footer>
+	</form>
+<!--[if lt IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			<!--/* 照会ボタンのハンドリング。  */-->
+			$('#validateBtn').click(function(e) {
+				$('#validateDummy').click();
+			});
+
+
+		});
+
+		
+	</script>
+</body>
+</html>

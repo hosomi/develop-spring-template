@@ -64,3 +64,17 @@
 .badge-inverse:hover {
 	background-color: #1a1a1a !important;
 }
+
+
+/*備考（補足）表示用クラス定義。 class="remarks remarks-info" 利用の際は 2 つ指定してください。*/
+.remarks {
+	padding: 5px;
+	margin-bottom: 3px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+.remarks-info {
+	color: #666;
+	background-color: #e6edeb;
+	border-color: #cdeac7;
+}

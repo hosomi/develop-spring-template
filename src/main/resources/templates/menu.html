@@ -34,12 +34,12 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<p class="navbar-text navbar-left"><i class="fa fa-sitemap" aria-hidden="true"></i>&nbsp;<span th:text="#{menu.title}">menu</span>&nbsp;&nbsp;&nbsp;</p>
+				<p class="navbar-text navbar-left"><i class="fa fa-sitemap" aria-hidden="true"></i>&#160;<span th:text="#{menu.title}">menu</span>&#160;&#160;&#160;</p>
 			</div>
 	
 			<div id="hamburger" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&nbsp;<span th:text="#{global.logout}">logout</span></a></li>
+					<li><a href="login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&#160;<span th:text="#{global.logout}">logout</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -48,7 +48,10 @@
 
 	<div class="container-fluid" style="padding-top:60px;">
 	
-	 
+		<!--/* 
+		各カテゴリの項目数は合わせてください、合わせる場合に <li>&#160;</li> を入れると調整しやすいです。  
+		行数を合わせていないと２段目以降、途中で周りこんだり、表示が崩れます。
+		*/-->
 		<ul class="row" style="list-style-type: none">
 			
 			<li class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="min-height:160px;">
@@ -62,7 +65,7 @@
 				</ul>
 				<br/>
 			</li>
-		
+
 			<li class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="min-height:160px;">
 				<ul class="list-group list-unstyled">
 					<li class="header"><strong th:text="#{menu.category.sample.master}">master sample</strong></li>
@@ -70,10 +73,24 @@
 					<li>1. <a href="sample/master/user.html" th:href="@{/sample/master/user}" class="navbar-link" th:text="#{master.user.title}">User</a></li>
 					<li>2. <a href="sample/master/todo.html" th:href="@{/sample/master/todo}" class="navbar-link" th:text="#{master.todo.title}">ToDo</a></li>
 					<li>3. <a href="sample/master/company.html" th:href="@{/sample/master/company}" class="navbar-link" th:text="#{master.company.title}">Company</a></li>
+					<li>&#160;</li>
 				</ul>
 				<br/>
 			</li>
-		</ul>	
+
+			<li class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="min-height:160px;">
+				<ul class="list-group list-unstyled">
+					<li class="header"><strong>etc</strong></li>
+					<li class="separator"><HR style="margin-top:10px;margin-bottom:10px;"/></li>
+					<li>1. <a href="sample/validator.html" th:href="@{/sample/validator}" class="navbar-link" th:text="#{sample.validate.title}">sample.validate.title</a></li>
+					<li>&#160;</li>
+					<li>&#160;</li>
+					<li>&#160;</li>
+				</ul>
+				<br/>
+			</li>
+		</ul>
+
 	</div>
 
 	<footer class="footer" style="height:22px;padding-right:16px;">

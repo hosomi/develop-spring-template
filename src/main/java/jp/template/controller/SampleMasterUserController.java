@@ -108,7 +108,7 @@ public class SampleMasterUserController {
 		if (list.isEmpty()) {
 
 			// 該当なし（0 件）のメッセージ。
-			model.addAttribute("warning_message", message.getMessage("jp.template.global.warning.retrieved.condition.notfound", null, locale));
+			model.addAttribute("warning_message", message.getMessage("jp.template.global.warning.retrieved.condition.notfound.message", null, locale));
 		}
 		
 		return "sample/master/user";

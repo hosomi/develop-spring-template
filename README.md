@@ -22,7 +22,8 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 * マスタサンプル(ORM:Mybatis)
   * User : バリデーション、カスタムバリデーションサンプル
   * Company : Mybatis XML サンプル
-
+* etc
+  * 入力値検証サンプル
 
 
 # 依存関係  
