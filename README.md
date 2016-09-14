@@ -9,17 +9,21 @@ Spring Boot + Gradle template
 Spring Boot , Gradle で開発する際のテンプレートです。  
 
 現在提供している機能：
-* 独自テーブルを利用したログイン処理(パスワードはハッシュ化)。
+* SpringSecurity による独自テーブルを利用したログイン処理(パスワードはハッシュ化)。
 * トランザクション管理（システムエラー時ロールバック）
 * 共通のログ出力処理（操作ログ、システムエラーログ、SQL（trace,debug））
 * テストコードサンプル
   * SpringSecurity
 * コントロールサンプル
-  * DateTimePicker
-  * typeahead
-  * Modal(Bootstrap)※サブミット非対応、bootstrap-dialog アラート表示
-* マスタサンプル
-  * User （バリデーション、カスタムバリデーションサンプル）
+  * DateTimePicker : 日付選択（日付のみ、時刻のみ、両方）
+  * typeahead : サジェスト機能のようなもの
+  * Modal(Bootstrap) ※サブミット非対応
+  * bootstrap-dialog : アラート表示
+* マスタサンプル(ORM:Mybatis)
+  * User : バリデーション、カスタムバリデーションサンプル
+  * Company : Mybatis XML サンプル
+
+
 
 # 依存関係  
 
@@ -84,8 +88,9 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 # 動作方法(Windows)
 
 1. [ダウンロード](https://github.com/hosomi/develop-spring-template/archive/master.zip "ダウンロード")後、解凍し develop-spring-template-master ディレクトリ直下へコンソールで移動。
-2. 「 gradlew bootRun 」 を実行。
-3. ブラウザを立ち上げて 「 http://localhost:8080/template/ 」 にアクセス。
+2. 「 gradlew 」 を実行（ Windows の方は gradlew.bat をダブルクリックでも可）。
+3. ブラウザを立ち上げて 「 http://localhost:8080/template/ 」 にアクセス。  
+**※終了時は強制終了させてください。**
 
 # 認証情報
 
@@ -95,9 +100,19 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 **※SpringSecurity  のロールはありません。**
 
-
-# Heroku
+# etc:
+## Heroku
 こちらは実験的です、予告なく停止する場合があります。  
-自動ビルドされますので、ビルド時は利用できません。
+ローカルで実行しなくてもサンプルが確認できます。  
 
-https://springboottemplate.herokuapp.com/
+https://springboottemplate.herokuapp.com/  
+※ push 時に自動ビルドされますので、タイミング次第では利用できません。
+
+## CI サービス
+無料でどこまで利用できるか検証用に利用しています。  
+（ビルドが目的で Gradle が利用できる前提となります。）  
+現在検証中は下記サービスです。  
+
+* Travis CI (https://travis-ci.org/)
+* CircleCI (https://circleci.com/)
+* Wercker (http://wercker.com/)

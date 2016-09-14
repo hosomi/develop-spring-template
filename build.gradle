@@ -4,8 +4,7 @@
               -> http://localhost:8080/template
     build   - War ファイル作成
               -> build/libs/template.war
-    引数なし   - clean -> build
-
+    引数なし   bootRun
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 
@@ -22,7 +21,7 @@ buildscript {
 }
 
 // 引数なしで起動した場合、 clean -> build
-defaultTasks "clean", "build"
+defaultTasks "bootRun"
 
 apply plugin: 'java'
 apply plugin: 'eclipse'     // eclipse タスク追加（プロジェクト定義）。
