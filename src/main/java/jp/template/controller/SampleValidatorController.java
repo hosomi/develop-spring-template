@@ -1,6 +1,5 @@
 package jp.template.controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.Locale;
 
@@ -76,7 +75,7 @@ public class SampleValidatorController {
 	 * @return /resources/templates/sample/validator.html
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String validate(@Validated SampleValidatorForm form, BindingResult result, Model model, Locale locale) throws IllegalAccessException, InvocationTargetException {
+	public String validate(@Validated SampleValidatorForm form, BindingResult result, Model model, Locale locale) {
 
 		logger.debug(result.hasErrors());
 

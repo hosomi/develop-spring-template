@@ -20,13 +20,10 @@ public @interface DateSimplePeriod {
 
 	Class<? extends Payload>[] payload() default {};
 
-	/** 開始日のフィールド名。 */
 	String fieldNameFrom() default "from";
 
-	/** 終了日のフィールド名。 */
 	String fieldNameTo() default "to";
 
-	/** 日付書式*/
 	String format() default "yyyy/MM/dd";
 	
 	@Target({ java.lang.annotation.ElementType.TYPE, java.lang.annotation.ElementType.ANNOTATION_TYPE })

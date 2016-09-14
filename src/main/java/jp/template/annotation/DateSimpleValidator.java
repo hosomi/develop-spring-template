@@ -10,7 +10,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @DateSimple の値検証の実装。
+ * アノテーション DateSimple の値検証の実装。
  * 
  * @author hosomi.
  */

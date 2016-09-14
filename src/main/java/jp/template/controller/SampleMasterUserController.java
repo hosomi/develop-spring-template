@@ -1,6 +1,5 @@
 package jp.template.controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -148,7 +147,7 @@ public class SampleMasterUserController {
 	 * @return /resources/templates/sample/master/user.html
 	 */
 	@RequestMapping(method = RequestMethod.POST, params = "doSave")
-	public String save(@AuthenticationPrincipal LoginUser loginUser, @Validated SampleMasterUserForm form, BindingResult result, Model model, Locale locale) throws IllegalAccessException, InvocationTargetException {
+	public String save(@AuthenticationPrincipal LoginUser loginUser, @Validated SampleMasterUserForm form, BindingResult result, Model model, Locale locale) {
 
 		logger.debug(result.hasErrors());
 		

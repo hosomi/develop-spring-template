@@ -31,7 +31,6 @@ public @interface DateSimple {
 
 	Class<? extends Payload>[] payload() default {};
 
-	/** 日付書式*/
 	String format() default "yyyy/MM/dd";
 
 	@Target({ java.lang.annotation.ElementType.METHOD, java.lang.annotation.ElementType.FIELD,

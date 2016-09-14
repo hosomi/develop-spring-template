@@ -23,7 +23,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
   * User : バリデーション、カスタムバリデーションサンプル
   * Company : Mybatis XML サンプル
 * etc
-  * 入力値検証サンプル
+  * 入力値検証サンプル : 独自アノテーション（単独、相関チェック）
 
 
 # 依存関係  
@@ -86,7 +86,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 * JDK 8 (8u101)
 
-# 動作方法(Windows)
+# 動作方法
 
 1. [ダウンロード](https://github.com/hosomi/develop-spring-template/archive/master.zip "ダウンロード")後、解凍し develop-spring-template-master ディレクトリ直下へコンソールで移動。
 2. 「 gradlew 」 を実行（ Windows の方は gradlew.bat をダブルクリックでも可）。
