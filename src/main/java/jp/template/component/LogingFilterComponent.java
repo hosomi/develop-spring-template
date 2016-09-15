@@ -25,7 +25,27 @@ import org.springframework.stereotype.Component;
  * 
  * <pre>
  * ・log4j2 の info 以上をログ出力対象として設定のこと。
- * ・複数フィルタでの運用は想定していません。（複数登録する場合は FilterRegistrationBean　を利用し再登録してください。）
+ * ・複数フィルタでの運用は想定していません。（複数登録する場合は FilterRegistrationBean を利用し再登録してください。）
+ * 
+ * ロギング対象：
+ * ・info: ページアクセス情報。
+ * ・trace: リクエス情報、処理結果（HTTP ステータスコードなど）
+ * ログフォーマット：
+ * [ログインID][UUID]*任意のログ
+ * 
+ * ログインID
+ * ・認証外の場合、null になります。
+ * 
+ * UUID
+ * 一意のID 詳しくは下記へ
+ * ・https://docs.oracle.com/javase/jp/8/docs/api/java/util/UUID.html
+ * 
+ * *任意のログ 
+ * ・URI: パス
+ * ・リクエスト内容
+ * ・HTTP ステータスコード
+ * ・処理経過時間
+ * 
  * </pre>
  * 
  * @author hosomi.
@@ -37,10 +57,7 @@ public class LogingFilterComponent  implements Filter {
 	private static Logger logger = LogManager.getLogger();
 	
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		
-		
-	}
+	public void init(FilterConfig filterConfig) throws ServletException { }
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -58,12 +75,13 @@ public class LogingFilterComponent  implements Filter {
 		String userName = httpReq.getRemoteUser();
 		String requestIdentifier = "[" + userName + "]" + "[" + uuid + "]";
  
-		logger.info(String.format("%s start", requestIdentifier));
+		logger.trace(String.format("%s start", requestIdentifier));
 		logger.info(String.format("%s URI: %s", requestIdentifier, uri));
- 
+
+		// リクエスト（POST 内容）
 		Map<String, String[]> params = httpReq.getParameterMap();
 		for (Entry<String, String[]> param : params.entrySet()) {
-			logger.info(String.format("%s PARAM_KEY: %s, PARAM_VALUE: %s"
+			logger.trace(String.format("%s PARAM_KEY: %s, PARAM_VALUE: %s"
 					, requestIdentifier
 					, param.getKey()
 					, Arrays.toString(param.getValue())));
@@ -73,21 +91,16 @@ public class LogingFilterComponent  implements Filter {
  
 		int status = ((HttpServletResponse)response).getStatus();
  
-		logger.info(String.format("%s end in %d millisec. STATUS %d", requestIdentifier, System.currentTimeMillis() - start, status));
+		logger.trace(String.format("%s end in %d millisec. STATUS %d", requestIdentifier, System.currentTimeMillis() - start, status));
 	}
 
-	
-	
 	@Override
-	public void destroy() {
-		
-		
-	}
+	public void destroy() { }
 
 	/**
-	 * ログ対象外 URI　
+	 * ログ対象外 URI
 	 * 
-	 * @param uri　対象　URI　(コンテキスト以下)
+	 * @param uri 対象 URI (コンテキスト以下)
 	 * @return true:ロギング対象外、false:ロギング対象
 	 */
 	private boolean isStatic(String uri) {
@@ -96,6 +109,4 @@ public class LogingFilterComponent  implements Filter {
 		|| uri.contains("/webjars/")
 		|| uri.contains("/fonts/");
 	}
-	
-	
 }

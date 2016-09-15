@@ -17,7 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 public class DateSimpleValidator implements ConstraintValidator<DateSimple, String> {
 
 	/** 書式。*/
-	String format;
+	private String format;
 
 	@Override
 	public void initialize(DateSimple annotation) {

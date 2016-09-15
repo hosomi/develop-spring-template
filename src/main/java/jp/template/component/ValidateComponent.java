@@ -131,8 +131,6 @@ public class ValidateComponent {
 	 */
 	public void addFieldError(String field, String rejectedValue, String code, Object[] args) {
 		
-		System.out.println(locale);
-		
 		result.addError(
 			new FieldError(objectName, field, rejectedValue, false, null, null, 
 				messageSource.getMessage(code, args, locale))

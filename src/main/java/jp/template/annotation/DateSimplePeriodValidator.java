@@ -14,11 +14,10 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
 /**
- * 期間チェック
+ * 期間チェックアノテーションの実装。
  * 
  * 
  * @author hosomi.
- *
  */
 public class DateSimplePeriodValidator implements ConstraintValidator<DateSimplePeriod, Object> {
 
@@ -26,7 +25,6 @@ public class DateSimplePeriodValidator implements ConstraintValidator<DateSimple
 	private String fieldNameFrom;
 	/** フィールド名・終了日。*/
 	private String fieldNameTo;
-	
 	/** 期間チェックエラー時のメッセージ。*/
 	private String message;
 	
@@ -49,11 +47,29 @@ public class DateSimplePeriodValidator implements ConstraintValidator<DateSimple
 		String from = (String) beanWrapper.getPropertyValue(fieldNameFrom);
 		String to = (String) beanWrapper.getPropertyValue(fieldNameTo);
 
-		// 開始日、終了日の何れかが空の場合 OK とする。
-		if (StringUtils.isBlank(from) || StringUtils.isBlank(to)) {
+		// 開始日、終了日の両方が空の場合 OK とする。
+		if (StringUtils.isBlank(from) && StringUtils.isBlank(to)) {
 			return true;
 		}
 
+		// 開始日が空の場合。
+		if (StringUtils.isBlank(from)) {
+			context.disableDefaultConstraintViolation();
+			context.buildConstraintViolationWithTemplate("{jp.template.validator.constraints.DateSimplePeriod.blank.from.message}")
+				.addPropertyNode(fieldNameFrom)
+				.addConstraintViolation();
+			return false;
+		}
+		
+		// 終了日が空の場合。
+		if (StringUtils.isBlank(to)) {
+			context.disableDefaultConstraintViolation();
+			context.buildConstraintViolationWithTemplate("{jp.template.validator.constraints.DateSimplePeriod.blank.from.message}")
+				.addPropertyNode(fieldNameTo)
+				.addConstraintViolation();
+			return false;
+		}
+		
 		// 日付のフォーマットチェック & 期間チェックに Java8 TimeAPI を利用。
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
 		LocalDate ldFrom = null,ldTo = null;
