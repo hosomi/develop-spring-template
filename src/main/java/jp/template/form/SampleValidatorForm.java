@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import jp.template.annotation.DateSimple;
 import jp.template.annotation.DateSimplePeriod;
+import jp.template.domain.Goods;
 
 /**
  * 入力検証サンプルフォーム。
@@ -52,6 +53,23 @@ public class SampleValidatorForm {
 	
 	/** 終了日*/
 	private String to;
+
+	/** 商品。*/
+	private Goods goods;
+	
+	/**
+	 * @return the goods
+	 */
+	public Goods getGoods() {
+		return goods;
+	}
+
+	/**
+	 * @param goods the goods to set
+	 */
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
 
 	/**
 	 * @return the from

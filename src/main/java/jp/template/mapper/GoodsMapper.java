@@ -41,6 +41,15 @@ public interface GoodsMapper {
 	 */
 	@Select("SELECT count(id) FROM goods")
 	int count();
+
+	/**
+	 * 商品コードの件数を取得する。
+	 * 
+	 * @param entity {@link Goods}
+	 * @return 商品コードの件数。
+	 */
+	@Select("SELECT count(id) FROM goods where code = #{entity.code}")
+	int countFromCode(@Param("entity") Goods entity);
 	
 	/**
 	 * ページ毎のデータを取得する。

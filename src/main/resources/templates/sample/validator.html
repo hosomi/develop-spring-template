@@ -19,12 +19,52 @@
 	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
 	<link href="../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
 	<link href="../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
-
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/css/bootstrap-dialog.min.css" th:href="@{/webjars/bootstrap-dialog/dist/css/bootstrap-dialog.min.css}" rel="stylesheet" />
 	<style type="text/css">
 
+		<!--/* mobile(phone, phablet) を想定（縦長）   */-->
+		@media screen and (min-width: 330px) {
+			.modal-sm {
+				width: 330px; /* New width for small modal */
+				height: 550px;
+			}
+			.modal-body-sm {
+				height: 530px;
+			}
+			.iframe-sm {
+				height: 500px;
+				overflow-y: yes;
+			}
+		}
 
-		<!--/* table css */-->
-
+		<!--/* mobile middle class(phablet, tablet), notebook を想定 */-->
+		@media screen and (min-width: 768px) {
+			.modal-md {
+				width: 700px; /* New width for default modal */
+				height: 400px;
+			}
+			.modal-body-md {
+				height: 380px;
+			}
+			.iframe-md {
+				height: 350px;
+				overflow-y: hidden;
+			}
+		}
+		
+		<!--/* fullscreen desktop, fullscreen notebook を想定。 */-->
+		@media screen and (min-width: 992px) {
+			.modal-lg {
+				width: 750px; /* New width for large modal */
+				height: 400px;
+			}
+			.modal-body-lg {
+				height: 380px;
+			}
+			.iframe-lg {
+				height: 350px;
+				overflow-y: hidden;
+			}
 		}
 	</style>
 </head>
@@ -180,8 +220,49 @@
 				</div>
 			</div>
 
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="goods.code" th:text="#{sample.validate.goods}">sample.validate.goods&#160;:&#160;</label>
+				<div class="col-sm-5">
+					<div class="form-inline">
+						<div class="form-group">
+							<div class="form-group">
+								<input th:field="*{goods.code}" class="form-control" type="text" value="" maxlength="10"/>
+							</div>
+							<input th:field="*{goods.name}" class="form-control" readonly="readonly" type="text" value=""/>
+							<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;<span th:text="#{global.btn.goods.choice}">goods choice...</span></button>
+							<p><span th:if="${#fields.hasErrors('*{goods.code}')}" class="text-danger" th:errors="*{goods.code}">Error</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-middle">
+					<div class="remarks remarks-info">
+						<i class="fa fa-info-circle" style="color:green" aria-hidden="true"></i>&#160;<span th:text="#{sample.validate.goods.remarks}">sample.validate.goods.remarks</span>
+					</div>
+				</div>
+			</div>
+
 
 			<button type="submit" id='validateDummy' style="visibility:hidden;" ></button>
+		</div>
+
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"> <!--/* data-backdrop="static" は modal ウィンドウ以外でクリックした場合に非表示しない設定です。*/-->
+			<div class="modal-dialog modal-sm modal-md modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;<span th:text="#{global.btn.goods.choice}">goods choice...</span></h4>
+					</div>
+					<div class="modal-body modal-body-sm modal-body-md modal-body-lg">
+						<iframe id ="goodsIframe" class="iframe-sm iframe-md iframe-lg" name ="goodsIframe" src="../../iframe/goods.html" th:src="@{/iframe/goods}" style="border:0px; margin:0px; width:97%;"></iframe>
+					</div>
+					<div class="modal-footer ">
+						<button type="button" class="btn btn-primary pull-left" th:text="#{global.btn.choice}" id="btnChoice">choice</button> <!--/* data-dismiss="modal" を付けていません、ボタン押下後も自身でモーダル非表示処理を入れています。 */-->
+						<button type="button" class="btn btn-warning pull-left" data-dismiss="modal" th:text="#{global.btn.cancel}">cancel</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<footer class="footer" style="padding-right:16px;">
@@ -203,6 +284,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <!--<![endif]-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/js/bootstrap-dialog.min.js" th:src="@{/webjars/bootstrap-dialog/dist/js/bootstrap-dialog.min.js}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 
@@ -211,6 +293,39 @@
 				$('#validateDummy').click();
 			});
 
+			
+			// ダイアログの選択ボタンのイベントを実装
+			$('#btnChoice').on('click', function() {
+				// 子(iframe)から選択されている値を取得。
+				var idx = $('#goodsIframe').contents().find('input[name=choice]:checked').val();
+				if (idx != undefined) {
+		
+					// 選択された行のコードと名称を取得(iframe 側)。
+					var code = $('#goodsIframe').contents().find('input[id="code' + idx + '"]').val()
+					var name = $('#goodsIframe').contents().find('input[id="name' + idx + '"]').val()
+		
+					// 呼び出し元のコントロールにそれぞれ設定(呼び出し元)。
+					$('input[id="goods.code"]').val(code);
+					$('input[id="goods.name"]').val(name);
+		
+					$('#myModal').modal('hide'); // モーダル非表示。
+				} else {
+					// 何も選択されていない場合、選択してくださいの確認メッセージを表示する。
+					BootstrapDialog.show({
+						type: BootstrapDialog.TYPE_WARNING
+						,title: '<i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;[[#{global.btn.goods.choice}]]'
+						,message: '[[#{global.choice.confirm.message}]]'
+						,buttons: [{
+							label: '[[#{global.btn.confirm}]]'
+							,cssClass: 'btn-primary'
+							,action: function(dialog) {
+								dialog.close();
+							}
+						}]
+					});  
+					return;
+				}
+			});
 
 		});
 

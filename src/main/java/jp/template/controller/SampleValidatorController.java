@@ -3,6 +3,7 @@ package jp.template.controller;
 import java.math.BigDecimal;
 import java.util.Locale;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.template.component.ValidateComponent;
 import jp.template.config.MessageResourcesConfig;
+import jp.template.domain.Goods;
 import jp.template.form.SampleValidatorForm;
+import jp.template.mapper.GoodsMapper;
 
 /**
  * 入力値検証サンプル。
@@ -38,9 +41,12 @@ public class SampleValidatorController {
 	@Autowired
 	private MessageSource message;
 	
+	@Autowired
+	private GoodsMapper goodsMapper;
+	
 	/** 入力検証コンポーネント*/
 	@Autowired
-	ValidateComponent validate;
+	private ValidateComponent validate;
 	
 	/**
 	 * 入力値検証初期オープン時。
@@ -62,9 +68,13 @@ public class SampleValidatorController {
 		form.setFrom("2016/07/02");
 		form.setTo("2016/07/01");
 		
+		Goods goods = new Goods();
+		goods.setCode("000000");
+		form.setGoods(goods);
+
 		return "sample/validator";
 	}
-	
+
 	/**
 	 * 入力チェックボタン押下。
 	 * 
@@ -79,7 +89,23 @@ public class SampleValidatorController {
 
 		logger.debug(result.hasErrors());
 
-		// フィールドエラーチェック判定
+		// 個別チェックアノテーションでは処理できない業務チェックなど。
+		if (StringUtils.isNotBlank(form.getGoods().getCode())) {
+
+			if (goodsMapper.countFromCode(form.getGoods()) == 0) {
+				validate.setDefault(result, message, locale);
+				validate.addFieldError(
+					"goods.code" // 対象のフィールド
+					,form.getGoods().getCode() // エラーフィールドの値（基本はそのまま返す）
+					,"jp.template.validator.goods.code.notfound.message" // エラーメッセージ
+					,new Object[]{form.getGoods().getCode()} // エラーメッセージに対応するメッセージの引数。
+				);
+			}
+		} else {
+			form.setGoods(new Goods());
+		}
+
+		// フィールドエラーチェック判定（個別チェック判定含む。）
 		if (result.hasErrors()) {
 			return "sample/validator";
 		}
@@ -89,6 +115,4 @@ public class SampleValidatorController {
 		
 		return "sample/validator";
 	}
-	
-	
 }
