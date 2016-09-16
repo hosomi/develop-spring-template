@@ -92,6 +92,17 @@ public class SampleController {
 	}
 
 	/**
+	 * コントロールサンプル（Bootstrap Switch）。
+	 * 
+	 * @return /resources/templates/sample/controlles/bootstrap-switch.html
+	 */
+	@RequestMapping(value = "/controlles/bootstrap-switch", method = RequestMethod.GET)
+	public String bootstrapSwitch() {
+
+		return "sample/controlles/bootstrap-switch";
+	}
+	
+	/**
 	 * Goods Rest コントローラ (*Type Ahed 用を想定しています)。
 	 * <pre>
 	 * 一件あたりの JSON 生データ内容：

@@ -19,9 +19,12 @@ Spring Boot , Gradle で開発する際のテンプレートです。
   * typeahead : サジェスト機能のようなもの
   * Modal(Bootstrap) ※サブミット非対応
   * bootstrap-dialog : アラート表示
+  * bootstrap-switch : スイッチ(トグルスイッチ)
+
 * マスタサンプル(ORM:Mybatis)
   * User : バリデーション、カスタムバリデーションサンプル
   * Company : Mybatis XML サンプル
+
 * etc
   * 入力値検証サンプル : 独自アノテーション（単独、相関チェック）
 

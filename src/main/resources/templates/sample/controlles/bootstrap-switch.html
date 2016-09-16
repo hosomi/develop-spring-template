@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="#{controll.bootstrap-switch.title}">controll.bootstrap-switch.title</title>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css" th:href="@{/webjars/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css}" rel="stylesheet" />
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hamburger">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&#160;<span th:text="#{controll.bootstrap-switch.title}">controll.bootstrap-switch.title</span>&#160;&#160;&#160;</p>
+			</div>
+	
+			<div id="hamburger" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&#160;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&#160;<span th:text="#{global.logout}">logout</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid" style="padding-top: 60px;">
+		<div class="row">
+			<div class='col-sm-3'>
+				<div class="form-group">
+					<label>flag(ON)&#160;&#8194;&#8194;&#160;&#160;&#8194;:&#8194;</label>
+					<input type="checkbox" id="switch1" class="form-control" value="1" checked/>
+				</div>
+			</div>
+			<div class='col-sm-9'>
+				<div class="form-group">
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;html&#160;:&#160;</label>
+					<pre id="editor1" class="editor">&lt;input type=&quot;checkbox&quot; id=&quot;switch1&quot; class=&quot;form-control&quot; value=&quot;1&quot; checked/&gt;</pre>
+				</div>
+				<div class="form-group">
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;javascript&#160;:&#160;</label>
+					<pre id="editor2" class="editor">$(&quot;[id=&#039;switch1&#039;]&quot;).bootstrapSwitch();</pre>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class='col-sm-3'>
+				<div class="form-group">
+					<label>flag(OFF)&#160;&#8194;&#8194;&#160;&#160;&#8194;:&#8194;</label>
+					<input type="checkbox" id="switch2" class="form-control" value="1"/>
+				</div>
+			</div>
+			<div class='col-sm-9'>
+				<div class="form-group">
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;html&#160;:&#160;</label>
+					<pre id="editor3" class="editor">&lt;input type=&quot;checkbox&quot; id=&quot;switch2&quot; class=&quot;form-control&quot; value=&quot;1&quot;/&gt;</pre>
+				</div>
+				<div class="form-group">
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;javascript&#160;:&#160;</label>
+					<pre id="editor4" class="editor">$(&quot;[id=&#039;switch2&#039;]&quot;).bootstrapSwitch();</pre>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class='col-sm-3'>
+				<div class="form-group">
+				<label>flag(ON disabled)&#160;&#8194;&#8194;&#160;&#160;&#8194;:&#8194;</label>
+				<input type="checkbox" id="switch3" class="form-control" value="1" checked disabled/>
+				</div>
+			</div>
+			<div class='col-sm-9'>
+				<div class="form-group">
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;html&#160;:&#160;</label>
+					<pre id="editor5" class="editor">&lt;input type=&quot;checkbox&quot; id=&quot;switch3&quot; class=&quot;form-control&quot; value=&quot;1&quot; checked disabled/&gt;</pre>
+				</div>
+				<div class="form-group">
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;javascript&#160;:&#160;</label>
+					<pre id="editor6" class="editor">$(&quot;[id=&#039;switch3&#039;]&quot;).bootstrapSwitch();</pre>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class='col-sm-3'>
+				<div class="form-group">
+				<label>flag(OFF disabled)&#160;&#8194;&#8194;&#160;&#160;&#8194;:&#8194;</label>
+				<input type="checkbox" id="switch3" class="form-control" value="1" disabled/>
+				</div>
+			</div>
+			<div class='col-sm-9'>
+				<div class="form-group">
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;html&#160;:&#160;</label>
+					<pre id="editor7" class="editor">&lt;input type=&quot;checkbox&quot; id=&quot;switch3&quot; class=&quot;form-control&quot; value=&quot;1&quot; disabled/&gt;</pre>
+				</div>
+				<div class="form-group">
+					<label><i class="fa fa-code" aria-hidden="true"></i>&#160;javascript&#160;:&#160;</label>
+					<pre id="editor8" class="editor">$(&quot;[id=&#039;switch4&#039;]&quot;).bootstrapSwitch();</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer class="footer" style="padding-right:16px;">
+		<div class="container pull-left">
+			
+			
+			
+		</div>
+	</footer>
+
+<!--[if lt IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" th:src="@{/webjars/bootbox/bootbox.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.4/ace.js" th:src="@{/webjars/ace/src-noconflict/ace.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.4/theme-cobalt.js" th:src="@{/webjars/ace/src-noconflict/theme-cobalt.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js" th:src="@{/webjars/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+	
+	<script type="text/javascript">
+	/*<![CDATA[*/
+		$(document).ready(function() {
+			$("[id='switch1']").bootstrapSwitch();
+			$("[id='switch2']").bootstrapSwitch();
+			$("[id='switch3']").bootstrapSwitch();
+
+			var editor1 = ace.edit("editor1");
+			editor1.setOptions({
+				maxLines: Infinity
+			});
+			editor1.setReadOnly(true); 
+			editor1.setTheme("ace/theme/monokai");
+			editor1.getSession().setMode("ace/mode/html");
+
+			var editor2 = ace.edit("editor2");
+			editor2.setOptions({
+				maxLines: Infinity
+			});
+			editor2.setReadOnly(true); 
+			editor2.setTheme("ace/theme/monokai");
+			editor2.getSession().setMode("ace/mode/javascript");
+
+			var editor3 = ace.edit("editor3");
+			editor3.setOptions({
+				maxLines: Infinity
+			});
+			editor3.setReadOnly(true); 
+			editor3.setTheme("ace/theme/monokai");
+			editor3.getSession().setMode("ace/mode/html");
+
+			var editor4 = ace.edit("editor4");
+			editor4.setOptions({
+				maxLines: Infinity
+			});
+			editor4.setReadOnly(true); 
+			editor4.setTheme("ace/theme/monokai");
+			editor4.getSession().setMode("ace/mode/javascript");
+
+			var editor5 = ace.edit("editor5");
+			editor5.setOptions({
+				maxLines: Infinity
+			});
+			editor5.setReadOnly(true); 
+			editor5.setTheme("ace/theme/monokai");
+			editor5.getSession().setMode("ace/mode/html");
+
+			var editor6 = ace.edit("editor6");
+			editor6.setOptions({
+				maxLines: Infinity
+			});
+			editor6.setReadOnly(true); 
+			editor6.setTheme("ace/theme/monokai");
+			editor6.getSession().setMode("ace/mode/javascript");
+
+			var editor7 = ace.edit("editor7");
+			editor7.setOptions({
+				maxLines: Infinity
+			});
+			editor7.setReadOnly(true); 
+			editor7.setTheme("ace/theme/monokai");
+			editor7.getSession().setMode("ace/mode/html");
+
+			var editor8 = ace.edit("editor8");
+			editor8.setOptions({
+				maxLines: Infinity
+			});
+			editor8.setReadOnly(true); 
+			editor8.setTheme("ace/theme/monokai");
+			editor8.getSession().setMode("ace/mode/javascript");
+		});
+	/*]]>*/
+	</script>
+</body>
+</html>
+
+
+	
+	
