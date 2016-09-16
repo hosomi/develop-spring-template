@@ -4,7 +4,7 @@ Spring Boot + Gradle template
 [![Build Status](https://travis-ci.org/hosomi/develop-spring-template.svg?branch=master)](https://travis-ci.org/hosomi/develop-spring-template)
 [![build status](https://circleci.com/gh/hosomi/develop-spring-template.svg?style=shield&circle-token=9a9efeb27aabd4d1173951957f233d05f246d6c0)](https://circleci.com/gh/hosomi/develop-spring-template)
 [![wercker status](https://app.wercker.com/status/46670404016ddfb8110dd3023bed1473/s/master "wercker status")](https://app.wercker.com/project/byKey/46670404016ddfb8110dd3023bed1473)
-![Heroku](https://heroku-badge.herokuapp.com/?app=springboottemplate)
+[![Heroku](http://heroku-badge.herokuapp.com/?app=angularjs-crypto&style=flat)]
 
 Spring Boot , Gradle で開発する際のテンプレートです。  
 
@@ -107,7 +107,8 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 ローカルで実行しなくてもサンプルが確認できます。  
 
 https://springboottemplate.herokuapp.com/  
-※ push 時に自動ビルドされますので、タイミング次第では利用できません。
+※ push 時に自動ビルドされますので、タイミング次第では利用できません。  
+※ めったにないかもしれませんが、heroku 自体がダウンしている可能性もあります。(https://status.heroku.com/)
 
 ## CI サービス
 無料でどこまで利用できるか検証用に利用しています。  

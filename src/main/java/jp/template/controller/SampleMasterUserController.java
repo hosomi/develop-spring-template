@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -123,13 +124,23 @@ public class SampleMasterUserController {
 	@RequestMapping(method = RequestMethod.POST, params = "doAdd")
 	public String add(SampleMasterUserForm form, Model model) {
 
-		if (!Objects.isNull(form.getList())) {
-			form.getList().add(new User());
-		} else {
-			List<User> list = new ArrayList<User>();
-			list.add(new User());
-			form.setList(list);
-		}
+//		Optional で null の挙動の修正。
+//		修正前のコード ↓
+
+//		if (!Objects.isNull(form.getList())) {
+//			form.getList().add(new User());
+//		} else {
+//			List<User> list = new ArrayList<User>();
+//			list.add(new User());
+//			form.setList(list);
+//		}
+
+//		Optional で null の挙動の修正。
+//		修正後のコード ↓
+		Optional<List<User>> optList = Optional.ofNullable(form.getList());
+		List<User> list = optList.orElse(new ArrayList<User>());
+		list.add(new User());
+		form.setList(list);
 
 		return "sample/master/user";
 	}
@@ -195,6 +206,8 @@ public class SampleMasterUserController {
 	 */
 	private void customValidate(SampleMasterUserForm form,BindingResult result, Locale locale) {
 
+		
+		
 		validate.setDefault(result, message, locale);
 		int i=0;
 		for (User entity : form.getList()) {
@@ -218,6 +231,7 @@ public class SampleMasterUserController {
 			}
 			i++;
 		}
+
 	}
 	
 	
