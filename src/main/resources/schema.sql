@@ -17,6 +17,7 @@ CREATE TABLE USER (
     id IDENTITY,
     loginuserid VARCHAR(10) NOT NULL,
     password VARCHAR(60) NOT NULL,
+    screenname VARCHAR(100) 
 );
 
 /*GOODS テーブル作成。*/

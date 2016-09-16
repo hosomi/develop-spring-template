@@ -140,6 +140,7 @@
 						<tr>
 							<th style="width:50px;">#</th>
 							<th th:text="#{master.user.list.loginid}">master.user.list.loginid</th>
+							<th th:text="#{master.user.list.screenname}">master.user.list.screenname</th>
 							<th th:text="#{master.user.list.password}">master.user.list.passward</th>
 							<th th:text="#{master.user.list.repassword}">master.user.list.repassword</th>
 							<th style="width:50px;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
@@ -153,6 +154,11 @@
 								<input type="hidden" th:field="*{list[__${status.index}__].id}" th:if="${entity.id != 0}" th:value="${entity.id}" value="123456789"/>
 								<input type="text" class="form-control" th:field="*{list[__${status.index}__].loginUserId}" th:value="${entity.loginUserId}" th:readonly="${entity.id != 0}" value="admin" maxlength="10"/>
 								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].loginUserId}')}" class="text-danger" th:errors="*{list[__${status.index}__].loginUserId}">Error</span>
+							</td>
+							<td th:data-title="#{master.user.list.screenname}" data-title="screenname"
+								th:classappend="${#fields.hasErrors('*{list[__${status.index}__].screenname}')}? 'has-error has-feedback'">
+								<input type="text" class="form-control" th:field="*{list[__${status.index}__].screenname}" value="test" maxlength="100"/>
+								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].screenname}')}" class="text-danger" th:errors="*{list[__${status.index}__].screenname}">Error</span>
 							</td>
 							<td th:data-title="#{master.user.list.password}" data-title="password"
 								th:classappend="${#fields.hasErrors('*{list[__${status.index}__].password}')}? 'has-error has-feedback'">

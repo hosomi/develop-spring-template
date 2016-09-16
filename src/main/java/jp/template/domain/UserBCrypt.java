@@ -19,6 +19,19 @@ public class UserBCrypt extends User {
 	public UserBCrypt(String loginUserId, String password) {
 		super.setLoginUserId(loginUserId);
 		super.setPassword(new BCryptPasswordEncoder().encode(password));
+		super.setScreenname(loginUserId);
+	}
+	/**
+	 * ユーザID、パスワード(BCrypt)、表示名を設定するコンストラクタ。
+	 * 
+	 * @param loginUserId ユーザID
+	 * @param password パスワード
+	 * @param screenname 表示名
+	 */
+	public UserBCrypt(String loginUserId, String password, String screenname) {
+		super.setLoginUserId(loginUserId);
+		super.setPassword(new BCryptPasswordEncoder().encode(password));
+		super.setScreenname(screenname);
 	}
 	
 	/**
@@ -33,5 +46,23 @@ public class UserBCrypt extends User {
 		super.setId(id);
 		super.setLoginUserId(loginUserId);
 		super.setPassword(new BCryptPasswordEncoder().encode(password));
+		super.setScreenname(loginUserId);
 	}
+	
+	/**
+	 * ID、ユーザID、パスワード(BCrypt)を設定するコンストラクタ。
+	 * 
+	 * @param id ID
+	 * @param loginUserId ユーザID
+	 * @param password パスワード
+	 * @param screenname 表示名
+	 */
+	public UserBCrypt(int id, String loginUserId, String password, String screenname) {
+
+		super.setId(id);
+		super.setLoginUserId(loginUserId);
+		super.setPassword(new BCryptPasswordEncoder().encode(password));
+		super.setScreenname(screenname);
+	}
+	
 }

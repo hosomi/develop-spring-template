@@ -2,6 +2,8 @@ package jp.template.domain;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * User エンティティ.
  * 
@@ -22,6 +24,10 @@ public class User {
 	@Size(min=8,max=100)
 	private String password;
 
+	/** 表示名*/
+	@NotBlank
+	private String screenname;
+	
 	/** パスワード再設定*/
 	private String rePassword;
 
@@ -79,5 +85,19 @@ public class User {
 	 */
 	public void setRePassword(String rePassword) {
 		this.rePassword = rePassword;
+	}
+
+	/**
+	 * @return the screenname
+	 */
+	public String getScreenname() {
+		return screenname;
+	}
+
+	/**
+	 * @param screenname the screenname to set
+	 */
+	public void setScreenname(String screenname) {
+		this.screenname = screenname;
 	}
 }

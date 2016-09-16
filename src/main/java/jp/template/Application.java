@@ -69,7 +69,7 @@ public class Application extends SpringBootServletInitializer implements Command
 //		logger.debug("FINISHED : " + loadedTodo.isFinished());
 //		
 		
-		User user = new UserBCrypt("test", "testpass");
+		User user = new UserBCrypt("test", "testpass","てすと");
 
 		userMapper.insert(user);
 		

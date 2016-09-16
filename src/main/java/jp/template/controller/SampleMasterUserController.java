@@ -178,11 +178,14 @@ public class SampleMasterUserController {
 			for (User entity : form.getList()) {
 				if (entity.getId() != 0) {
 					if (StringUtils.isNotBlank(entity.getRePassword())) {
-						// パスワード再設定がされている場合のみ更新。
-						userMapper.update(new UserBCrypt(entity.getId(),entity.getLoginUserId(), entity.getRePassword()));
+						// パスワード再設定がされている場合のみ BCryptPasswordEncoder#encode する。
+						userMapper.update(new UserBCrypt(entity.getId(),entity.getLoginUserId(), entity.getRePassword(), entity.getScreenname()));
+					} else {
+						// パスワードは変更なし。
+						userMapper.update(entity);
 					}
 				} else {
-					userMapper.insert(new UserBCrypt(entity.getLoginUserId(), entity.getPassword()));
+					userMapper.insert(new UserBCrypt(entity.getLoginUserId(), entity.getPassword(), entity.getScreenname()));
 				}
 			}
 		}

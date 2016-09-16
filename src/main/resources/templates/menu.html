@@ -1,5 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="lang=${#locale.language}"
+	th:lang="${lang}">
 <head>
 	<title th:text="#{menu.title}">menu</title>
 	<meta http-equiv="Pragma" content="no-cache"/>
@@ -34,7 +38,10 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<p class="navbar-text navbar-left"><i class="fa fa-sitemap" aria-hidden="true"></i>&#160;<span th:text="#{menu.title}">menu</span>&#160;&#160;&#160;</p>
+				<p class="navbar-text navbar-left">
+					<i class="fa fa-sitemap" aria-hidden="true"></i>&#160;<span th:text="#{menu.title}">menu</span>&#160;&#160;&#160;
+					<i class="fa fa-user"></i><span sec:authentication="principal.user.screenname">screenname</span>(<span sec:authentication="name">name</span>)
+				</p>
 			</div>
 	
 			<div id="hamburger" class="collapse navbar-collapse">
@@ -44,7 +51,6 @@
 			</div>
 		</div>
 	</nav>
-
 
 	<div class="container-fluid" style="padding-top:60px;">
 	

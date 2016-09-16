@@ -29,16 +29,15 @@ public interface UserMapper {
 	 * 
 	 * @param user {@link User}
 	 */
-	@Insert("INSERT INTO USER (loginUserId, password) VALUES (#{loginUserId}, #{password})")
+	@Insert("INSERT INTO USER (loginUserId, password, screenname) VALUES (#{loginUserId}, #{password}, #{screenname})")
 	void insert(User user);
 
 	/**
-	 * User テーブルに１件更新する。
-	 * <p>パスワードのみ</p>
+	 * User テーブルを１件更新する。
 	 * 
 	 * @param user {@link User}
 	 */
-	@Update("UPDATE	USER SET password = #{password} WHERE id = #{id}")
+	@Update("UPDATE	USER SET password = #{password}, screenname = #{screenname} WHERE id = #{id}")
 	void update(User user);
 
 	/**
@@ -47,7 +46,7 @@ public interface UserMapper {
 	 * @param loginUserId ログインユーザID。
 	 * @return {@link User}
 	 */
-	@Select("SELECT id, loginUserId, password  FROM USER WHERE loginUserId = #{loginUserId}")
+	@Select("SELECT id, loginUserId, password, screenname  FROM USER WHERE loginUserId = #{loginUserId}")
 	User select(@Param("loginUserId") String loginUserId);
 
 	/**
@@ -58,7 +57,7 @@ public interface UserMapper {
 	 * @param systemLoginId ログインユーザID（サイン済み）。
 	 * @return {@link User}
 	 */
-	@Select("SELECT id, loginUserId, password  FROM USER WHERE loginUserId = #{loginUserId} AND NOT EXISTS (SELECT * FROM USER USER_INNER WHERE USER_INNER.loginUserId = USER.loginUserId AND loginUserId = #{systemLoginId} )")
+	@Select("SELECT id, loginUserId, password, screenname  FROM USER WHERE loginUserId = #{loginUserId} AND NOT EXISTS (SELECT * FROM USER USER_INNER WHERE USER_INNER.loginUserId = USER.loginUserId AND loginUserId = #{systemLoginId} )")
 	User selectNotExistsSystemLoginId(@Param("loginUserId") String loginUserId, @Param("systemLoginId") String systemLoginId);
 
 	/**
@@ -66,7 +65,7 @@ public interface UserMapper {
 	 * 
 	 * @return ユーザを全件取得します。
 	 */
-	@Select("SELECT id, loginUserId, password  FROM USER")
+	@Select("SELECT id, loginUserId, password, screenname  FROM USER")
 	List<User> selectAll();
 
 	/**
@@ -75,7 +74,7 @@ public interface UserMapper {
 	 * @param systemLoginId ログインユーザID（サイン済み）。
 	 * @return ログインユーザを除くユーザを全件取得します。
 	 */
-	@Select("SELECT id, loginUserId, password  FROM USER WHERE NOT EXISTS (SELECT * FROM USER USER_INNER WHERE USER_INNER.loginUserId = USER.loginUserId AND loginUserId = #{systemLoginId})")
+	@Select("SELECT id, loginUserId, password, screenname  FROM USER WHERE NOT EXISTS (SELECT * FROM USER USER_INNER WHERE USER_INNER.loginUserId = USER.loginUserId AND loginUserId = #{systemLoginId})")
 	List<User> selectAllNotExistsSystemLoginId(@Param("systemLoginId") String systemLoginId);
 
 	/**
