@@ -11,6 +11,7 @@ cache:
     - .gradle
 script:
   - ./gradlew build
+  - ./gradlew javadoc
 notifications:
   on_failure: change # always|never
 on_success: never

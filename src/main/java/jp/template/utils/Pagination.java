@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
  * 
  * <ul>
  * <li>全体の件数、１ページあたりの表示件数からページ数を計算。</li>
- * 
+ * <li>指定したページから表示件数に応じて表示データの特定。</li>
  * </ul>
  * 
  * @author hosomi.
