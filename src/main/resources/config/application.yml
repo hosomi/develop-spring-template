@@ -62,7 +62,7 @@ mybatis:
 # Server 
 #---------------------------
 server:
-  context-path : /template # コンテキストルート
+  # context-path : /template # コンテキストルート
   session-timeout: 28400 # Session timeout in seconds.
 
 error:

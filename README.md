@@ -93,7 +93,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 1. [ダウンロード](https://github.com/hosomi/develop-spring-template/archive/master.zip "ダウンロード")後、解凍し develop-spring-template-master ディレクトリ直下へコンソールで移動。
 2. 「 gradlew 」 を実行（ Windows の方は gradlew.bat をダブルクリックでも可）。
-3. ブラウザを立ち上げて 「 http://localhost:8080/template/ 」 にアクセス。  
+3. ブラウザを立ち上げて 「 http://localhost:8080 」 にアクセス。  
 **※終了時は強制終了させてください。**
 
 # 認証情報
