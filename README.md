@@ -20,6 +20,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
   * Modal(Bootstrap) ※サブミット非対応
   * bootstrap-dialog : アラート表示
   * bootstrap-switch : スイッチ(トグルスイッチ)
+  * bootstrap-tagsinput : タグ入力（typeahead との組み合わせのサンプル）
 
 * マスタサンプル(ORM:Mybatis)
   * User : バリデーション、カスタムバリデーションサンプル
@@ -67,6 +68,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.webjars:typeaheadjs:0.11.1 | https://twitter.github.io/typeahead.js/|
 | org.webjars:hoganjs:3.0.2 | http://twitter.github.io/hogan.js/ typeahead 内部で html テンプレートエンジンとして利用。|
 | org.webjars.npm:bootstrap-dialog:1.34.6 | http://nakupanda.github.io/bootstrap3-dialog/ JavaScript のみで生成可能なダイアログ|
+| compile('org.webjars:Bootstrap-3-Typeahead:3.1.1') | https://github.com/bassjobsen/Bootstrap-3-Typeahead bootstrap-tagsinput で利用、 typeahed org.webjars:typeaheadjs:0.11.1 と共存可能 |
 
 
 *1 jQuery を必要とするモジュールが 3 系 に対応していないものが多く、2 系にした。  

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="#{controll.typeahead.tag.title}">controll.typeahead.tag.title</title>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link href="../../../static/css/typeahead.css" th:href="@{/static/css/typeahead.css}" rel="stylesheet" />
+	<link href="../../../static/javascript/bootstrap-tagsinput/bootstrap-tagsinput.css" th:href="@{/static/javascript/bootstrap-tagsinput/bootstrap-tagsinput.css}" rel="stylesheet" />
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hamburger">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&#160;<span th:text="#{controll.typeahead.tag.title}">controll.typeahead.tag.title</span>&#160;&#160;&#160;</p>
+			</div>
+	
+			<div id="hamburger" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&#160;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&#160;<span th:text="#{global.logout}">logout</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<form role="form" action="/sample/controlles/typeahead/tag" th:action="@{/sample/controlles/typeahead/tag}" th:object="${sampleTypeAheadTagForm}" method="post">
+	<div class="container-fluid" style="padding-top: 60px;">
+		
+
+		<div class="form-inline">
+			<div class="form-group">
+				<label class="control-label"><span th:text="#{controll.typeahead.tag.dpt}">controll.typeahead.tag.dpt</span>&#160;&#8194;&#8194;&#160;&#160;&#160;:&#160;</label>
+				<div class="form-group">
+					<input class="form-control" th:field="*{tags}" maxlength="10" placeholder="enter keyword"/>&#160;<span th:text="#{controll.typeahead.tag.example}">controll.typeahead.tag.example</span>
+				</div>
+				<p th:if="*{tags != null and tags != ''}">submit:<span th:text="*{tags}" ></span></p>
+			</div>
+		</div>
+
+		<hr/>
+	</div>
+	<button type="submit" id='saveDummy' name="doSave" style="visibility:hidden;" ></button>
+
+	</form>
+	<footer class="footer" style="padding-right:16px;">
+		<div class="container pull-left">
+			<button type="button" id="saveBtn" name="doSave" class="btn btn-primary">
+				<i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>
+				<span th:text="#{global.btn.save}">global.btn.save</span>&#160;
+			</button>
+		</div>
+	</footer>
+
+<!--[if lt IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/Bootstrap-3-Typeahead/bootstrap3-typeahead.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.4/ace.js" th:src="@{/webjars/ace/src-noconflict/ace.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.4/theme-cobalt.js" th:src="@{/webjars/ace/src-noconflict/theme-cobalt.js}"></script>
+	<script src="../../../static/javascript/bootstrap-tagsinput/bootstrap-tagsinput.min.js" th:src="@{/static/javascript/bootstrap-tagsinput/bootstrap-tagsinput.min.js}"></script>
+	<script type="text/javascript">
+	/*<![CDATA[*/
+
+		$(document).ready(function() {
+
+			<!--/* 保存ボタンのハンドリング。  */-->
+			$('#saveBtn').click(function(e) {
+				$('#saveDummy').click();
+			});
+
+			
+			
+			<!--/* tags input*/-->
+			$('#tags').tagsinput({
+				itemValue: 'cddpt',
+				itemText: 'nmdpt',
+				typeahead: {
+					displayKey: 'nmdpt',
+					afterSelect: function(val) { this.$element.val(""); },
+					source: function (query) {
+						return jQuery.get("[[@{/sample/controlles/typeahead/dpt/}]]" + query);
+					},
+				}
+			})
+		});
+	/*]]>*/
+	</script>
+</body>
+</html>

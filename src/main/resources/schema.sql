@@ -2,14 +2,15 @@ DROP TABLE IF EXISTS TODO;
 DROP TABLE IF EXISTS USER;
 DROP TABLE IF EXISTS GOODS;
 DROP TABLE IF EXISTS COMPANY;
-
+DROP TABLE IF EXISTS USER_DPT;
+DROP TABLE IF EXISTS DPT;
 
 /*Todo テーブル作成*/
 CREATE TABLE TODO (
-    id IDENTITY
-    ,title TEXT NOT NULL
-    ,details TEXT
-    ,finished BOOLEAN NOT NULL
+    id       IDENTITY,
+    title    TEXT      NOT NULL,
+    details  TEXT,
+    finished BOOLEAN   NOT NULL
 );
 
 /*User テーブル作成、認証にも利用。*/
@@ -17,16 +18,37 @@ CREATE TABLE USER (
     id IDENTITY,
     loginuserid VARCHAR(10) NOT NULL,
     password VARCHAR(60) NOT NULL,
-    screenname VARCHAR(100) 
+    screenname VARCHAR(100)
 );
 
 /*GOODS テーブル作成。*/
 CREATE TABLE GOODS (
     id IDENTITY,
-    code VARCHAR(10) NOT NULL,
+    code VARCHAR(10)  NOT NULL,
     name VARCHAR(100) NOT NULL,
     kana VARCHAR(100) NOT NULL,
     note VARCHAR(255) 
+);
+
+/** 部門テーブル作成。*/
+CREATE TABLE DPT (
+    cddpt      VARCHAR(12) NOT NULL, -- 部門コード
+    cdupperdpt VARCHAR(12),          -- 上位部門コード
+    nmdpt      VARCHAR(50) NOT NULL, -- 部門名
+    nmshortdpt VARCHAR(25) NOT NULL, -- 部門名略称
+    showodr    NUMERIC(5),           -- 表示順序
+    dtavlst    CHAR(8)     NOT NULL, -- 適用開始日
+    dtavled    CHAR(8)     NOT NULL, -- 適用終了日
+    dtupdate   TIMESTAMP   NOT NULL, -- 更新/登録日付
+);
+
+/** ユーザ部門テーブル作成。*/
+CREATE TABLE USER_DPT (
+    loginuserid VARCHAR(10) NOT NULL,
+    cddpt       VARCHAR(12) NOT NULL, -- 部門コード
+    main        BOOLEAN     NOT NULL, -- 主務(true)/兼務(false)
+    dtupdate    TIMESTAMP   NOT NULL, -- 更新/登録日付
+    PRIMARY KEY(loginuserid, cddpt)
 );
 
 /** COMPANY テーブル作成*/
@@ -40,6 +62,21 @@ CREATE TABLE COMPANY (
     fax VARCHAR(20),
     enable boolean
 );
+
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('0000', null, '株式会社○○○','○○○',1,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('1000', '0000', '人事総務部','総務',2,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('1100', '1000', '人事課','人事',3,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('1200', '1000', '総務課','総務',4,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('1300', '1000', '教育課','教育',5,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('2000', '0000', '経理部','経理',6,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('2100', '2000', '経理課','経理',7,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('3000', '0000', '開発企画部','開発企画',8,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('3100', '3000', '企画課','企画',9,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('3200', '3000', '開発課','開発',10,'19000101', '99991231',SYSDATE);
+insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('3500', '3000', 'システム課','システム',11,'19000101', '99991231',SYSDATE);
+
+insert into USER_DPT (loginuserid,cddpt,main,dtupdate) values ('test', '1000', true, sysdate);
+insert into USER_DPT (loginuserid,cddpt,main,dtupdate) values ('test', '3000', false, sysdate);
 
 insert into company (name,kana,postal,address,tel,fax,enable) values ('株式会社○○キューブ','カブシキカイシャマルマルキューブ','105-0002','東京都港区愛宕◯丁目◯番◯号','03-0000-0001','03-0000-1001',true);
 insert into company (name,kana,postal,address,tel,fax,enable) values ('メディカル○○株式会社','メディカルマルマルカブシキカイシャ','105-0012','東京都港区芝大門◯丁目◯番◯号','03-0000-0002','03-0000-1002',true);

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.template.mapper.DptMapper">
+
+	<resultMap id="BaseResultMap" type="jp.template.domain.Dpt"></resultMap>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT 
+		  cddpt
+		 ,cdupperdpt
+		 ,nmdpt
+		 ,nmshortdpt
+		 ,showodr
+		 ,dtavlst
+		 ,dtavled
+		 ,dtupdate 
+		FROM DPT 
+		ORDER BY showodr asc nulls last
+	</select>
+
+	<select id="selectListTypeAhead" resultMap="BaseResultMap" parameterType="String">
+		SELECT 
+		  rowno		 
+		 ,cddpt
+		 ,cdupperdpt
+		 ,nmdpt
+		 ,nmshortdpt
+		 ,showodr
+		 ,dtavlst
+		 ,dtavled
+		 ,dtupdate 
+		FROM 
+		(
+			SELECT 
+			  ROWNUM() as rowno
+			 ,cddpt
+			 ,cdupperdpt
+			 ,nmdpt
+			 ,nmshortdpt
+			 ,showodr
+			 ,dtavlst
+			 ,dtavled
+			 ,dtupdate 
+			FROM DPT 
+			WHERE
+			  cddpt LIKE '%' || #{keyword} || '%' ESCAPE '~' 
+			  OR cdupperdpt LIKE '%' || #{keyword} || '%' ESCAPE '~' 
+			  OR nmdpt LIKE '%' || #{keyword} || '%' ESCAPE '~'
+			ORDER BY showodr asc nulls last
+		) 
+		WHERE rowno BETWEEN 1 AND 20
+	</select>
+
+</mapper>
