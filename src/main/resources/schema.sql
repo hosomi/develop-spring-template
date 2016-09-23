@@ -1,8 +1,9 @@
+/*テーブルが存在すれば削除（test -> bootRun 時、作成済みとなるため。 */
 DROP TABLE IF EXISTS TODO;
 DROP TABLE IF EXISTS USER;
 DROP TABLE IF EXISTS GOODS;
 DROP TABLE IF EXISTS COMPANY;
-DROP TABLE IF EXISTS USER_DPT;
+DROP TABLE IF EXISTS USERDPT;
 DROP TABLE IF EXISTS DPT;
 
 /*Todo テーブル作成*/
@@ -43,7 +44,7 @@ CREATE TABLE DPT (
 );
 
 /** ユーザ部門テーブル作成。*/
-CREATE TABLE USER_DPT (
+CREATE TABLE USERDPT (
     loginuserid VARCHAR(10) NOT NULL,
     cddpt       VARCHAR(12) NOT NULL, -- 部門コード
     main        BOOLEAN     NOT NULL, -- 主務(true)/兼務(false)
@@ -53,14 +54,14 @@ CREATE TABLE USER_DPT (
 
 /** COMPANY テーブル作成*/
 CREATE TABLE COMPANY (
-    id IDENTITY,
-    name VARCHAR(100) NOT NULL,
-    kana VARCHAR(200),
-    postal VARCHAR(10),
-    address VARCHAR(20),
-    tel VARCHAR(20),
-    fax VARCHAR(20),
-    enable boolean
+    id      IDENTITY,              -- キー：自動採番
+    name    VARCHAR(100) NOT NULL, -- 名称
+    kana    VARCHAR(200),          -- 名称カナ
+    postal  VARCHAR(10),           -- 郵便番号
+    address VARCHAR(20),           -- 住所
+    tel     VARCHAR(20),           -- 電話番号
+    fax     VARCHAR(20),           -- FAX番号
+    enable  boolean                -- 有効フラグ(true:有効)
 );
 
 insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('0000', null, '株式会社○○○','○○○',1,'19000101', '99991231',SYSDATE);
@@ -75,8 +76,7 @@ insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dt
 insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('3200', '3000', '開発課','開発',10,'19000101', '99991231',SYSDATE);
 insert into DPT (cddpt, cdupperdpt,nmdpt,nmshortdpt,showodr,dtavlst, dtavled, dtupdate ) values ('3500', '3000', 'システム課','システム',11,'19000101', '99991231',SYSDATE);
 
-insert into USER_DPT (loginuserid,cddpt,main,dtupdate) values ('test', '1000', true, sysdate);
-insert into USER_DPT (loginuserid,cddpt,main,dtupdate) values ('test', '3000', false, sysdate);
+insert into USERDPT (loginuserid,cddpt,main,dtupdate) values ('test', '1000', true, sysdate);
 
 insert into company (name,kana,postal,address,tel,fax,enable) values ('株式会社○○キューブ','カブシキカイシャマルマルキューブ','105-0002','東京都港区愛宕◯丁目◯番◯号','03-0000-0001','03-0000-1001',true);
 insert into company (name,kana,postal,address,tel,fax,enable) values ('メディカル○○株式会社','メディカルマルマルカブシキカイシャ','105-0012','東京都港区芝大門◯丁目◯番◯号','03-0000-0002','03-0000-1002',true);

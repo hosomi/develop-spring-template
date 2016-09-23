@@ -29,4 +29,28 @@ public interface DptMapper {
 	 * @return キーワードに紐づく Dpt 一覧を返します、最大２０件まで。
 	 */
 	List<Dpt> selectListTypeAhead(@Param("keyword") String keyword);
+
+	/**
+	 * 全体の件数を取得する。
+	 * 
+	 * @return 全体の件数。
+	 */
+	int count();
+
+	/**
+	 * プライマリキーから件数を取得(1 or 0)。
+	 * 
+	 * @param entity 検索条件。
+	 * @return プライマリキーから件数を取得したカウント値(1 or 0)。
+	 */
+	int countByPrimaryKey(Dpt entity);
+	
+	/**
+	 * ページ毎のデータを取得する。
+	 * 
+	 * @param first 開始位置
+	 * @param last 終了位置
+	 * @return ページ毎の一覧。
+	 */
+	List<Dpt> pagingCurrent(@Param("first") long first, @Param("last") long last);
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.template.mapper.UserDptMapper">
+
+	<resultMap id="BaseResultMap" type="jp.template.domain.UserDpt"></resultMap>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT 
+		  loginuserid
+		 ,cddpt
+		 ,main
+		 ,dtupdate
+		FROM USERDPT 
+		ORDER BY 
+		  loginuserid asc
+		 ,cddpt asc
+	</select>
+
+	<insert id="insert" parameterType="jp.template.domain.UserDpt">
+		INSERT INTO UserDpt (
+		  loginuserid
+		 ,cddpt
+		 ,main
+		 ,dtupdate
+		) VALUES (
+		  #{loginUserId}
+		 ,#{cddpt}
+		 ,#{main}
+		 ,#{dtupdate}
+		)
+	</insert>
+
+	<delete id="deleteFromloginuserid" parameterType="jp.template.domain.UserDpt">
+		DELETE FROM UserDpt 
+		WHERE loginuserid = #{loginUserId}
+	</delete>
+
+</mapper>

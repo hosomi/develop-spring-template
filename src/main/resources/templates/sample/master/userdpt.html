@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:with="lang=${#locale.language}"
+	th:lang="${lang}">
+
+<head>
+	<title th:text="#{master.user.dpt.title}">master.user.title</title>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+	<link href="../../../static/css/bootstrap.overwrite.css" th:href="@{/static/css/bootstrap.overwrite.css}" rel="stylesheet" />
+	<link href="../../../static/css/sticky-footer.overwrite.css" th:href="@{/static/css/sticky-footer.overwrite.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/css/bootstrap-dialog.min.css" th:href="@{/webjars/bootstrap-dialog/dist/css/bootstrap-dialog.min.css}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css" th:href="@{/webjars/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css}" rel="stylesheet" />
+	<style type="text/css">
+		.alt-table-responsive {
+			width: 100%;
+			overflow-y: hidden;
+			overflow-x: auto;
+			-ms-overflow-style: -ms-autohiding-scrollbar;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		<!--/* table css */-->
+		@media only screen and (max-width: 800px) {
+
+			/* Force table to not be like tables anymore */
+			#no-more-tables table, 
+			#no-more-tables thead, 
+			#no-more-tables tbody, 
+			#no-more-tables th, 
+			#no-more-tables td, 
+			#no-more-tables tr { 
+				display: block; 
+			}
+		 	#no-more-tables caption{
+		 		display: table-row;
+		 	} 
+		 
+			/* Hide table headers (but not display: none;, for accessibility) */
+			#no-more-tables thead tr { 
+				position: absolute;
+				top: -9999px;
+				left: -9999px;
+			}
+		 
+			#no-more-tables tr { border: 1px solid #ccc; }
+		 
+			#no-more-tables td { 
+				/* Behave  like a "row" */
+				border: none;
+				border-bottom: 1px solid #eee; 
+				position: relative;
+				padding-left: 50%; 
+				white-space: normal;
+				text-align:left;
+			}
+		 
+			#no-more-tables td:before { 
+				/* Now like a table header */
+				position: absolute;
+				/* Top/left values mimic padding */
+				top: 6px;
+				left: 6px;
+				width: 45%; 
+				padding-right: 10px; 
+				white-space: nowrap;
+				text-align:left;
+				font-weight: bold;
+			}
+			/*
+			Label the data
+			*/
+			#no-more-tables td:before { content: attr(data-title); }
+			
+
+		}
+		<!--/* mobile(phone, phablet) を想定（縦長）   */-->
+		@media screen and (min-width: 330px) {
+			.modal-sm {
+				width: 330px; /* New width for small modal */
+				height: 550px;
+			}
+			.modal-body-sm {
+				height: 530px;
+			}
+			.iframe-sm {
+				height: 500px;
+				overflow-y: yes;
+			}
+		}
+
+		<!--/* mobile middle class(phablet, tablet), notebook を想定 */-->
+		@media screen and (min-width: 768px) {
+			.modal-md {
+				width: 700px; /* New width for default modal */
+				height: 400px;
+			}
+			.modal-body-md {
+				height: 380px;
+			}
+			.iframe-md {
+				height: 350px;
+				overflow-y: hidden;
+			}
+		}
+		
+		<!--/* fullscreen desktop, fullscreen notebook を想定。 */-->
+		@media screen and (min-width: 992px) {
+			.modal-lg {
+				width: 750px; /* New width for large modal */
+				height: 400px;
+			}
+			.modal-body-lg {
+				height: 380px;
+			}
+			.iframe-lg {
+				height: 350px;
+				overflow-y: hidden;
+			}
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hamburger">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<p class="navbar-text navbar-left"><i class="fa fa-wpforms" aria-hidden="true"></i>&#160;<span th:text="#{master.user.dpt.title}">master.user.dpt.title</span>&#160;&#160;&#160;</p>
+			</div>
+	
+			<div id="hamburger" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../../menu.html" th:href="@{/menu}" class="navbar-link"><i class="fa fa-sitemap"></i>&#160;<span th:text="#{menu.title}">menu</span></a></li>
+					<li><a href="../../login.html" th:href="@{/logout}" class="navbar-link"><i class="fa fa-sign-out"></i>&#160;<span th:text="#{global.logout}">logout</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<form role="form" action="/sample/master/user/dpt" th:action="@{/sample/master/user/dpt}" th:object="${sampleMasterUserDptForm}" method="post">
+		<div class="container-fluid" style="padding-top: 60px;">
+			<div th:unless="${info_message == null}" class="alert alert-info fade in" style="margin-bottom: 10px;">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong th:text="${info_message}">info_message</strong>
+			</div>
+
+			<div th:unless="${warning_message == null}" class="alert alert-warning fade in" style="margin-bottom: 10px;">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<strong th:text="${warning_message}">warning_message</strong>
+			</div>
+
+			<div th:if="${#fields.hasErrors('all')}" class="alert alert-danger">
+				<p th:text="#{jp.template.global.error.input.message}">jp.template.global.error.input.message</p>
+			</div>
+			<div id="no-more-tables">
+				<table class="col-md-12 table-bordered table-striped table-condensed cf">
+					<caption th:text="#{global.list.caption}">global.list.caption</caption>
+					<thead class="cf thead-inverse">
+						<tr>
+							<th style="width:50px;">#</th>
+							<th th:text="#{master.user.dpt.list.loginuserid}">master.user.dpt.list.loginuserid</th>
+							<th th:text="#{master.user.dpt.list.nmdpt}">master.user.dpt.list.nmdpt</th>
+							<th th:text="#{master.user.dpt.list.main}">master.user.dpt.list.main</th>
+							<th th:text="#{master.user.dpt.list.dtupdate}">master.user.dpt.list.dtupdate</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="entity, status : ${sampleMasterUserDptForm.list}">
+							<td data-title="#" th:text="${status.count}">1</td>
+							<td th:data-title="#{master.user.dpt.list.loginuserid}" data-title="loginid">
+								<input type="hidden" th:field="*{list[__${status.index}__].loginUserId}" value="123456789"/>
+								<span th:text="${entity.loginUserId}">123456789</span>
+							</td>
+							<td th:data-title="#{master.user.dpt.list.nmdpt}" data-title="cddpt"
+								th:classappend="${#fields.hasErrors('*{list[__${status.index}__].cddpt}')}? 'has-error has-feedback'">
+								<div class="form-inline">
+									<div class="form-group" style="margin:0px;">
+										<input type="text" class="form-control" th:field="*{list[__${status.index}__].cddpt}" value="1000" maxlength="12"/>
+									</div>
+									<div class="form-group" style="margin:0px;">
+										<input type="text" class="form-control" th:field="*{list[__${status.index}__].nmdpt}" value="deptname" readonly="readonly"/> 
+										<button type="button" class="btn btn-primary btn-xs dptBtn" data-toggle="modal" data-target="#myModal" 
+											th:attr="data-ref-id='list'+${status.index}+'.cddpt',data-ref-name='list'+${status.index}+'.nmdpt'">
+											<i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;<span th:text="#{global.btn.dpt.choice}">dpt choice...</span>
+										</button>
+									</div>
+								</div>
+
+								<span th:if="${#fields.hasErrors('*{list[__${status.index}__].cddpt}')}" class="text-danger" th:errors="*{list[__${status.index}__].cddpt}">Error</span>
+							</td>
+							<td th:data-title="#{master.user.dpt.list.main}" data-title="main">
+								<input type="checkbox" class="bootstrapswitch" th:field="*{list[__${status.index}__].main}" value="true"/>
+							</td>
+							<td th:data-title="#{master.user.dpt.list.dtupdate}" data-title="dtupdate">
+								<input type="hidden" th:field="*{list[__${status.index}__].dtupdateDisplay}" value="2016-09-23 14:20:59.956"/>
+								<span th:text="${entity.dtupdateDisplay}">2016-09-23 14:20:59.956</span>&#8195;
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"> <!--/* data-backdrop="static" は modal ウィンドウ以外でクリックした場合に非表示しない設定です。*/-->
+			<div class="modal-dialog modal-sm modal-md modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;<span th:text="#{global.btn.dpt.choice}">dpt choice...</span></h4>
+					</div>
+					<div class="modal-body modal-body-sm modal-body-md modal-body-lg">
+						<iframe id ="dptIframe" class="iframe-sm iframe-md iframe-lg" name ="dptIframe" src="../../iframe/dpt.html" th:src="@{/iframe/dpt}" style="border:0px; margin:0px; width:97%;"></iframe>
+					</div>
+					<div class="modal-footer ">
+						<button type="button" class="btn btn-primary pull-left" th:text="#{global.btn.choice}" id="btnChoice">choice</button> <!--/* data-dismiss="modal" を付けていません、ボタン押下後も自身でモーダル非表示処理を入れています。 */-->
+						<button type="button" class="btn btn-warning pull-left" data-dismiss="modal" th:text="#{global.btn.cancel}">cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer" style="padding-right:16px;">
+			<div class="container pull-left">
+				<button type="button" id="saveBtn" class="btn btn-primary" th:disabled="${sampleMasterUserDptForm.list == null or sampleMasterUserDptForm.list.isEmpty()}">
+					<i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>
+					<span th:text="#{global.btn.save}">global.btn.save</span>&#160;
+					<span class="badge badge-error" th:if="${#fields.hasErrors('all')}" th:text="${#fields.detailedErrors().size()}">0</span>
+				</button>
+			</div>
+		</footer>
+		
+		<button type="submit" id='saveDummy' name="doSave" style="visibility:hidden;" ></button>
+		<input type="hidden" id="refId"/>
+		<input type="hidden" id="refName"/>
+	</form>
+<!--[if lt IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.6/js/bootstrap-dialog.min.js" th:src="@{/webjars/bootstrap-dialog/dist/js/bootstrap-dialog.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js" th:src="@{/webjars/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+	<script type="text/javascript">
+	/*<![CDATA[*/
+	
+		
+		$(document).ready(function() {
+			
+			<!--/* 商品選択...のハンドリング。(ボタンが選択された行の ID を保持しておく。 ) */-->
+			$('.dptBtn').click( function () {
+				$('#refId').val($(this).data('ref-id'));
+				$('#refName').val($(this).data('ref-name'));
+			});
+			<!--/* 保存ボタンのハンドリング。  */-->
+			$('#saveBtn').click(function(e) {
+				$('#saveDummy').click();
+			});
+		});
+	
+		// ダイアログの選択ボタンのイベントを実装
+		$('#btnChoice').on('click', function() {
+			// 子(iframe)から選択されている値を取得。
+			var idx = $('#dptIframe').contents().find('input[name=choice]:checked').val();
+			if (idx != undefined) {
+	
+				// 選択された行のコードと名称を取得(iframe 側)。
+				var code = $('#dptIframe').contents().find('input[id="code' + idx + '"]').val()
+				var name = $('#dptIframe').contents().find('input[id="name' + idx + '"]').val()
+	
+				// 呼び出し元のコントロールにそれぞれ設定(呼び出し元)。
+				$('input[id="' + $('#refId').val() + '"]').val(code);
+				$('input[id="' + $('#refName').val() + '"]').val(name);
+
+				$('#myModal').modal('hide'); // モーダル非表示。
+			} else {
+				// 何も選択されていない場合、選択してくださいの確認メッセージを表示する。
+				BootstrapDialog.show({
+					type: BootstrapDialog.TYPE_WARNING
+					,title: '<i class="glyphicon glyphicon-search" aria-hidden="true"></i>&#160;[[#{global.btn.dpt.choice}]]'
+					,message: '[[#{global.choice.confirm.message}]]'
+					,buttons: [{
+						label: '[[#{global.btn.confirm}]]'
+						,cssClass: 'btn-primary'
+						,action: function(dialog) {
+							dialog.close();
+						}
+					}]
+				});  
+				return;
+			}
+		});
+
+		// bootstrap-switch をクラスセレクタ単位で適用。
+		$.fn.bootstrapSwitch.defaults.onColor = 'info'; // ON 時の色変更。
+		$.fn.bootstrapSwitch.defaults.onText = "[[#{global.dpt.main}]]"; // ON テキスト変更
+		$.fn.bootstrapSwitch.defaults.offText = "[[#{global.dpt.sub}]]"; // OFF テキスト変更
+		$.fn.bootstrapSwitch.defaults.size = 'small';   // サイズ調整。
+		$('.bootstrapswitch').bootstrapSwitch();
+	/*]]>*/
+	</script>
+</body>
+</html>
+
+
+
+

@@ -75,8 +75,16 @@ public class Application extends SpringBootServletInitializer implements Command
 		
 		user = new UserBCrypt("test2","test2pass");
 		userMapper.insert(user);
+
 		
+		user = new UserBCrypt("test3","test3pass");
+		userMapper.insert(user);
 		
+		user = new UserBCrypt("test4","test4pass");
+		userMapper.insert(user);
+		
+		user = new UserBCrypt("test5","test5pass");
+		userMapper.insert(user);
 //		user = new UserBCrypt();
 //		user.setLoginUserId("testdata1");
 //		user.setPassword("testdata1pass");

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.template.form.SampleIframeDptForm;
 import jp.template.form.SampleIframeGoodsForm;
+import jp.template.mapper.DptMapper;
 import jp.template.mapper.GoodsMapper;
 import jp.template.utils.Pagination;
 
@@ -23,7 +25,10 @@ public class IframeController {
 
 	/** Goods DI*/
 	@Autowired
-	GoodsMapper goodsMapper;
+	private GoodsMapper goodsMapper;
+	
+	@Autowired
+	private DptMapper dptMapper;
 	
 	/**
 	 * goods 一覧ページ生成。
@@ -41,5 +46,23 @@ public class IframeController {
 		model.addAttribute("pagination", pagination);
 
 		return "/iframe/goods";
+	}
+
+	/**
+	 * dpt 一覧ページ生成。
+	 * 
+	 * @param page ページ番号
+	 * @param form {@link SampleIframeDptForm}
+	 * @param model {@link Model}
+	 * @return /resources/template/iframe/dpt.html
+	 */
+	@RequestMapping(value = "/dpt", method = RequestMethod.GET)
+	public String iframeGoods(@RequestParam(required = false) String page,SampleIframeDptForm form, Model model) {
+
+		Pagination pagination = new Pagination(StringUtils.isBlank(page) ? 1 : new Long(page), 5, dptMapper.count());
+		form.setList(dptMapper.pagingCurrent(pagination.getFirstPage(), pagination.getLastPage()));
+		model.addAttribute("pagination", pagination);
+
+		return "/iframe/dpt";
 	}
 }

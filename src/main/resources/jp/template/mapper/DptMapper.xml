@@ -54,4 +54,44 @@
 		WHERE rowno BETWEEN 1 AND 20
 	</select>
 
+	<select id="count" resultType="int">
+		SELECT count(cddpt)
+		FROM DPT
+	</select>
+
+	<select id="countByPrimaryKey" resultType="int">
+		SELECT count(cddpt)
+		FROM DPT
+		WHERE cddpt =  #{cddpt}
+	</select>
+	
+	
+	<select id="pagingCurrent" resultMap="BaseResultMap">
+		SELECT
+		  cddpt
+		 ,cdupperdpt
+		 ,nmdpt
+		 ,nmshortdpt
+		 ,showodr
+		 ,dtavlst
+		 ,dtavled
+		 ,dtupdate
+		 FROM
+		 (
+		  SELECT 
+		    ROWNUM() AS rowno
+		   ,cddpt
+		   ,cdupperdpt
+		   ,nmdpt
+		   ,nmshortdpt
+		   ,showodr
+		   ,dtavlst
+		   ,dtavled
+		   ,dtupdate
+		  FROM dpt
+		  ORDER BY showodr ASC
+		) 
+		WHERE rowno BETWEEN #{first} AND #{last}
+	</select>
+
 </mapper>

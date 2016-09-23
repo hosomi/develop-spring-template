@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.template.mapper.UserDptExtensionMapper">
+
+	<resultMap id="BaseResultMap" type="jp.template.domain.UserDptExtension"></resultMap>
+
+	<select id="selectUserAll" resultMap="BaseResultMap">
+		SELECT 
+		  user.loginuserid
+		 ,userdpt_dpt.cddpt
+		 ,userdpt_dpt.main
+		 ,userdpt_dpt.dtupdate
+		 ,userdpt_dpt.dtupdate as dtupdateDisplay
+		 ,userdpt_dpt.nmdpt
+		FROM
+		(
+		  SELECT loginUserId
+		  FROM user
+		) user 
+		LEFT OUTER JOIN 
+		(
+		  SELECT
+		    userdpt.loginuserid
+		   ,userdpt.cddpt
+		   ,userdpt.main
+		   ,userdpt.dtupdate
+		   ,dpt.nmdpt
+		  FROM (
+		    SELECT 
+		      loginuserid
+		     ,cddpt
+		     ,main
+		     ,dtupdate
+		    FROM userdpt
+		  ) userdpt
+		  LEFT OUTER JOIN
+		  (
+		    SELECT 
+		      cddpt
+		     ,nmdpt
+		    FROM dpt  
+		  ) dpt
+		  ON userdpt.cddpt = dpt.cddpt
+		) userdpt_dpt
+		ON user.loginuserid = userdpt_dpt.loginuserid
+		ORDER BY user.loginuserid ASC
+	</select>
+</mapper>
