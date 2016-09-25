@@ -9,14 +9,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
-	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css" th:href="@{/webjars/bootswatch/lumen/bootstrap.min.css}"/>
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" th:href="@{/webjars/font-awesome/css/font-awesome.css}"/>
 	<style>
 	<!--
 		* {
 			-webkit-box-sizing: border-box;
-			   -moz-box-sizing: border-box;
-					box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
 			outline: none;
 		}
 
@@ -24,7 +23,7 @@
 			margin: 50px auto;
 			max-width: 320px;
 		}
-	
+
 		.login-form > section {
 			text-align: center;
 			margin-top: 30px;
@@ -35,15 +34,15 @@
 		.login-form > section:first-child {
 			margin-bottom: 38px;
 		}
-	
+
 		.login-form .panel {
 			background: #fff !important;
 			border-radius: 0 !important;
 			-moz-border-radius: 0;
 			-webkit-border-radius: 0;
 			-webkit-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, 0.2) !important;
-			   -moz-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, 0.2) !important;
-					box-shadow: 0 3px 3px 0 rgba(50, 50, 50, 0.2) !important;
+			-moz-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, 0.2) !important;
+			box-shadow: 0 3px 3px 0 rgba(50, 50, 50, 0.2) !important;
 		}
 		
 		.login-form .panel .panel-body {
@@ -61,7 +60,7 @@
 		form[role=login] {
 			font: 13px/2.2em Lato, serif;
 			color: #999;
-		}   
+		}	
 		form[role=login] label {
 			font-size: 15px;
 			font-weight: normal;
@@ -82,11 +81,11 @@
 			border: 1px solid #ddd;
 			border-radius: 0;
 			-webkit-box-shadow: inset 0 2px 2px 0 rgba(150, 150, 150, .1);
-			   -moz-box-shadow: inset 0 2px 2px 0 rgba(150, 150, 150, .1);
-					box-shadow: inset 0 2px 2px 0 rgba(150, 150, 150, .1);
+			-moz-box-shadow: inset 0 2px 2px 0 rgba(150, 150, 150, .1);
+			box-shadow: inset 0 2px 2px 0 rgba(150, 150, 150, .1);
 		}
 		form[role=login] button {
-			padding: 5px 40px;  
+			padding: 5px 40px;	
 			margin-top: 25px;
 		}
 		body {background-color:#F7F5F1 !important;}
@@ -104,53 +103,69 @@
 
 </head>
 <body>
-
-<section class="container">
-		
-		<section class="login-form">
+<!--/* タイトルロゴなど表示エリア。
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header" style="margin:10px;">
 				
-			<div class="panel-body">
-
+			</div>
+		</div>
+	</nav>
+	&#160;
+*/-->
+	<section class="container">
+		<section class="login-form">
+			<!--/*<section><p style="margin:10px;">SpringBoot template</p></section>*/-->
 				<span th:unless="${param.info == null}">
 					<div th:switch="${param.info[0]}" class="alert alert-success">
 						<p th:case="'logout'" th:text="#{login.message.logout}">logout</p>
 					</div>
-				 </span>
+				</span>
 
 				<span th:unless="${param.warn == null}">
 					<div th:switch="${param.warn[0]}" class="alert alert-warning">
 						<p th:case="'timeout'" th:text="#{login.message.timeout}">timeout</p>
 					</div>
-				 </span>
+				</span>
 
 				<span th:unless="${param.error == null}">
 					<div th:switch="${param.error[0]}" class="alert alert-danger">
 						<p th:case="'authentication'" th:text="#{login.message.authentication}">authentication</p>
 						<p th:case="*" th:text="#{login.message.system.error}">system.error</p>
 					</div>
-				 </span>
-
-				<form id="main" method="post" class="form-horizontal" th:action="@{'/login/auth'}">
-					<div class="input-group input-sm">
-						<label class="input-group-addon" for="username">
-							<span class="glyphicon glyphicon-user icon-white" aria-hidden="true"></span>
-						</label>
-						<input type="text" class="form-control" id="username" name="username" th:placeholder="#{login.input.id.placeholder}" placeholder="login.input.id.placeholder" /> 
-					</div>
-					<div class="input-group input-sm">
-						<label class="input-group-addon" for="password">
-							<span class="glyphicon glyphicon-lock icon-white" aria-hidden="true"></span>
-						</label>
-						<input type="password" class="form-control" id="password" name="password"  th:placeholder="#{login.input.password.placeholder}" placeholder="login.input.password.placeholder" />
-					</div>
-					<div class="input-sm btn-block">
-						<button type="submit" id="login_button" class="btn btn-primary form-control"><i class="fa fa-sign-in"></i>&#160;<span th:text="#{login.btn.login}">login.btn.login</span></button>
-					</div>
-				</form>
+				</span>
+				<div class="panel panel-default">
+				<div class="panel-body">
+					<form id="main" method="post" class="form-horizontal" th:action="@{'/login/auth'}">
+						<div class="input-group input-sm">
+							<label class="input-group-addon" for="username">
+								<span class="glyphicon glyphicon-user icon-white" aria-hidden="true"></span>
+							</label>
+							<input type="text" class="form-control" id="username" name="username" th:placeholder="#{login.input.id.placeholder}" placeholder="login.input.id.placeholder" /> 	
+						</div>
+						<div class="input-group input-sm">
+							<label class="input-group-addon" for="password">
+								<span class="glyphicon glyphicon-lock icon-white" aria-hidden="true"></span>
+							</label>
+							<input type="password" class="form-control" id="password" name="password"  th:placeholder="#{login.input.password.placeholder}" placeholder="login.input.password.placeholder" />
+						</div>
+						<div class="input-sm btn-block">
+							<button type="submit" id="login_button" class="btn btn-primary form-control"><i class="fa fa-sign-in"></i>&#160;<span th:text="#{login.btn.login}">login.btn.login</span></button>
+						</div>
+					</form>
+				</div>
+				<div class="panel-footer">
+					<font style="color:#5C8ACE"><i class="fa fa-info-circle"></i></font><font style="font-size:11px;">&#160;version&#160;:&#160;0.001&#160;</font><br/>
+					<font style="color:#5C8ACE"><i class="fa fa-clock-o" aria-hidden="true"></i></font><font style="font-size:11px;">&#160;<span th:text="${#dates.format(#dates.createNow(), 'yyyy年MM月dd日 HH時mm分ss秒')}"></span></font><br/>
+				</div>
 			</div>
 		</section>
 	</section>
-
+<!--/* footer など表示。
+	<footer class="footer" style="height:22px;padding-right:16px;">
+		<div class="row text-center center-block" style="font-size: inherit;"></div>
+	</footer>
+*/-->
 <!--[if lt IE 9]><!-->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" th:src="@{/static/javascript/jquery-1.9.1.min.js}"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js" th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
@@ -162,10 +177,8 @@
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
-			
-			$("#login_id").focus();
+			$("#username").focus();
 		});
 	</script>
-
 </body>
 </html>
