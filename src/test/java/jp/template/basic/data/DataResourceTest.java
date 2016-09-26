@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  * @author hosomi.
  */
 @Component
-public class TestDataResource extends ExternalResource {
+public class DataResourceTest extends ExternalResource {
 
 	@Autowired
 	private DataSource dataSource;

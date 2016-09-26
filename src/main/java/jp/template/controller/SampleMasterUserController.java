@@ -110,7 +110,9 @@ public class SampleMasterUserController {
 			// 該当なし（0 件）のメッセージ。
 			model.addAttribute("warning_message", message.getMessage("jp.template.global.warning.retrieved.condition.notfound.message", null, locale));
 		}
-		
+
+		model.addAttribute("list", list); // UnitTest 用。
+
 		return "sample/master/user";
 	}
 	

@@ -8,7 +8,7 @@ import jp.template.security.LoginUser;
  * 
  * @author hosomi.
  */
-public class TestLoginUserData {
+public class LoginUserTestData {
 
 	/** 認証情報ダミー（実在していなくても可）*/
 	private static final UserBCrypt user = new UserBCrypt(

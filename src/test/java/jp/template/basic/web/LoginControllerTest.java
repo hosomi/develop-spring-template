@@ -38,8 +38,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import jp.template.Application;
-import jp.template.basic.data.TestDataResource;
-import jp.template.basic.data.TestLoginUserData;
+import jp.template.basic.data.DataResourceTest;
+import jp.template.basic.data.LoginUserTestData;
 
 /**
  * SpringSecurity のテスト。
@@ -49,13 +49,13 @@ import jp.template.basic.data.TestLoginUserData;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
-public class TestLoginController {
+public class LoginControllerTest {
 	@Autowired
 	private WebApplicationContext context;
 
 	@Rule
 	@Autowired
-	public TestDataResource testDataResource;
+	public DataResourceTest testDataResource;
 
 	@Autowired
 	private Filter springSecurityFilterChain;
@@ -133,8 +133,8 @@ public class TestLoginController {
 
 		// 認証済みとする。
 		SecurityContext securityContext;
-		Authentication authentication = new UsernamePasswordAuthenticationToken(TestLoginUserData.getLoginUserData(),
-		TestLoginUserData.getLoginUserData().getPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
+		Authentication authentication = new UsernamePasswordAuthenticationToken(LoginUserTestData.getLoginUserData(),
+		LoginUserTestData.getLoginUserData().getPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
 		securityContext = SecurityContextHolder.createEmptyContext();
 		securityContext.setAuthentication(authentication);
 		SecurityContextHolder.setContext(securityContext);
