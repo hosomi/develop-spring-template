@@ -116,24 +116,26 @@
 	<section class="container">
 		<section class="login-form">
 			<!--/*<section><p style="margin:10px;">SpringBoot template</p></section>*/-->
-				<span th:unless="${param.info == null}">
-					<div th:switch="${param.info[0]}" class="alert alert-success">
-						<p th:case="'logout'" th:text="#{login.message.logout}">logout</p>
-					</div>
-				</span>
 
-				<span th:unless="${param.warn == null}">
-					<div th:switch="${param.warn[0]}" class="alert alert-warning">
-						<p th:case="'timeout'" th:text="#{login.message.timeout}">timeout</p>
-					</div>
-				</span>
+				<div th:unless="${param.info == null}" class="alert alert-success">
+					<span th:switch="${param.info[0]}">
+						<span th:case="'logout'" th:text="#{login.message.logout}">logout</span>
+					</span>
+				</div>
 
-				<span th:unless="${param.error == null}">
-					<div th:switch="${param.error[0]}" class="alert alert-danger">
-						<p th:case="'authentication'" th:text="#{login.message.authentication}">authentication</p>
-						<p th:case="*" th:text="#{login.message.system.error}">system.error</p>
-					</div>
-				</span>
+				<div th:unless="${param.warn == null}" class="alert alert-warning">
+					<span th:switch="${param.warn[0]}">
+						<span th:case="'timeout'" th:text="#{login.message.timeout}">timeout</span>
+					</span>
+				</div>
+				
+				<div th:unless="${param.error == null}" class="alert alert-danger">
+					<span th:switch="${param.error[0]}">
+						<span th:case="'authentication'" th:text="#{login.message.authentication}">authentication</span>
+						<span th:case="*" th:text="#{login.message.system.error}">system.error</span>
+					</span>
+				</div>
+
 				<div class="panel panel-default">
 				<div class="panel-body">
 					<form id="main" method="post" class="form-horizontal" th:action="@{'/login/auth'}">
