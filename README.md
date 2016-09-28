@@ -14,6 +14,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 * 共通のログ出力処理（操作ログ、システムエラーログ、SQL（trace,debug））
 * テストコードサンプル
   * SpringSecurity
+  * コントローラに対するテスト
 * コントロールサンプル
   * DateTimePicker : 日付選択（日付のみ、時刻のみ、両方）
   * typeahead : サジェスト機能のようなもの
@@ -32,7 +33,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 # 依存関係  
 
-## Core(Spring Boot 1.4.0.RELEASE):
+## Core(Spring Boot 1.4.1.RELEASE):
 
 | 対象        | 内容  |
 | ------------- | :----- |
@@ -50,7 +51,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | 対象        | 内容  |
 | ------------- | :----- |
 | ext['thymeleaf.version'] = '3.0.1.RELEASE' | Thymeleaf version 3 を利用する設定、Spring Boot 1.4.0.RELEASE のデフォルトは version2 がデフォルト |
-| ext['thymeleaf-layout-dialect.version'] = '2.0.0' | Thymeleaf version 3 からは dialect の指定が必要。 |
+| ext['thymeleaf-layout-dialect.version'] = '2.0.3' | Thymeleaf version 3 からは dialect の指定が必要。 |
 
 ## Webjars:
 
@@ -115,7 +116,8 @@ https://springboottemplate.herokuapp.com/
 ※ push 時に自動ビルドされますので、タイミング次第では利用できません。   
 Heroku 無料プラン(Free dyno) を利用していますので、Sleep している場合があります、
 Application Error が表示された場合、再度アクセスしてください。しばらくすると Sleep が解除され利用できるようになります。  
-また 24 時間の内、6 時間は Sleep 状態にしなければならないという制限もありますのでその際はどうしようもないです。  
+また 24 時間の内、6 時間は Sleep 状態にしなければならないという制限もありますのでその際はどうしようもないです。    
+https://blog.heroku.com/new-dyno-types-public-beta#hobby-and-free-dynos
 
 ## CI サービス
 無料でどこまで利用できるか検証用に利用しています。  

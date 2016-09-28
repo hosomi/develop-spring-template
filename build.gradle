@@ -10,7 +10,7 @@
 
 buildscript {
 	ext {
-		springBootVersion = '1.4.0.RELEASE'
+		springBootVersion = '1.4.1.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -52,7 +52,7 @@ configurations {
 
 // thymeleaf 3 以降を利用する場合の定義
 ext['thymeleaf.version'] = '3.0.1.RELEASE'
-ext['thymeleaf-layout-dialect.version'] = '2.0.0'
+ext['thymeleaf-layout-dialect.version'] = '2.0.3'
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '3.0'
