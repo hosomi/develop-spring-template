@@ -15,3 +15,6 @@ script:
 notifications:
   on_failure: change # always|never
 on_success: never
+addons:
+  code_climate:
+    repo_token: 1a05a7a9e3d915935b310b4cddbb4d9b9182b450e05dae3c5cf373f21f0da87b
