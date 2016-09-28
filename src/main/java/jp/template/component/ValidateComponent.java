@@ -36,6 +36,7 @@ public class ValidateComponent {
 	 */
 	public ValidateComponent() {
 		// DI 用デフォルトコンストラクタ。
+		this.objectName = "form";
 	}
 	
 	/**
