@@ -5,6 +5,7 @@ Spring Boot + Gradle template
 [![build status](https://circleci.com/gh/hosomi/develop-spring-template.svg?style=shield&circle-token=9a9efeb27aabd4d1173951957f233d05f246d6c0)](https://circleci.com/gh/hosomi/develop-spring-template)
 [![wercker status](https://app.wercker.com/status/46670404016ddfb8110dd3023bed1473/s/master "wercker status")](https://app.wercker.com/project/byKey/46670404016ddfb8110dd3023bed1473)
 ![Heroku](http://heroku-badge.herokuapp.com/?app=angularjs-crypto&style=flat)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/01cdd8027340415da850355603fea894)](https://www.codacy.com/app/kiyotake-hosomi/develop-spring-template?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hosomi/develop-spring-template&amp;utm_campaign=Badge_Grade)
 
 Spring Boot , Gradle で開発する際のテンプレートです。  
 
