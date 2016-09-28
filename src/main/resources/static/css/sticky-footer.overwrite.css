@@ -1,9 +1,9 @@
 .footer {
-	position: fixed !important;
+	position: fixed ;
 	border: 1px solid #ccc;
 	z-index: 4;
 }
 
 .container {
-	padding:  13px 15px !important;
+	padding:  13px 15px ;
 }

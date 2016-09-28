@@ -101,12 +101,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	AuthenticationEntryPoint authenticationEntryPoint() {
+	protected AuthenticationEntryPoint authenticationEntryPoint() {
 		return new SessionExpiredDetectingLoginUrlAuthenticationEntryPoint("/login");
 	}
 	
 	@Bean
-	AccessDeniedHandler accessDeniedHandler() {
+	protected AccessDeniedHandler accessDeniedHandler() {
 		return new AccessDeniedHandler() {
 			@Override
 			public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
