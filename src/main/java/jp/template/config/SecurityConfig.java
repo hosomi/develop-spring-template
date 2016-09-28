@@ -131,7 +131,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
 		@Autowired
-		UserDetailsServiceImpl userDetailsService;
+		private UserDetailsServiceImpl userDetailsService;
 
 		@Override
 		public void init(AuthenticationManagerBuilder auth) throws Exception {
