@@ -29,7 +29,7 @@ import jp.template.mapper.CompanyMapper;
 public class SampleMasterCompanyController {
 
 	@Autowired
-	CompanyMapper companyMapper;
+	private CompanyMapper companyMapper;
 
 	/**
 	 * マスタサンプルオープン時のイベント処理。

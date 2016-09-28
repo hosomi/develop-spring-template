@@ -43,11 +43,11 @@ public class SampleController {
 
 	/** Goods DI*/
 	@Autowired
-	GoodsMapper goodsMapper;
+	private GoodsMapper goodsMapper;
 
 	/** Dpt DI*/
 	@Autowired
-	DptMapper dptMapper;
+	private DptMapper dptMapper;
 	
 	/**
 	 * コントロールサンプル（DateTimePicker）。

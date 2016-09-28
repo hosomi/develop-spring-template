@@ -24,7 +24,7 @@ import jp.template.security.LoginUser;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	UserMapper userMapper;
+	private UserMapper userMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String login_id) throws UsernameNotFoundException {

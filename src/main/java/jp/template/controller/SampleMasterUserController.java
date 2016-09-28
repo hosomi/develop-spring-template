@@ -50,11 +50,11 @@ public class SampleMasterUserController {
 	private MessageSource message;
 	
 	@Autowired
-	UserMapper userMapper;
+	private UserMapper userMapper;
 
 	/** 入力検証コンポーネント*/
 	@Autowired
-	ValidateComponent validate;
+	private ValidateComponent validate;
 	
 	
 	/**

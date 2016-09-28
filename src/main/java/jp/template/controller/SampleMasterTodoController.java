@@ -30,7 +30,7 @@ public class SampleMasterTodoController {
 	private static Logger logger = LogManager.getLogger();
 
 	@Autowired
-	TodoMapper todoMapper;
+	private TodoMapper todoMapper;
 
 	/**
 	 * マスタサンプルオープン時のイベント処理。
