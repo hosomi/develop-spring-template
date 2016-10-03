@@ -32,3 +32,9 @@ dependencies:
 test:  
   override:
     - ./gradlew --full-stacktrace check
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: springboottemplate
