@@ -27,6 +27,7 @@ import jp.template.mapper.DptMapper;
 import jp.template.mapper.UserDptExtensionMapper;
 import jp.template.mapper.UserDptMapper;
 import jp.template.security.LoginUser;
+import jp.template.utils.pattern.StatusUtil;
 
 /**
  * ユーザ・所属(UserDpt)マスタサンプル。
@@ -144,6 +145,9 @@ public class SampleMasterUserDptController {
 	private void customValidate(SampleMasterUserDptForm form,BindingResult result, Locale locale) {
 
 		validate.setDefault(result, message, locale);
+/*
+ 	JDK 1.8 以前。 iterator で繰り返し処理。
+  
 		int i = 0;
 		for (UserDptExtension entity : form.getList()) {
 			if (StringUtils.isNotBlank(entity.getCddpt())) {
@@ -161,5 +165,26 @@ public class SampleMasterUserDptController {
 			}
 			i++;
 		}
+		
+		
+*/
+		// JDK 1.8 インタフェースConsumer<T> の利用。
+		new StatusUtil().forEach(
+			form.getList(), entity -> {
+				if (StringUtils.isNotBlank(entity.getCurrent().getCddpt())) {
+					Dpt dpt = new Dpt();
+					dpt.setCddpt(entity.getCurrent().getCddpt());
+					if (dptMapper.countByPrimaryKey(dpt) == 0) {
+						validate.addFieldError(
+							String.format("list[%d].cddpt", entity.getIndex())
+							,dpt.getCddpt() // エラーフィールドの値（基本はそのまま返す）
+							,"jp.template.validator.dpt.code.notfound.message" // エラーメッセージ
+							,new Object[]{dpt.getCddpt()} // エラーメッセージに対応するメッセージの引数。
+						);
+					}
+				}
+			}
+		);
 	}
+	
 }
