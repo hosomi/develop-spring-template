@@ -7,7 +7,7 @@ import java.util.function.Consumer;
  * JSTL の varStatus のような実装。 
  * 
  * Jdk1.8 関数型インタフェースの利用。
- * @see <a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/function/Consumer.html">インタフェースConsumer<T></a>
+ * @see <a href="https://docs.oracle.com/javase/jp/8/docs/api/java/util/function/Consumer.html">インタフェースConsumer </a>
  * 
  * @author hosomi.
  */
@@ -65,6 +65,7 @@ public class StatusUtil {
 	 * 
 	 * @param itr List,配列などの要素
 	 * @param action ループ中に処理する具体的な処理
+	 * @param <T> ループの中のオブジェクトを示す ジェネリクス型。
 	 */
 	public <T> void forEach(Iterable<T> itr, Consumer<Status<T>> action) {
 		Status<T> sts = new Status<T>();
