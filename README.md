@@ -115,9 +115,8 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 https://springboottemplate.herokuapp.com/  
 ※ push 時に自動ビルドされますので、タイミング次第では利用できません。   
-Heroku 無料プラン(Free dyno) を利用していますので、Sleep している場合があります、
-Application Error が表示された場合、再度アクセスしてください。しばらくすると Sleep が解除され利用できるようになります。  
-また 24 時間の内、6 時間は Sleep 状態にしなければならないという制限もありますのでその際はどうしようもないです。    
+Heroku 無料プラン(Free dyno) を利用しています。
+（24 時間の内、6 時間は Sleep 状態にしなければならないという制限があります。）
 https://blog.heroku.com/new-dyno-types-public-beta#hobby-and-free-dynos
 
 ## CI サービス
