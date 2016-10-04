@@ -120,7 +120,7 @@ dependencies {
 	// ---------------------------
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	// https://mvnrepository.com/artifact/com.github.jsimone/webapp-runner
-	compile group: 'com.github.jsimone', name: 'webapp-runner', version: '8.0.33.2'
+	compile group: 'com.github.jsimone', name: 'webapp-runner', version: '8.5.5.0'
 	compile('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
@@ -142,7 +142,6 @@ dependencyUpdates.resolutionStrategy = {
 		}
 	}
 }
-
 
 javadoc {
 	options.charSet = 'UTF-8'
