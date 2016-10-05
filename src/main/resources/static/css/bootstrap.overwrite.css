@@ -8,14 +8,14 @@
 .thead-inverse th{color:#fff;background-color:#373a3c}
 .thead-default th{color:#55595c;background-color:#eceeef}
 
-/*バッジの色調整（<button タグ配下のバッジの場合、ボタンのスタイルが優先されるため、!important を指定）*/
+/*バッジの色調整 ボタンの要素の中の定義には利用できません。*/
 .badge {
 	padding: 1px 9px 2px;
 	font-size: 12.025px;
 	font-weight: bold;
 	white-space: nowrap;
-	color: #ffffff !important;
-	background-color: #999999 !important;
+	color: #ffffff;
+	background-color: #999999;
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
 	border-radius: 9px;
@@ -26,43 +26,43 @@
 	cursor: pointer;
 }
 .badge-error {
-	background-color: #b94a48 !important;
+	background-color: #b94a48;
 }
 
 .badge-error:hover {
-	background-color: #953b39 !important;
+	background-color: #953b39;
 }
 
 .badge-warning {
-	background-color: #f89406 !important;
+	background-color: #f89406;
 }
 
 .badge-warning:hover {
-	background-color: #c67605 !important;
+	background-color: #c67605;
 }
 
 .badge-success {
-	background-color: #468847 !important;
+	background-color: #468847;
 }
 
 .badge-success:hover {
-	background-color: #356635 !important;
+	background-color: #356635;
 }
 
 .badge-info {
-	background-color: #3a87ad !important;
+	background-color: #3a87ad;
 }
 
 .badge-info:hover {
-	background-color: #2d6987 !important;
+	background-color: #2d6987;
 }
 
 .badge-inverse {
-	background-color: #333333 !important;
+	background-color: #333333;
 }
 
 .badge-inverse:hover {
-	background-color: #1a1a1a !important;
+	background-color: #1a1a1a;
 }
 
 
@@ -77,4 +77,26 @@
 	color: #666;
 	background-color: #e6edeb;
 	border-color: #cdeac7;
+}
+
+
+/*バッジ、要素の右上に表示。*/
+.badge-custom-error {
+	position:relative;
+}
+
+/*data-badge属性の数値がバッジとして表示します。*/
+.badge-custom-error[data-badge]:after {
+	content:attr(data-badge);
+	position:absolute;
+	top:-10px;
+	right:-10px;
+	font-size:.9em;
+	background:#f00;
+	color:white;
+	width:20px;height:20px;
+	text-align:center;
+	line-height:18px;
+	border-radius:50%;
+	box-shadow:0 0 1px #333;
 }

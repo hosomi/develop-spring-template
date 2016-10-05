@@ -235,10 +235,9 @@
 		</div>
 		<footer class="footer" style="padding-right:16px;">
 			<div class="container pull-left">
-				<button type="button" id="saveBtn" class="btn btn-primary" th:disabled="${sampleMasterUserDptForm.list == null or sampleMasterUserDptForm.list.isEmpty()}">
+				<button type="button" id="saveBtn" class="btn btn-primary" th:disabled="${sampleMasterUserDptForm.list == null or sampleMasterUserDptForm.list.isEmpty()}" th:classappend="${#fields.hasErrors('all')} ? 'badge-custom-error'" th:attr="data-badge=${#fields.detailedErrors().size()}">
 					<i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>
 					<span th:text="#{global.btn.save}">global.btn.save</span>&#160;
-					<span class="badge badge-error" th:if="${#fields.hasErrors('all')}" th:text="${#fields.detailedErrors().size()}">0</span>
 				</button>
 			</div>
 		</footer>
