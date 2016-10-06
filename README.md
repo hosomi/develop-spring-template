@@ -76,8 +76,8 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 | 対象          | 内容  |
 | ---------- -- | ----- |
-| org.springframework.boot:spring-boot-starter-web-services | org.springframework.boot:spring-boot-starter-ws は springboot 1.4 以降 では 非推奨|
-| wsdl4j:wsdl4j:1.6.3 | WSDL 定義、解析 |
+| org.springframework.boot:spring-boot-starter-web-services |  org.springframework.boot:spring-boot-starter-ws は springboot 1.4 以降 では 非推奨 |  
+| wsdl4j:wsdl4j:1.6.3 | WSDL 定義、解析 |  
 | com.sun.xml.bind:jaxb-xjc:2.2.11 |   |   
 
 
