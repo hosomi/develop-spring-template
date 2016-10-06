@@ -72,6 +72,14 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.webjars.npm:bootstrap-dialog:1.34.6 | http://nakupanda.github.io/bootstrap3-dialog/ JavaScript のみで生成可能なダイアログ|
 | compile('org.webjars:Bootstrap-3-Typeahead:3.1.1') | https://github.com/bassjobsen/Bootstrap-3-Typeahead bootstrap-tagsinput で利用、 typeahed org.webjars:typeaheadjs:0.11.1 と共存可能 |
 
+## SOAP 関連
+
+| 対象          | 内容  |
+| ---------- -- | ----- |
+| org.springframework.boot:spring-boot-starter-web-services | org.springframework.boot:spring-boot-starter-ws は springboot 1.4 以降 では 非推奨|
+| wsdl4j:wsdl4j:1.6.3 | WSDL 定義、解析 |
+| com.sun.xml.bind:jaxb-xjc:2.2.11 |   |   
+
 
 *1 jQuery を必要とするモジュールが 3 系 に対応していないものが多く、2 系にした。  
 *2 org.webjars:Eonasdan-bootstrap-datetimepicker の依存関係として moment.js の webjars がダウンロードされます。（バージョン指定が必要な場合は、定義が必要です。）
