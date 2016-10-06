@@ -33,6 +33,16 @@ apply plugin: 'spring-boot' // bootRun タスク追加。
 apply plugin: 'war'         // war タスク追加。
 apply plugin: 'com.github.ben-manes.versions' // dependencyUpdates タスク追加。
 
+war {
+    baseName = 'template'
+    version =  ''
+}
+
+jar {
+	baseName = 'template'
+	version = ''
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -43,17 +53,6 @@ repositories {
 configurations {
 	compile.exclude group:'ch.qos.logback' // log4j2 の場合、logback をコンパイル対象から外す
 	providedRuntime
-	jaxb
-}
-
-war {
-	baseName = 'template'
-	version =  ''
-}
-
-jar {
-	baseName = 'template'
-	version = ''
 }
 
 // thymeleaf 3 以降を利用する場合の定義
@@ -70,46 +69,10 @@ task wrapper(type: Wrapper) {
  * webapp-runner*.jar を build/libs にコピー
  */
 task copyToLib(type: Copy) {
-	into "$buildDir/libs/"
-	from(configurations.compile) {
-		include "webapp-runner*"
-	}
-}
-
-task genJaxb {
-	ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
-	ext.classesDir = "${buildDir}/classes/jaxb"
-	ext.schema = "src/main/resources/countries.xsd"
-
-	outputs.dir classesDir
-
-	doLast() {
-		project.ant {
-			taskdef name: "xjc", classname: "com.sun.tools.xjc.XJCTask",
-			classpath: configurations.jaxb.asPath
-			mkdir(dir: sourcesDir)
-			mkdir(dir: classesDir)
-
-			xjc(destdir: sourcesDir, schema: schema) {
-				arg(value: "-wsdl")
-				produces(dir: sourcesDir, includes: "**/*.java")
-			}
-
-			javac(destdir: classesDir, source: 1.6, target: 1.6, debug: true,
-			debugLevel: "lines,vars,source",
-			classpath: configurations.jaxb.asPath) {
-				src(path: sourcesDir)
-				include(name: "**/*.java")
-				include(name: "*.java")
-			}
-
-			copy(todir: classesDir) {
-				fileset(dir: sourcesDir, erroronmissingdir: false) {
-					exclude(name: "**/*.java")
-				}
-			}
-		}
-	}
+  into "$buildDir/libs/"
+  from(configurations.compile) {
+    include "webapp-runner*"
+  }
 }
 
 // war タスク時に copyToLib タスクを先に起動させる。
@@ -162,14 +125,6 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 	testCompile('org.dbunit:dbunit:2.5.3')
-
-	// ---------------------------
-	// SOAP
-	// ---------------------------
-	compile("org.springframework.boot:spring-boot-starter-web-services")
-	compile("wsdl4j:wsdl4j:1.6.3")
-	jaxb("com.sun.xml.bind:jaxb-xjc:2.2.11")
-	compile(files(genJaxb.classesDir).builtBy(genJaxb))
 }
 
 dependencyUpdates.resolutionStrategy = {
