@@ -88,8 +88,26 @@ http://www.webjars.org/
 | webapp-runner | 8.5.5.0 | ランチャーアプリケーション Heroku で war を起動させるために利用 |
 | com.h2database:h2 | ※1 | H2 Database ランタイム |
 | org.springframework.boot:spring-boot-starter-test | ※1  | SpringBoot test |
-| org.springframework.security:spring-security-test | ※1  | SpringBootSecurity |
+| org.springframework.security:spring-security-test | ※1  | SpringBoot Security |
 | org.dbunit:dbunit | 2.5.3 | DB Test |
+
+## SOAP:
+| 対象                              | バージョン  | 内容または URL                                |
+| --------------------------------- | --------- |:------------------------------------------- |
+| org.springframework.boot:spring-boot-starter-web-services | ※1  | SpringBoot SOAP |
+| wsdl4j | 1.6.3  | WSDL |
+
+### SOAP client （Curl example）:
+
+```shell
+curl --header "content-type: text/xml" -d @src/test/resources/ws/requestUser.xml http://localhost:8080/ws/user
+```
+
+or (Heroku)
+
+```shell
+curl --header "content-type: text/xml" -d @src/test/resources/ws/requestUser.xml http://springboottemplate.herokuapp.com/ws/user
+```
 
 ## CDN
 
