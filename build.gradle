@@ -125,6 +125,12 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 	testCompile('org.dbunit:dbunit:2.5.3')
+
+	// ---------------------------
+	// SOAP
+	// ---------------------------
+	compile("org.springframework.boot:spring-boot-starter-web-services")
+	compile("wsdl4j:wsdl4j:1.6.3")
 }
 
 dependencyUpdates.resolutionStrategy = {

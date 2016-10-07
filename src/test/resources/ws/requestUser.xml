@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://github.com/hosomi/develop-spring-template">
+<soapenv:Header/>
+    <soapenv:Body>
+        <gs:getUserRequest>
+            <loginUserId>test</loginUserId>>
+        </gs:getUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				"/css/**", 
 				"/javascript/**", 
 				"/webjars/**",
+				"/ws/**",
 				"/console/**"); // H2 のコンソール。
 	}
 
