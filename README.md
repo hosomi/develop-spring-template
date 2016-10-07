@@ -36,16 +36,42 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 ## Core(Spring Boot 1.4.1.RELEASE):
 
-| 対象        | 内容  |
-| ------------- | :----- |
-| org.springframework.boot:spring-boot-starter-data-jpa | JPA |
-| org.springframework.boot:spring-boot-starter-security | Spring Security |
-| org.springframework.boot:spring-boot-starter-web | Spring MVC |
-| org.springframework.boot:spring-boot-starter-thymeleaf | Template engine Thymeleaf3|
-| org.springframework.boot:spring-boot-starter-log4j2 | log4j2 |
-| org.thymeleaf.extras:thymeleaf-extras-springsecurity4 | Template engine Spring Security 拡張 |
-| org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.2.RELEASE | Template engine IE Conditional comments 拡張 |
-| org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1 | ORM、MyBatis |
+| 対象                                                      | バージョン          | 内容  |
+| --------------------------------------------------------- | ----------------- |:------------------------------------------- |
+| org.springframework.boot:spring-boot-starter-data-jpa     | ※1               | JPA                                          |  
+| org.springframework.boot:spring-boot-starter-security     | ※1               | Spring Security                              |  
+| org.springframework.boot:spring-boot-starter-web          | ※1               | Spring MVC                                   |  
+| org.springframework.boot:spring-boot-starter-thymeleaf    | 3.0.1.RELEASE    | Template engine                              |  
+| org.springframework.boot:spring-boot-starter-log4j2       | ※1               | Logging                                      |  
+| org.thymeleaf.extras:thymeleaf-extras-springsecurity4     | ※1               | Template engine Spring Security 拡張         |  
+| org.thymeleaf.extras:thymeleaf-extras-conditionalcomments | 2.1.2.RELEASE    | Template engine IE Conditional comments 拡張 |  
+| org.mybatis.spring.boot:mybatis-spring-boot-starter       | 1.1.1            | Spring Boot <-> ORM                          |  
+
+※1 Core のバージョンに依存。
+
+## Webjars:
+
+http://www.webjars.org/  
+（※非力な PC だと表示に時間がかかるので注意）  
+
+| 対象                              | バージョン  | 内容または URL                                |
+| --------------------------------- | --------- |:------------------------------------------- |
+| webjars-locator                   | 0.32      | WebJar バージョン番号管理（隠蔽で利用）  |
+| jquery                            | 2.2.4     | jQuery 2.2.4 (※2) |
+| bootstrap                         | 3.3.6     | Bootstrap 3.3.6 |
+| html5shiv                         | 3.7.3     | Bootstrap の IE8 対応用 (HTML5) ※後々削除予定 |
+| respond.js                        | 1.4.2     | Bootstrap の IE8 対応用(レスポンシブ) ※後々削除予定 |
+| font-awesome                      | 4.6.3     | Font Awesome |
+| Eonasdan-bootstrap-datetimepicker | 4.17.37-1 | bootstrap-DateTimePicker(Bootstrap,jQuery, moment.js(※3) 必須) |
+| sticky-footer                     | 0.1.4     | フッター表示 |
+| bootswatch                        | 3.3.6     | Bootstrap のテーマ拡張(Lumen を適用) bootswatch 3.3.7 は依存性に問題が発生 |
+| typeaheadjs                       | 0.11.1    | https://twitter.github.io/typeahead.js/  |
+| hoganjs                           | 3.0.2     | http://twitter.github.io/hogan.js/ typeahead 内部で html テンプレートエンジンとして利用。 |
+| bootstrap-dialog                  | 1.34.6    | http://nakupanda.github.io/bootstrap3-dialog/ JavaScript のみで生成可能なダイアログ |
+| Bootstrap-3-Typeahead             | 3.1.1     | https://github.com/bassjobsen/Bootstrap-3-Typeahead bootstrap-tagsinput で利用、 typeaheadjs と共存可能 |
+
+※2 jQuery を必要とするモジュールが 3 系 に対応していないものが多くフロント全般に影響する為、 2 系にした。  
+※3 Eonasdan-bootstrap-datetimepicker の依存関係として moment.js の webjars がダウンロードされます。（バージョン指定が必要な場合は、個別に定義が必要です。）  
 
 ## ext:
 
@@ -54,37 +80,22 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | ext['thymeleaf.version'] = '3.0.1.RELEASE' | Thymeleaf version 3 を利用する設定、Spring Boot 1.4.0.RELEASE のデフォルトは version2 がデフォルト |
 | ext['thymeleaf-layout-dialect.version'] = '2.0.3' | Thymeleaf version 3 からは dialect の指定が必要。 |
 
-## Webjars:
-
-| 対象        | 内容  |
-| ------------- | :----- |
-| org.webjars:webjars-locator:0.32 | WebJar バージョン番号管理 |
-| org.webjars:jquery:2.2.4 | jQuery 2.2.4 (*1) |
-| org.webjars:bootstrap:3.3.6 | Bootstrap 3.3.6 |
-| org.webjars:html5shiv:3.7.3 | Bootstrap の IE8 対応用 (HTML5) |
-| org.webjars.npm:respond.js:1.4.2 | Bootstrap の IE8 対応用(レスポンシブ) |
-| org.webjars:font-awesome:4.6.3 | Web アイコンフォン(Font Awesome) |
-| org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1 | bootstrap-DateTimePicker(Bootstrap,jQuery, moment.js(*2) 必須) |
-| org.webjars.bower:sticky-footer:0.1.4 | フッター表示 |
-| org.webjars.npm:bootswatch:3.3.6 | Bootstrap のテーマ拡張(Lumen を適用) org.webjars.bower:bootswatch:3.3.7 は依存性に問題が発生 |
-| org.webjars:typeaheadjs:0.11.1 | https://twitter.github.io/typeahead.js/|
-| org.webjars:hoganjs:3.0.2 | http://twitter.github.io/hogan.js/ typeahead 内部で html テンプレートエンジンとして利用。|
-| org.webjars.npm:bootstrap-dialog:1.34.6 | http://nakupanda.github.io/bootstrap3-dialog/ JavaScript のみで生成可能なダイアログ|
-| compile('org.webjars:Bootstrap-3-Typeahead:3.1.1') | https://github.com/bassjobsen/Bootstrap-3-Typeahead bootstrap-tagsinput で利用、 typeahed org.webjars:typeaheadjs:0.11.1 と共存可能 |
-
-*1 jQuery を必要とするモジュールが 3 系 に対応していないものが多く、2 系にした。  
-*2 org.webjars:Eonasdan-bootstrap-datetimepicker の依存関係として moment.js の webjars がダウンロードされます。（バージョン指定が必要な場合は、定義が必要です。）
-
 ## etc:
 
-| 対象        | 内容  |
-| ------------- | :----- |
-| org.springframework.boot:spring-boot-starter-tomcat | Tomcat ランタイム |
-| webapp-runner | ランチャーアプリケーション Heroku で war を起動させるために利用 |
-| com.h2database:h2| H2 Database ランタイム |
-| org.springframework.boot:spring-boot-starter-test | SpringBoot test |
-| org.springframework.security:spring-security-test | SpringBootSecurity |
-| org.dbunit:dbunit:2.5.3 | DB Test |
+| 対象                              | バージョン  | 内容または URL                                |
+| --------------------------------- | --------- |:------------------------------------------- |
+| org.springframework.boot:spring-boot-starter-tomcat | ※1  | Tomcat ランタイム |
+| webapp-runner | 8.5.5.0 | ランチャーアプリケーション Heroku で war を起動させるために利用 |
+| com.h2database:h2 | ※1 | H2 Database ランタイム |
+| org.springframework.boot:spring-boot-starter-test | ※1  | SpringBoot test |
+| org.springframework.security:spring-security-test | ※1  | SpringBootSecurity |
+| org.dbunit:dbunit | 2.5.3 | DB Test |
+
+## CDN
+
+http://www.jsdelivr.com  
+Thymeleaf の ローカル（AP 経由しない）での表示の際で WebJars と同じバージョンを調査する場合に利用。
+
 
 # 動作環境
 
