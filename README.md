@@ -97,16 +97,16 @@ http://www.webjars.org/
 | org.springframework.boot:spring-boot-starter-web-services | ※1  | SpringBoot SOAP |
 | wsdl4j | 1.6.3  | WSDL |
 
-### SOAP client （Curl example）:
+### SOAP client （cURL example）:
 
 ```shell
-curl --header "content-type: text/xml" -d @src/test/resources/ws/requestUser.xml http://localhost:8080/ws/user
+curl --header "content-type: text/xml" -d @src/test/resources/ws/requestDpt.xml http://localhost:8080/ws/dpt
 ```
 
 or (Heroku)
 
 ```shell
-curl --header "content-type: text/xml" -d @src/test/resources/ws/requestUser.xml http://springboottemplate.herokuapp.com/ws/user
+curl --header "content-type: text/xml" -d @src/test/resources/ws/requestDpt.xml http://springboottemplate.herokuapp.com/ws/dpt
 ```
 
 ## CDN

@@ -2,8 +2,8 @@
                   xmlns:gs="http://github.com/hosomi/develop-spring-template">
 <soapenv:Header/>
     <soapenv:Body>
-        <gs:getUserRequest>
-            <loginUserId>test</loginUserId>>
-        </gs:getUserRequest>
+        <gs:getDptRequest>
+            <cddpt>1000</cddpt>
+        </gs:getDptRequest>
     </soapenv:Body>
 </soapenv:Envelope>

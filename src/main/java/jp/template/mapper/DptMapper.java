@@ -31,6 +31,15 @@ public interface DptMapper {
 	List<Dpt> selectListTypeAhead(@Param("keyword") String keyword);
 
 	/**
+	 * 部門コードから一件を取得。
+	 * 
+	 * @param cddpt 部門コード。
+	 * @return cddpt に一致する部門
+	 */
+	Dpt selectByCddpt(@Param("cddpt") String cddpt);
+
+	
+	/**
 	 * 全体の件数を取得する。
 	 * 
 	 * @return 全体の件数。

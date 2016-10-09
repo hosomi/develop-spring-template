@@ -3,26 +3,27 @@
 	targetNamespace="http://github.com/hosomi/develop-spring-template"
 	elementFormDefault="qualified">
 
-	<xs:element name="getUserRequest">
+	<xs:element name="getDptRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="loginUserId" type="xs:string" />
+				<xs:element name="cddpt" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="getUserResponse">
+	<xs:element name="getDptResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="user" type="tns:user" />
+				<xs:element name="dpt" type="tns:dpt" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="user">
+	<xs:complexType name="dpt">
 		<xs:sequence>
-			<xs:element name="loginUserId" type="xs:string" />
-			<xs:element name="screenname" type="xs:string" />
+			<xs:element name="cddpt" type="xs:string" />
+			<xs:element name="nmdpt" type="xs:string" />
+			<xs:element name="nmshortdpt" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 

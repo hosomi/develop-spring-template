@@ -21,6 +21,22 @@
 		ORDER BY showodr asc nulls last
 	</select>
 
+	<select id="selectByCddpt" resultMap="BaseResultMap" parameterType="String">
+		SELECT 
+		  cddpt
+		 ,cdupperdpt
+		 ,nmdpt
+		 ,nmshortdpt
+		 ,showodr
+		 ,dtavlst
+		 ,dtavled
+		 ,dtupdate 
+		FROM DPT
+		WHERE cddpt = #{cddpt}
+	</select>
+
+
+
 	<select id="selectListTypeAhead" resultMap="BaseResultMap" parameterType="String">
 		SELECT 
 		  rowno		 
