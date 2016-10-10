@@ -131,6 +131,12 @@ dependencies {
 	// ---------------------------
 	compile("org.springframework.boot:spring-boot-starter-web-services")
 	compile("wsdl4j:wsdl4j:1.6.3")
+	
+	// ---------------------------
+	// REST
+	// ---------------------------
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.8.3'
 }
 
 dependencyUpdates.resolutionStrategy = {

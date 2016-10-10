@@ -109,6 +109,23 @@ or (Heroku)
 curl --header "content-type: text/xml" -d @src/test/resources/ws/requestDpt.xml http://springboottemplate.herokuapp.com/ws/dpt
 ```
 
+## REST:
+| 対象                              | バージョン  | 内容または URL                                |
+| --------------------------------- | --------- |:------------------------------------------- |
+| jackson-dataformat-xml | 2.8.3  | XML |
+
+### JSON:
+
+http://localhost:8080/rest/dpt/json/1000  
+or (Heroku)  
+http://springboottemplate.herokuapp.com/rest/dpt/json/1000
+
+### XML:
+
+http://localhost:8080/rest/dpt/xml/1000  
+or (Heroku)  
+http://springboottemplate.herokuapp.com/rest/dpt/xml/1000
+
 ## CDN
 
 http://www.jsdelivr.com  
