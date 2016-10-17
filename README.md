@@ -58,13 +58,13 @@ http://www.webjars.org/
 | --------------------------------- | --------- |:------------------------------------------- |
 | webjars-locator                   | 0.32      | WebJar バージョン番号管理（隠蔽で利用）  |
 | jquery                            | 2.2.4     | jQuery 2.2.4 (※2) |
-| bootstrap                         | 3.3.6     | Bootstrap 3.3.6 |
+| bootstrap                         | 3.3.7-1   | Bootstrap 3.3.7 |
 | html5shiv                         | 3.7.3     | Bootstrap の IE8 対応用 (HTML5) ※後々削除予定 |
 | respond.js                        | 1.4.2     | Bootstrap の IE8 対応用(レスポンシブ) ※後々削除予定 |
 | font-awesome                      | 4.6.3     | Font Awesome |
 | Eonasdan-bootstrap-datetimepicker | 4.17.37-1 | bootstrap-DateTimePicker(Bootstrap,jQuery, moment.js(※3) 必須) |
 | sticky-footer                     | 0.1.4     | フッター表示 |
-| bootswatch                        | 3.3.6     | Bootstrap のテーマ拡張(Lumen を適用) bootswatch 3.3.7 は依存性に問題が発生 |
+| bootswatch                        | 3.3.2     | Bootstrap のテーマ拡張(Lumen を適用) bootswatch 3.3.7 は依存性に問題が発生 |
 | typeaheadjs                       | 0.11.1    | https://twitter.github.io/typeahead.js/  |
 | hoganjs                           | 3.0.2     | http://twitter.github.io/hogan.js/ typeahead 内部で html テンプレートエンジンとして利用。 |
 | bootstrap-dialog                  | 1.34.6    | http://nakupanda.github.io/bootstrap3-dialog/ JavaScript のみで生成可能なダイアログ |
