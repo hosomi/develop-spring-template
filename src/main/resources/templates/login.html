@@ -149,7 +149,7 @@
 							<label class="input-group-addon" for="password">
 								<span class="glyphicon glyphicon-lock icon-white" aria-hidden="true"></span>
 							</label>
-							<input type="password" class="form-control" id="password" name="password"  th:placeholder="#{login.input.password.placeholder}" placeholder="login.input.password.placeholder" />
+							<input type="password" class="form-control" id="password" name="password" data-toggle="tooltip" data-trigger="manual" th:data-title="#{global.capslock.ison}" data-title="Caps lock is on" th:placeholder="#{login.input.password.placeholder}" placeholder="login.input.password.placeholder" />
 						</div>
 						<div class="input-sm btn-block">
 							<button type="submit" id="login_button" class="btn btn-primary form-control"><i class="fa fa-sign-in"></i>&#160;<span th:text="#{login.btn.login}">login.btn.login</span></button>
@@ -180,7 +180,27 @@
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			$("#username").focus();
+
+			$('[type=password]').keypress(function(e) {
+				var $password = $(this);
+				var tooltipVisible = $('.tooltip').is(':visible');
+				var s = String.fromCharCode(e.which);
+
+				if (s.toUpperCase() === s && s.toLowerCase() !== s && !e.shiftKey) {
+					if (!tooltipVisible) {
+						$password.tooltip('show');
+					}
+				} else {
+					if (tooltipVisible) {
+						$password.tooltip('hide');
+					}
+				}
+				$password.blur(function(e) {
+					$password.tooltip('hide');
+				});
+			});
 		});
+		
 	</script>
 </body>
 </html>
