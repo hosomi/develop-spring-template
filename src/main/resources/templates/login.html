@@ -182,21 +182,31 @@
 			$("#username").focus();
 
 			$('[type=password]').keypress(function(e) {
-				var $password = $(this);
+				var password = $(this);
 				var tooltipVisible = $('.tooltip').is(':visible');
 				var s = String.fromCharCode(e.which);
 
-				if (s.toUpperCase() === s && s.toLowerCase() !== s && !e.shiftKey) {
+				var isShow = s.toUpperCase() === s;
+				// alphabet is lower case?
+				if (isShow) {
+					isShow = s.toLowerCase() !== s;
+				}
+				// shift key is not on press?
+				if (isShow) {
+					isShow = !e.shiftKey;
+				}
+
+				if (isShow) {
 					if (!tooltipVisible) {
-						$password.tooltip('show');
+						password.tooltip('show');
 					}
 				} else {
 					if (tooltipVisible) {
-						$password.tooltip('hide');
+						password.tooltip('hide');
 					}
 				}
-				$password.blur(function(e) {
-					$password.tooltip('hide');
+				password.blur(function(e) {
+					password.tooltip('hide');
 				});
 			});
 		});
