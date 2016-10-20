@@ -15,6 +15,7 @@ buildscript {
 	repositories {
 		mavenCentral()
 		jcenter() // gradle-versions-plugin で利用
+		maven { url "http://dl.bintray.com/typesafe/maven-releases" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -49,11 +50,15 @@ targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	jcenter() // gradle-versions-plugin で利用
+	maven { url "http://dl.bintray.com/typesafe/maven-releases" }
+
 }
 
 configurations {
 	compile.exclude group:'ch.qos.logback' // log4j2 の場合、logback をコンパイル対象から外す
 	providedRuntime
+	codacy
 }
 
 // thymeleaf 3 以降を利用する場合の定義
@@ -70,11 +75,51 @@ task wrapper(type: Wrapper) {
  * webapp-runner*.jar を build/libs にコピー
  */
 task copyToLib(type: Copy) {
-  into "$buildDir/libs/"
-  from(configurations.compile) {
-    include "webapp-runner*"
-  }
+	into "$buildDir/libs/"
+	from(configurations.compile) {
+		include "webapp-runner*"
+	}
 }
+
+
+
+/**
+ * Codacy : https://www.codacy.com
+ * codacy-coverage-reporter : https://github.com/codacy/codacy-coverage-reporter
+ *
+ * coverage : Jacoco
+ *
+ * test -> jacocoReport -> uploadCoverageToCodacy 
+ */
+task uploadCoverageToCodacy(type: JavaExec, dependsOn : jacocoTestReport) {
+	main = "com.codacy.CodacyCoverageReporter"
+	classpath = configurations.codacy
+	args = [
+		"-l",
+		"Java",
+		"-r",
+		"${buildDir}/reports/jacoco/jacocoReport/jacocoReport.xml"
+	]
+}
+
+task (codacyDepsize) << {
+	def size = 0;
+	configurations.codacy.collect { it.length() / (1024 * 1024) }.each { size += it }
+	println "Total dependencies size: ${Math.round(size * 100) / 100} Mb"
+
+	configurations
+		.codacy
+		.sort { -it.length() }
+		.each { println "${it.name} : ${Math.round(it.length() / (1024) * 100) / 100} kb" }
+}
+
+task (codacyLocs) << {
+	configurations.codacy.each {
+		String jarName = it
+		println jarName
+	}
+}
+
 
 // war タスク時に copyToLib タスクを先に起動させる。
 war.dependsOn copyToLib
@@ -126,6 +171,7 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 	testCompile('org.dbunit:dbunit:2.5.3')
+	codacy group: 'com.codacy', name: 'codacy-coverage-reporter', version: '1.0.10'
 
 	// ---------------------------
 	// SOAP
@@ -172,17 +218,24 @@ javadoc {
 // JaCoCo coverage reports
 // ---------------------------
 jacoco {
-  applyTo(tasks.withType(JavaExec))
+	applyTo(tasks.withType(JavaExec))
 }
+
 test {
-  jacoco {
-    enabled = true
-   destinationFile = file('build/reports/jacoco/jacoco.exec')
-  }
+	jacoco {
+	enabled = true
+	destinationFile = file('build/reports/jacoco/jacoco.exec')
+	}
 }
+
 task jacocoReport(type: JacocoReport) {
-  executionData test
-  sourceSets project.sourceSets.main
+	executionData test
+	sourceSets project.sourceSets.main
+
+	reports {
+		xml.enabled = true
+		html.enabled = true
+	}
 }
 
 
