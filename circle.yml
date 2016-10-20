@@ -31,6 +31,7 @@ dependencies:
     - ./gradlew -v
     - ./gradlew testClasses
     - ./gradlew build
+    - ./gradlew test jacocoTestReport
     - ./gradlew javadoc
 
 test:  
