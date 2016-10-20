@@ -16,6 +16,7 @@ general:
     - "build/libs"
     - "build/docs/javadoc"
     - "build/dependencyUpdates"
+    - "build/reports"
 dependencies:  
   pre:
     - sudo apt-get install software-properties-common
