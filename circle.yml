@@ -30,10 +30,11 @@ dependencies:
   override:
     - ./gradlew -v
     - ./gradlew testClasses
+    - ./gradlew test 
     - ./gradlew build
-    - ./gradlew test jacocoTestReport
     - ./gradlew javadoc
-
+    - ./gradlew jacocoReport 
+    - ./uploadCoverageToCodacy
 test:  
   override:
     - ./gradlew --full-stacktrace check
