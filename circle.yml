@@ -34,7 +34,7 @@ dependencies:
     - ./gradlew build
     - ./gradlew javadoc
     - ./gradlew jacocoReport 
-    - ./uploadCoverageToCodacy
+    - ./gradlew uploadCoverageToCodacy
 test:  
   override:
     - ./gradlew --full-stacktrace check
