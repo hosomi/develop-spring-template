@@ -4,8 +4,7 @@ Spring Boot + Gradle template
 [![Build Status](https://travis-ci.org/hosomi/develop-spring-template.svg?branch=master)](https://travis-ci.org/hosomi/develop-spring-template)
 [![build status](https://circleci.com/gh/hosomi/develop-spring-template.svg?style=shield&circle-token=9a9efeb27aabd4d1173951957f233d05f246d6c0)](https://circleci.com/gh/hosomi/develop-spring-template)
 [![wercker status](https://app.wercker.com/status/46670404016ddfb8110dd3023bed1473/s/master "wercker status")](https://app.wercker.com/project/byKey/46670404016ddfb8110dd3023bed1473)
-![Heroku](http://heroku-badge.herokuapp.com/?app=angularjs-crypto&style=flat)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/01cdd8027340415da850355603fea894)](https://www.codacy.com/app/kiyotake-hosomi/develop-spring-template?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hosomi/develop-spring-template&amp;utm_campaign=Badge_Grade)
+
 
 Spring Boot , Gradle で開発する際のテンプレートです。  
 
@@ -155,6 +154,8 @@ Thymeleaf の ローカル（AP 経由しない）での表示の際で WebJars 
 
 # etc:
 ## Heroku
+![Heroku](http://heroku-badge.herokuapp.com/?app=angularjs-crypto&style=flat)  
+
 こちらは実験的です、予告なく停止する場合があります。  
 ローカルで実行しなくてもサンプルが確認できます。  
 
@@ -172,3 +173,10 @@ https://blog.heroku.com/new-dyno-types-public-beta#hobby-and-free-dynos
 * Travis CI (https://travis-ci.org/)
 * CircleCI (https://circleci.com/)
 * Wercker (http://wercker.com/)
+
+## Code Coverage
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/01cdd8027340415da850355603fea894)](https://www.codacy.com/app/kiyotake-hosomi/develop-spring-template?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hosomi/develop-spring-template&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/01cdd8027340415da850355603fea894)](https://www.codacy.com/app/hosomi/develop-spring-template?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hosomi/develop-spring-template&amp;utm_campaign=Badge_Coverage)
+
+Codacy の静的解析は Codacy のみで結果を確認できます。  
+Coverage は Codacy から確認する場合、JaCoCo と JaCoCo のCoverage 結果を送信する仕組みが必要になります（Circle CI からアップロードする仕組みにしています）。  

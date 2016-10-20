@@ -1,10 +1,21 @@
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   tasks:
-    bootRun - Spring Boot 起動
-              -> http://localhost:8080/
-    build   - War ファイル作成
-              -> build/libs/template.war
-    引数なし   bootRun
+    bootRun                - Spring Boot 起動
+                             -> http://localhost:8080/
+    build                  - War ファイル作成
+                             -> build/libs/template.war
+    jacocoReport           - JaCoCo Code Coverage 起動
+                             -> 先に test を起動
+                             -> HTML report build/reports/jacoco/jacocoReport/html
+                             -> XML  repott build/reports/jacoco/jacocoReport/jacocoReport.xml (連携用)
+    uploadCoverageToCodacy - Codacy に Coverage 結果をアップロードする（JaCoCo の Coverage 結果をアップロード）。
+                             -> 先に jacocoReport を起動
+                             -> Codacy の API Token を設定しないとエラーになります。
+                               -> ローカル : Windows CLI（set CODACY_PROJECT_TOKEN=Codacy のトークン）
+                               -> Circle CI : Builds -> 対象プロジェクト -> Settings -> Environment Variables -> Add Variable
+                                  Name  : CODACY_PROJECT_TOKEN
+                                  Value : Codacy のトークン(Codacy -> MyProjecys -> 対象プロジェクト選択 -> Settings -> Integrations -> Project API(Settings button click -> Project API Token が表示されます)) 
+     引数なし   bootRun
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 
@@ -28,16 +39,20 @@ buildscript {
 // 引数なしで起動した場合、bootRun
 defaultTasks "bootRun"
 
+
+/* ---------------------------
+  プラグインの定義
+----------------------------*/
 apply plugin: 'java'
 apply plugin: 'eclipse'     // eclipse タスク追加（プロジェクト定義）。
 apply plugin: 'spring-boot' // bootRun タスク追加。
 apply plugin: 'war'         // war タスク追加。
 apply plugin: 'com.github.ben-manes.versions' // dependencyUpdates タスク追加。
-apply plugin: 'jacoco'
+apply plugin: 'jacoco'      // Coverage
 
 war {
-    baseName = 'template'
-    version =  ''
+	baseName = 'template'
+	version =  ''
 }
 
 jar {
