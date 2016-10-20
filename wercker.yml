@@ -16,6 +16,7 @@ build:
         name: gradle build
         code: |
           chmod +x gradlew
+          ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR test jacocoTestReport
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR javadoc
  # Use the build results
@@ -28,4 +29,6 @@ build:
           cp -r ./build/libs/* ${WERCKER_REPORT_ARTIFACTS_DIR}
           ls -la ./build/docs/javadoc/
           cp -r ./build/docs/javadoc/* ${WERCKER_REPORT_ARTIFACTS_DIR}
+          ls -la ./build/build/reports/
+          cp -r ./build/build/reports/ ${WERCKER_REPORT_ARTIFACTS_DIR}
           

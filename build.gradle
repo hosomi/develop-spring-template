@@ -32,6 +32,7 @@ apply plugin: 'eclipse'     // eclipse タスク追加（プロジェクト定�
 apply plugin: 'spring-boot' // bootRun タスク追加。
 apply plugin: 'war'         // war タスク追加。
 apply plugin: 'com.github.ben-manes.versions' // dependencyUpdates タスク追加。
+apply plugin: 'jacoco'
 
 war {
     baseName = 'template'
@@ -155,14 +156,35 @@ dependencyUpdates.resolutionStrategy = {
 	}
 }
 
+
+// ---------------------------
+// charset, encoding
+// ---------------------------
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
 javadoc {
 	options.charSet = 'UTF-8'
 	options.encoding = 'UTF-8'
 }
 
-tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
+// ---------------------------
+// JaCoCo coverage reports
+// ---------------------------
+jacoco {
+  applyTo(tasks.withType(JavaExec))
 }
+test {
+  jacoco {
+    enabled = true
+   destinationFile = file('build/reports/jacoco/jacoco.exec')
+  }
+}
+task jacocoReport(type: JacocoReport) {
+  executionData test
+  sourceSets project.sourceSets.main
+}
+
 
 eclipse {
 	classpath {

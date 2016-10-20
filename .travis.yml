@@ -11,7 +11,7 @@ cache:
     - .gradle
 script:
   - ./gradlew build
-  - ./gradlew test
+  - ./gradlew test jacocoTestReport
   - ./gradlew javadoc
 notifications:
   on_failure: change # always|never
