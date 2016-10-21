@@ -254,7 +254,7 @@ public class SampleController {
 			dto.setDtavlst(entity.getDtavlst());
 			dto.setDtavled(entity.getDtavled());
 			dto.setShowodr(entity.getShowodr());
-			dto.setDtupdate(entity.getDtupdate());
+//			dto.setDtupdate(entity.getDtupdate()); // TypeAhead で使用していないのでコメント。日付は毎回変わるのでレスポンス結果のテストでは利用できない。
 			dto.setTokens(tokens);
 
 			list.add(dto);
