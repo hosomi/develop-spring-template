@@ -16,6 +16,7 @@ import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.assertNotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -79,11 +80,14 @@ public class SampleMasterUserControllerTest {
 	public void testIndex() throws Exception {
 
 		// 認証済みでアクセスし対象ページの内容を取得する。
-		mvc.perform(get("/sample/master/user"))
+		ResultActions actions = mvc.perform(get("/sample/master/user"))
 			.andExpect(SecurityMockMvcResultMatchers.authenticated()) // 認証情報ありか確認
 			.andExpect(status().isOk())
 			.andExpect(content().contentType("text/html;charset=UTF-8")).andExpect(view().name("sample/master/user"))
 			.andExpect(xpath("/html/head/title").string("ユーザマスタ"));
+
+		// JUnit tests should include assert() or fail() 
+		assertNotNull(actions);
 	}
 
 	/**
