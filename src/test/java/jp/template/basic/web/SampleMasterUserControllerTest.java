@@ -99,13 +99,16 @@ public class SampleMasterUserControllerTest {
 	public void testInquiry() throws Exception {
 
 		// サブミット（全件取得）中身まで精査しない。
-		ResultActions results = mvc.perform(post("/sample/master/user").with(csrf()));
-		results.andExpect(status().isOk()); 
-		results.andExpect(model().attribute("list", notNullValue())); // 検索結果の要素の確認。
+		ResultActions actions = mvc.perform(post("/sample/master/user").with(csrf()));
+		actions.andExpect(status().isOk()); 
+		actions.andExpect(model().attribute("list", notNullValue())); // 検索結果の要素の確認。
 
 		// サブミット（ユーザ指定）中身の精査。
-		results = mvc.perform(post("/sample/master/user").param("loginUserId", "test2").with(csrf()));
-		results.andExpect(status().isOk()); 
-		results.andExpect(model().attribute("list", hasItem(Matchers.<User>hasProperty("loginUserId", equalTo("test2"))))); // 結果に指定したユーザIDが入っているか確認する。
+		actions = mvc.perform(post("/sample/master/user").param("loginUserId", "test2").with(csrf()));
+		actions.andExpect(status().isOk()); 
+		actions.andExpect(model().attribute("list", hasItem(Matchers.<User>hasProperty("loginUserId", equalTo("test2"))))); // 結果に指定したユーザIDが入っているか確認する。
+
+		// JUnit tests should include assert() or fail() 
+		assertNotNull(actions);
 	}
 }
