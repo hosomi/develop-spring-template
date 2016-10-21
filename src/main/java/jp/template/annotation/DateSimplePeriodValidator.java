@@ -60,7 +60,7 @@ public class DateSimplePeriodValidator implements ConstraintValidator<DateSimple
 				.addConstraintViolation();
 			return false;
 		}
-		
+
 		// 終了日が空の場合。
 		if (StringUtils.isBlank(to)) {
 			context.disableDefaultConstraintViolation();
@@ -69,10 +69,11 @@ public class DateSimplePeriodValidator implements ConstraintValidator<DateSimple
 				.addConstraintViolation();
 			return false;
 		}
-		
+
 		// 日付のフォーマットチェック & 期間チェックに Java8 TimeAPI を利用。
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
-		LocalDate ldFrom = null,ldTo = null;
+		LocalDate ldFrom = null;
+		LocalDate ldTo = null;
 
 		// 日付のフォーマットチェック・開始日
 		try {
