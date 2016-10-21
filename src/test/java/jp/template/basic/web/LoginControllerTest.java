@@ -2,6 +2,7 @@ package jp.template.basic.web;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
@@ -34,6 +35,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -74,9 +76,12 @@ public class LoginControllerTest {
 	 */
 	@Test
 	public void testLoginIndex() throws Exception {
-		this.mvc.perform(get("/login")).andExpect(status().isOk())
+		ResultActions actions = this.mvc.perform(get("/login")).andExpect(status().isOk())
 				.andExpect(content().contentType("text/html;charset=UTF-8")).andExpect(view().name("login"))
 				.andExpect(xpath("/html/head/title").string("ログイン"));
+		
+		// JUnit tests should include assert() or fail() 
+		assertNotNull(actions);
 	}
 
 	/**
@@ -87,7 +92,7 @@ public class LoginControllerTest {
 	@Test
 	public void testLoginProcess() throws Exception {
 		// 存在しないユーザでログインを試みる
-		this.mvc.perform(
+		ResultActions actions = this.mvc.perform(
 			formLogin()
 				.loginProcessingUrl("/login/auth")
 				.user("username", "testdata3")
@@ -97,6 +102,9 @@ public class LoginControllerTest {
 			.andExpect(unauthenticated()).andExpect(request().sessionAttribute("SPRING_SECURITY_LAST_EXCEPTION",isA(BadCredentialsException.class)))
 		;
 
+		// JUnit tests should include assert() or fail() 
+		assertNotNull(actions);
+		
 		// 使用できないユーザ ( enabled = 0 ) でログインを試みる。
 		// この運用は現在提供していない為、実装時は下記コメントを解除しチェックする。
 //		this.mvc.perform(
@@ -110,7 +118,7 @@ public class LoginControllerTest {
 //		;
 
 		// ログイン可能なユーザでログインする
-		this.mvc.perform(
+		actions = this.mvc.perform(
 			formLogin()
 				.loginProcessingUrl("/login/auth")
 				.user("username", "testdata1")
@@ -119,6 +127,9 @@ public class LoginControllerTest {
 			.andExpect(status().isFound()).andExpect(redirectedUrl("/menu"))
 			.andExpect(authenticated().withUsername("testdata1"))
 		;
+
+		// JUnit tests should include assert() or fail() 
+		assertNotNull(actions);
 	}
 
 	/**
