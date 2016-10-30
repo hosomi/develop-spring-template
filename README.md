@@ -159,10 +159,12 @@ Thymeleaf の ローカル（AP 経由しない）での表示の際で WebJars 
 こちらは実験的です、予告なく停止する場合があります。  
 ローカルで実行しなくてもサンプルが確認できます。  
 
+
+
 https://springboottemplate.herokuapp.com/  
-※ push 時に自動ビルドされますので、タイミング次第では利用できません。   
-Heroku 無料プラン(Free dyno) を利用しています。
-（24 時間の内、6 時間は Sleep 状態にしなければならないという制限があります。）
+※ Application Error が表示されている場合、　Free dyno の制限になっている可能性があります。　　　
+Heroku 無料プラン(Free dyno) を利用しています。　　　
+（24 時間の内、6 時間は Sleep 状態にしなければならないという制限があります。）　　　
 https://blog.heroku.com/new-dyno-types-public-beta#hobby-and-free-dynos
 
 ## CI サービス
