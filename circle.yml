@@ -24,8 +24,6 @@ dependencies:
     - sudo apt-get update
     - echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     - sudo apt-get install oracle-java8-installer
-    - echo y | android update sdk --no-ui --all --filter "tools,platform-tools,android-23,extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services"
-    - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.3"
     
   override:
     - ./gradlew -v
