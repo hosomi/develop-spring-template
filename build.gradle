@@ -21,7 +21,7 @@
 
 buildscript {
 	ext {
-		springBootVersion = '1.4.1.RELEASE'
+		springBootVersion = '1.4.2.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -45,7 +45,7 @@ defaultTasks "bootRun"
 ----------------------------*/
 apply plugin: 'java'
 apply plugin: 'eclipse'     // eclipse タスク追加（プロジェクト定義）。
-apply plugin: 'spring-boot' // bootRun タスク追加。
+apply plugin: 'org.springframework.boot'
 apply plugin: 'war'         // war タスク追加。
 apply plugin: 'com.github.ben-manes.versions' // dependencyUpdates タスク追加。
 apply plugin: 'jacoco'      // Coverage

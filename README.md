@@ -33,7 +33,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 # 依存関係  
 
-## Core(Spring Boot 1.4.1.RELEASE):
+## Core(Spring Boot 1.4.2.RELEASE):
 
 | 対象                                                      | バージョン          | 内容  |
 | --------------------------------------------------------- | ----------------- |:------------------------------------------- |
@@ -76,7 +76,7 @@ http://www.webjars.org/
 
 | 対象        | 内容  |
 | ------------- | :----- |
-| ext['thymeleaf.version'] = '3.0.1.RELEASE' | Thymeleaf version 3 を利用する設定、Spring Boot 1.4.0.RELEASE のデフォルトは version2 がデフォルト |
+| ext['thymeleaf.version'] = '3.0.1.RELEASE' | Thymeleaf version 3 を利用する設定、Spring Boot 1.4.x.RELEASE のデフォルトは version2 がデフォルト |
 | ext['thymeleaf-layout-dialect.version'] = '2.0.3' | Thymeleaf version 3 からは dialect の指定が必要。 |
 
 ## etc:
