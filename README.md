@@ -33,7 +33,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 # 依存関係  
 
-## Core(Spring Boot 1.4.2.RELEASE):
+## Core(Spring Boot 1.4.3.RELEASE):
 
 | 対象                                                      | バージョン          | 内容  |
 | --------------------------------------------------------- | ----------------- |:------------------------------------------- |
@@ -162,10 +162,10 @@ Thymeleaf の ローカル（AP 経由しない）での表示の際で WebJars 
 
 
 https://springboottemplate.herokuapp.com/  
-※ Application Error が表示されている場合、　Free dyno の制限になっている可能性があります。　　　
-Heroku 無料プラン(Free dyno) を利用しています。　　　
-（24 時間の内、6 時間は Sleep 状態にしなければならないという制限があります。）　　　
-https://blog.heroku.com/new-dyno-types-public-beta#hobby-and-free-dynos
+※ Application Error が表示されている場合、　Free dyno の制限になっている可能性があります。　　　  
+Heroku 無料プラン(Free dyno) を利用しています。　　　  
+（24 時間の内、6 時間は Sleep 状態にしなければならないという制限があります。）　　　  
+https://blog.heroku.com/new-dyno-types-public-beta#hobby-and-free-dynos  
 
 ## CI サービス
 無料でどこまで利用できるか検証用に利用しています。  
