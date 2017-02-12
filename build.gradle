@@ -21,7 +21,7 @@
 
 buildscript {
 	ext {
-		springBootVersion = '1.4.3.RELEASE'
+		springBootVersion = '1.5.1.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -32,7 +32,7 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		
 		// https://github.com/ben-manes/gradle-versions-plugin
-		classpath("com.github.ben-manes:gradle-versions-plugin:0.13.0")
+		classpath("com.github.ben-manes:gradle-versions-plugin:0.14.0")
 	}
 }
 
@@ -77,8 +77,8 @@ configurations {
 }
 
 // thymeleaf 3 以降を利用する場合の定義
-ext['thymeleaf.version'] = '3.0.1.RELEASE'
-ext['thymeleaf-layout-dialect.version'] = '2.0.3'
+ext['thymeleaf.version'] = '3.0.3.RELEASE'
+ext['thymeleaf-layout-dialect.version'] = '2.1.2'
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '3.0'
@@ -152,8 +152,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-log4j2')
 	compile('org.thymeleaf.extras:thymeleaf-extras-conditionalcomments')
-	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1')
-	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.0.RELEASE'
+	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0')
+	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.1.RELEASE'
+
 
 	// ---------------------------
 	// webjars 関連
