@@ -33,7 +33,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 
 # 依存関係  
 
-## Core(Spring Boot 1.5.1.RELEASE):
+## Core(Spring Boot 1.5.3.RELEASE):
 
 | 対象                                                      | バージョン          | 内容  |
 | --------------------------------------------------------- | ----------------- |:------------------------------------------- |
@@ -44,7 +44,7 @@ Spring Boot , Gradle で開発する際のテンプレートです。
 | org.springframework.boot:spring-boot-starter-log4j2       | ※1               | Logging                                      |  
 | org.thymeleaf.extras:thymeleaf-extras-springsecurity4     | 3.0.1.RELEASE    | Template engine Spring Security 拡張         |  
 | org.thymeleaf.extras:thymeleaf-extras-conditionalcomments | ※1               | Template engine IE Conditional comments 拡張 |  
-| org.mybatis.spring.boot:mybatis-spring-boot-starter       | 1.2.0            | Spring Boot <-> ORM                          |  
+| org.mybatis.spring.boot:mybatis-spring-boot-starter       | 1.3.0            | Spring Boot <-> ORM                          |  
 
 ※1 Core のバージョンに依存。
 
@@ -76,7 +76,7 @@ http://www.webjars.org/
 
 | 対象        | 内容  |
 | ------------- | :----- |
-| ext['thymeleaf.version'] = '3.0.3.RELEASE' | Thymeleaf version 3 を利用する設定、Spring Boot 1.4.x.RELEASE のデフォルトは version2 がデフォルト |
+| ext['thymeleaf.version'] = '3.0.5.RELEASE' | Thymeleaf version 3 を利用する設定、Spring Boot 1.4.x.RELEASE のデフォルトは version2 がデフォルト |
 | ext['thymeleaf-layout-dialect.version'] = '2.1.2' | Thymeleaf version 3 からは dialect の指定が必要。 |
 
 ## etc:
