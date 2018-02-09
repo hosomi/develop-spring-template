@@ -15,6 +15,7 @@ script:
   - ./gradlew javadoc
 notifications:
   on_failure: change # always|never
+  slack: hosomi:RaFoouMsszYM5uWSmfzWHLKI
 on_success: never
 addons:
   code_climate:
