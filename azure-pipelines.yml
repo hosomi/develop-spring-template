@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/vsts/pipelines/languages/java
 
 pool:
-  vmImage: 'VS2017'
+  vmImage: 'Linux Preview'
 
 steps:
 - task: Gradle@2
