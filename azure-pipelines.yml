@@ -4,10 +4,10 @@
 # https://docs.microsoft.com/vsts/pipelines/languages/java
 
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'VS2017'
 
 steps:
-- task: Gradle@3
+- task: Gradle@2
   inputs:
     workingDirectory: ''
     gradleWrapperFile: 'gradlew'
