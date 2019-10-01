@@ -186,7 +186,7 @@ dependencies {
 	compile('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
-	testCompile('org.dbunit:dbunit:2.5.3')
+	testCompile('org.dbunit:dbunit:2.6.0')
 	codacy group: 'com.codacy', name: 'codacy-coverage-reporter', version: '1.0.10'
 
 	// ---------------------------
