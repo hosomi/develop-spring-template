@@ -169,7 +169,7 @@ dependencies {
 	compile('org.webjars:Eonasdan-bootstrap-datetimepicker:4.17.37-1')
 	compile('org.webjars:ace:07.31.2013')
 	compile('org.webjars.bower:sticky-footer:0.1.4')
-	compile('org.webjars.npm:bootswatch:3.3.6')
+	compile('org.webjars.npm:bootswatch:4.5.2')
 	compile('org.webjars:typeaheadjs:0.11.1')
 	compile('org.webjars:Bootstrap-3-Typeahead:3.1.1')
 	compile('org.webjars:hoganjs:3.0.2')
